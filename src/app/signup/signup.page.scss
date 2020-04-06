@@ -1,0 +1,46 @@
+:host {
+  .app-logo {
+    display: flex;
+    /*   width: 70vw;
+    height: 50vh;
+    margin: auto; */
+    img {
+      width: 70vw;
+      height: 50vh;
+      margin: auto;
+    }
+  }
+
+  .app-signup {
+    display: flex;
+    height: 20vh;
+    flex-direction: column;
+    .app-title {
+      font-size: 33px;
+      font-weight: 900;
+      margin: auto;
+    }
+    .signup-button {
+      width: 40vw;
+      margin: auto;
+      --border-radius: 30px;
+      font-weight: bold;
+    }
+  }
+
+  .app-signin {
+    display: flex;
+    flex-direction: column;
+    .sign-in-href {
+      font-size: 13px;
+      text-align: center;
+      margin: 20% 0;
+      a {
+        text-decoration: underline;
+        font-size: 15px;
+        color: black;
+        font-weight: bold;
+      }
+    }
+  }
+}
