@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Signup Form</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <section class="form-logo">
+    <img src="../../../assets/icons/sharing.svg" />
+  </section>
+  <section class="form-inputs">
+    <p class="form-text">Sign up Form</p>
+    <form [formGroup]="signupForm" class="signupForm" (ngSubmit)="onSubmit()" >
+      <ion-input class="input" type="text" placeholder="Enter your mobile Number" formControlName="name"></ion-input>
+      <ion-input class="input" type="tel" placeholder="Enter your mobile Number" formControlName="mobile"></ion-input>
+      <ion-select class="input" placeholder="Chose your service" formControlName="service" okText="Ok" cancelText="Cancel">
+        <ion-select-option value="grocery">Grocery</ion-select-option>
+        <ion-select-option value="medicines">Medicines</ion-select-option>
+        <ion-select-option value="restarunts">Restaurants</ion-select-option>
+        <ion-select-option value="banks">Banks</ion-select-option>
+        <ion-select-option value="gasStation">Gas Station</ion-select-option>
+        <ion-select-option value="other">Other</ion-select-option>
+      </ion-select>
+      <ion-button class="input button"> Sign Up</ion-button>
+    </form>
+  </section>
+</ion-content>
