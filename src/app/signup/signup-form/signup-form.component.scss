@@ -1,0 +1,42 @@
+:host {
+  .form-logo {
+    display: flex;
+    /*   width: 70vw;
+      height: 50vh;
+      margin: auto; */
+    img {
+      width: 70vw;
+      height: 30vh;
+      margin: auto;
+    }
+  }
+  .form-inputs {
+    .form-text {
+      font-size: 30px;
+      font-weight: 900;
+      text-align: center;
+      height: 5vh;
+      margin: 2vh 0;
+    }
+    .signupForm {
+      margin: auto;
+      width: 75vw;
+      display: flex;
+      flex-direction: column;
+      .input {
+        margin: 10px 0;
+        border: 1px solid black;
+        border-radius: 25px;
+        --padding-start: 15px;
+        min-height: 6vh;
+        box-shadow: 2px 2px 5px #a4a4a4;
+      }
+      & .button {
+        border: none;
+        --border-radius: 30px;
+        width: 40vw;
+        margin: 6vh auto;
+      }
+    }
+  }
+}

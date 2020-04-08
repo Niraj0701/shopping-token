@@ -1,13 +1,18 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-
+import { RouterModule, Routes } from '@angular/router';
 import { SignupPage } from './signup.page';
+import { SignupFormComponent } from './signup-form/signup-form.component';
+
 
 const routes: Routes = [
   {
     path: '',
     component: SignupPage
-  }
+  },
+  {
+    path: 'form',
+    component: SignupFormComponent
+  },
 ];
 
 @NgModule({
