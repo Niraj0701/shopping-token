@@ -5,6 +5,8 @@ import { IonicModule } from '@ionic/angular';
 import { SignupPageRoutingModule } from './signup-routing.module';
 import { SignupPage } from './signup.page';
 import { SignupFormComponent } from './signup-form/signup-form.component';
+import { PhoneCheckComponent } from './phone-check/phone-check.component';
+import { ModalPage } from './phone-check/modal.page';
 
 
 
@@ -17,6 +19,12 @@ import { SignupFormComponent } from './signup-form/signup-form.component';
     IonicModule,
     SignupPageRoutingModule
   ],
-  declarations: [SignupPage, SignupFormComponent]
+  declarations: [
+    ModalPage,
+    SignupPage, 
+    SignupFormComponent,
+    PhoneCheckComponent,
+  ],
+  entryComponents: [ModalPage ]
 })
 export class SignupPageModule { }

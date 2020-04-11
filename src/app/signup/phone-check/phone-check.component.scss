@@ -1,0 +1,47 @@
+@import "../signup-form/signup-form.component.scss";
+
+.code-verification {
+  font-size: 25px;
+  font-weight: 500;
+  text-align: center;
+  margin: 0 2vw;
+  & span {
+    font-size: 16px;
+    font-weight: 500;
+  }
+}
+.code-section {
+  margin: 3vh 5vw;
+  .code-col {
+    margin: 10px 0;
+    .code {
+      text-align: center;
+      border: 1px solid grey;
+      border-radius: 30px;
+      --padding-start: 10px;
+    }
+  }
+}
+.verification-number {
+  text-align: center;
+  & a {
+    text-decoration: underline;
+    color: black;
+    font-weight: 600;
+  }
+}
+.verification-button {
+  --border-radius: 30px;
+}
+.text {
+  margin: 3vh 5vw;
+}
+
+ion-alert {
+  .nrj {
+    display: none;
+    .alert-title {
+      color: red;
+    }
+  }
+}
