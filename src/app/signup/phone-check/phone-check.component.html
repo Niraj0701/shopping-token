@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <section class="form-logo">
+    <img src="../../../assets/icons/sharing.svg" />
+  </section>
+  <section class="code-verification">
+    <p class="form-text">We sent you a code to verify
+      your phone number</p>
+    <span>Sent to (+91 12345 67890)</span>
+  </section>
+
+  <ion-grid class="code-section">
+    <ion-row>
+      <ion-col size="3" class="code-col">
+        <ion-input class="code" type="tel" placeHolder='01'></ion-input>
+      </ion-col>
+      <ion-col size="3" class="code-col">
+        <ion-input class="code" type="tel" placeHolder='01'></ion-input>
+      </ion-col>
+      <ion-col size="3" class="code-col">
+        <ion-input class="code" type="tel" placeHolder='01'></ion-input>
+      </ion-col>
+      <ion-col size="3" class="code-col">
+        <ion-input class="code" type="tel" placeHolder='01'></ion-input>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-row class="ion-justify-content-center">
+    <ion-col size="8" class="verification-number">
+      <ion-button (click)="onVerifyClick()" class="verification-button">Veryfy Phone Number</ion-button>
+    </ion-col>
+  </ion-row>
+  <ion-row class="ion-justify-content-center text">
+    <ion-col size="10" class="verification-number">
+      Haven't received the code!
+      <a>Resend</a>
+    </ion-col>
+  </ion-row>
+
+</ion-content>
