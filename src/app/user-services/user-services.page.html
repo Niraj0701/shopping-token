@@ -1,0 +1,106 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>userServices</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="userServices">
+
+  <section class="location">
+    <ion-grid>
+
+      <ion-row>
+        <ion-col>
+          <ion-item class="locate" lines="none">
+            <ion-icon name="navigate-circle" slot="start" align-self-center></ion-icon>
+            <ion-input fill="outline" shape="round" placeholder="Search location...">
+            </ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-button (click)="useCurrentLocation()" fill="outline" shape="round" icon-start>
+            <ion-icon name="locate" style="margin: 0 5px"></ion-icon>
+            Use Current Location
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </section>
+
+  <section class="title">
+    <p>Choose service you need</p>
+  </section>
+
+  <section class="services-list">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-card class="service" (click)="navigateToList('grocery')">
+            <img class="service-icon" src="../../assets/icons/noun_groceries_715568.png" />
+            <ion-card-content class="name">
+              <span>Grocery</span>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col>
+          <ion-card class="service" (click)="navigateToList('medicine')">
+            <img class="service-icon" src="../../assets/icons/medicine.png" />
+            <ion-card-content class="name">
+              <span>Medicine</span>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+
+      <ion-row>
+        <ion-col>
+          <ion-card class="service" (click)="navigateToList('bank')">
+            <img class="service-icon" src="../../assets/icons/bank.png" />
+            <ion-card-content class="name">
+              <span>Bank</span>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col>
+          <ion-card class="service" (click)="navigateToList('restaurant')">
+            <img class="service-icon" src="../../assets/icons/take-away.png" />
+            <ion-card-content class="name">
+              <span>Restaurant</span>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-card class="service" (click)="navigateToList('gasStation')">
+            <img class="service-icon" src="../../assets/icons/fuel-station.png" />
+            <ion-card-content class="name">
+              <span>Gas Station</span>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col>
+          <ion-card class="service" (click)="navigateToList('others')">
+            <img class="service-icon" src="../../assets/icons/noun_groceries_715568.png" />
+            <ion-card-content class="name">
+              <span>Others</span>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+
+
+    <!--   <ion-col class="service">
+      <img class="service-icon" src="../../assets/icons/bank.png" />
+      <span>Bank</span>
+    </ion-col> -->
+
+  </section>
+</ion-content>

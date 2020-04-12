@@ -1,0 +1,125 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>timeSlots</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="timeSlots">
+  <section class="shop-details">
+    Shopr dtaisl
+    <ion-item lines="none">
+      <ion-label class="ion-text-wrap">
+        <ion-text color="dark" class="shop-name">
+          Uttam Market Shoppee
+        </ion-text>
+        <p class="address"> 
+          <span>H3 Primary Title</span>
+          <ion-icon style="margin: 0 5vw;" name="navigate"></ion-icon>
+        </p>
+        <ion-text color="medium" class="time">
+          <ion-icon class="clock" name="time-outline"></ion-icon>
+          <p>09:00 AM - 09:00 PM</p>
+        </ion-text>
+      </ion-label>
+    </ion-item>
+  </section>
+  <section class="dates">
+    <p class="section-title">Available Dates to book slot</p>
+    <ion-row>
+      <ion-col size='4' *ngFor="let item of datesAndDays">
+        <ion-card class="service" [ngClass]="item.present ? 'active-date': ''">
+          <p class="service-icon">{{item.date}}</p>
+          <ion-card-content class="name">
+            <span>{{item.day}}</span>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </section>
+  <section class="hours">
+    <p class="section-title">Available time slots</p>
+    <ion-grid class="timeBtns">
+      <ion-text class="margin-to-text"> Morning Time Slots</ion-text>
+      <ion-row>
+        <ion-col size="4">
+          <ion-button fill="outline" class="time-slot-button">
+            00:00 AM
+          </ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-text class="margin-to-text"> Afternoon Time Slots</ion-text>
+      <ion-row>
+        <ion-col size="4">
+          <ion-button fill="outline" class="time-slot-button">
+            4:00 PM
+          </ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-text class="margin-to-text"> Evening Time Slots</ion-text>
+      <ion-row>
+        <ion-col size="4">
+          <ion-button fill="outline" class="time-slot-button">
+            20:00 PM
+          </ion-button>
+        </ion-col><ion-col size="4">
+          <ion-button fill="outline" class="time-slot-button">
+            20:00 PM
+          </ion-button>
+        </ion-col><ion-col size="4">
+          <ion-button fill="outline" class="time-slot-button">
+            20:00 PM
+          </ion-button>
+        </ion-col><ion-col size="4">
+          <ion-button fill="outline" class="time-slot-button">
+            20:00 PM
+          </ion-button>
+        </ion-col><ion-col size="4">
+          <ion-button fill="outline" class="time-slot-button">
+            20:00 PM
+          </ion-button>
+        </ion-col><ion-col size="4">
+          <ion-button fill="outline" class="time-slot-button">
+            20:00 PM
+          </ion-button>
+        </ion-col><ion-col size="4">
+          <ion-button fill="outline" class="time-slot-button">
+            20:00 PM
+          </ion-button>
+        </ion-col><ion-col size="4">
+          <ion-button fill="outline" class="time-slot-button">
+            20:00 PM
+          </ion-button>
+        </ion-col><ion-col size="4">
+          <ion-button fill="outline" class="time-slot-button">
+            20:00 PM
+          </ion-button>
+        </ion-col><ion-col size="4">
+          <ion-button fill="outline" class="time-slot-button">
+            20:00 PM
+          </ion-button>
+        </ion-col><ion-col size="4">
+          <ion-button fill="outline" class="time-slot-button">
+            20:00 PM
+          </ion-button>
+        </ion-col><ion-col size="4">
+          <ion-button fill="outline" class="time-slot-button">
+            20:00 PM
+          </ion-button>
+        </ion-col><ion-col size="4">
+          <ion-button fill="outline" class="time-slot-button">
+            20:00 PM
+          </ion-button>
+        </ion-col><ion-col size="4">
+          <ion-button fill="outline" class="time-slot-button">
+            20:00 PM
+          </ion-button>
+        </ion-col><ion-col size="4">
+          <ion-button fill="outline" class="time-slot-button">
+            20:00 PM
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </section>
+</ion-content>
