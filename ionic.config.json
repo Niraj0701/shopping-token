@@ -1,5 +1,7 @@
 {
   "name": "shoppingToken",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

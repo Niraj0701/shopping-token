@@ -1,0 +1,146 @@
+<!-- <ion-menu side="start" menuId="first" contentId="main">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>business-profile</ion-title>
+      <ion-icon name="person-circle-outline"></ion-icon>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-item>Menu Item</ion-item>
+      <ion-item>Menu Item</ion-item>
+      <ion-item>Menu Item</ion-item>
+      <ion-item>Menu Item</ion-item>
+      <ion-item>Menu Item</ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu> -->
+<ion-menu side="start" menuId="first" contentId="main">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>Start Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-item>Menu Item</ion-item>
+      <ion-item>Menu Item</ion-item>
+      <ion-item>Menu Item</ion-item>
+      <ion-item>Menu Item</ion-item>
+      <ion-item>Menu Item</ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+<div class="ion-page" id="main">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button color="medium"
+          ><ion-icon name="person-circle-outline"></ion-icon
+        ></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Welcome, Uttam Super Shopee</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <div>
+      Check out today’s booked slots
+    </div>
+    <ion-grid>
+      <ion-row>
+        <ion-col *ngFor="let element of daysList">
+          <ion-button color="light"
+            >{{element | date: 'dd' }} <br />
+            {{element | date: 'EEE' }}</ion-button
+          >
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <div>
+      <ul class="timeline">
+        <li>
+          <div class="timeline-thumb timeline-icon">
+            <i class="ion-heart"></i>
+          </div>
+          <div class="timeline-item start">
+            20 booked slot
+          </div>
+        </li>
+        <li>
+          <ion-button class="timeline-time" color="light">
+            09:00 AM
+          </ion-button>
+          <div class="timeline-item">
+            <ion-card class="card">
+              <ion-card-title class="header">Mahesh Jawadi</ion-card-title>
+              <ion-card-content class="card-content">
+                <p><span>20 Items</span> | <span>Rs 1840.00</span></p>
+              </ion-card-content>
+            </ion-card>
+          </div>
+          <div class="timeline-item">
+            <ion-card class="card">
+              <ion-card-title class="header">Mahesh Jawadi</ion-card-title>
+              <ion-card-content class="card-content">
+                <p><span>20 Items</span> | <span>Rs 1840.00</span></p>
+              </ion-card-content>
+            </ion-card>
+          </div>
+          <div class="timeline-item">
+            <ion-card class="card">
+              <ion-card-title class="header">Mahesh Jawadi</ion-card-title>
+              <ion-card-content class="card-content">
+                <p><span>20 Items</span> | <span>Rs 1840.00</span></p>
+              </ion-card-content>
+            </ion-card>
+          </div>
+          <div class="timeline-item">
+            <ion-card class="card">
+              <ion-card-title class="header">Mahesh Jawadi</ion-card-title>
+              <ion-card-content class="card-content">
+                <p><span>20 Items</span> | <span>Rs 1840.00</span></p>
+              </ion-card-content>
+            </ion-card>
+          </div>
+        </li>
+        <li>
+          <ion-button class="timeline-time" color="light">
+            09:30 AM
+          </ion-button>
+          <div class="timeline-item">
+            <ion-card class="card">
+              <ion-card-title class="header">Mahesh Jawadi</ion-card-title>
+              <ion-card-content class="card-content">
+                <p><span>20 Items</span> | <span>Rs 1840.00</span></p>
+              </ion-card-content>
+            </ion-card>
+          </div>
+          <div class="timeline-item">
+            <ion-card class="card">
+              <ion-card-title class="header">Mahesh Jawadi</ion-card-title>
+              <ion-card-content class="card-content">
+                <p><span>20 Items</span> | <span>Rs 1840.00</span></p>
+              </ion-card-content>
+            </ion-card>
+          </div>
+          <div class="timeline-item">
+            <ion-card class="card">
+              <ion-card-title class="header">Mahesh Jawadi</ion-card-title>
+              <ion-card-content class="card-content">
+                <p><span>20 Items</span> | <span>Rs 1840.00</span></p>
+              </ion-card-content>
+            </ion-card>
+          </div>
+          <div class="timeline-item">
+            <ion-card class="card">
+              <ion-card-title class="header">Mahesh Jawadi</ion-card-title>
+              <ion-card-content class="card-content">
+                <p><span>20 Items</span> | <span>Rs 1840.00</span></p>
+              </ion-card-content>
+            </ion-card>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </ion-content>
+</div>
