@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Shops List</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="shops-list">
+  <ion-card class="shop-item" [routerLink]="['/time-slots']"> 
+    <ion-item lines="none">
+      <ion-label class="ion-text-wrap">
+        <ion-text>
+          <span class="shop-name">H3 Primary Title</span>
+          <ion-badge style="float:right;" color="medium">99 m</ion-badge>
+        </ion-text>
+        <p style="text-align: end;">
+        </p>
+        <ion-text class="shop-address" color="medium">
+          <p>Paragraph line 2 secondary</p>
+        </ion-text>
+      </ion-label>
+    </ion-item>
+  </ion-card> 
+  
+  <ion-card class="shop-item"> 
+    <ion-item lines="none">
+      <ion-label class="ion-text-wrap">
+        <ion-text style="margin-bottom: 10px;">
+          <span class="shop-name">H2 Primary Title</span>
+          <ion-badge style="float:right;" color="medium">99 m</ion-badge>
+        </ion-text>
+        <ion-text class="shop-address" color="medium">
+          <p>Paragraph line 2 secondary</p>
+        </ion-text>
+      </ion-label>
+    </ion-item>
+  </ion-card>
+
+
+</ion-content>

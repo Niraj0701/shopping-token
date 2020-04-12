@@ -1,0 +1,67 @@
+.timeSlots {
+  .section-title {
+    font-size: 15px;
+    font-weight: 500;
+    font-family: sans-serif;
+  }
+  .shop-details {
+    margin: 0 4vw;
+    .shop-name {
+      font-size: 20px;
+      font-weight: 600;
+    }
+    .address {
+      span {
+        width: 10vw;
+      }
+    }
+    .time {
+      display: flex;
+      .clock {
+        margin-right: 10px;
+      }
+    }
+  }
+
+  .dates {
+    margin: 0 4vw;
+    .service {
+      text-align: center;
+      margin: 0;
+      .service-icon {
+        padding: 0 10px;
+        text-align: center;
+      }
+      .name {
+        color: black;
+        padding: 0 0 10px 0;
+        font-size: 15px;
+      }
+    }
+    & .active-date {
+      border: 2px solid #3880ff;
+
+      .name {
+        color: #3880ff;
+        font-weight: 900;
+      }
+      .service-icon {
+        color: #3880ff;
+        font-weight: 900;
+      }
+    }
+  }
+
+  .hours {
+    margin: 0 4vw;
+    .timeBtns {
+      height: 45vh;
+      overflow: scroll;
+    }
+    .time-slot-button {
+      font-size: 15px;
+      font-weight: 500;
+      font-family: sans-serif;
+    }
+  }
+}

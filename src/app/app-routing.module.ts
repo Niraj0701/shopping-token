@@ -3,9 +3,9 @@ import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
 
 const routes: Routes = [
   {
-    path: "",
-    redirectTo: "profile",
-    pathMatch: "full",
+    path: '',
+    redirectTo: 'user-services',
+    pathMatch: 'full'
   },
   {
     path: "home",
@@ -25,6 +25,22 @@ const routes: Routes = [
   {
     path: 'business-profile',
     loadChildren: () => import('./business-profile/business-profile.module').then( m => m.BusinessProfilePageModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./signin/signin.module').then( m => m.SigninPageModule)
+  },
+  {
+    path: 'user-services',
+    loadChildren: () => import('./user-services/user-services.module').then( m => m.UserServicesPageModule)
+  },
+  {
+    path: 'shops-list',
+    loadChildren: () => import('./shops-list/shops-list.module').then( m => m.ShopsListPageModule)
+  },
+  {
+    path: 'time-slots',
+    loadChildren: () => import('./time-slots/time-slots.module').then( m => m.TimeSlotsPageModule)
   },
 ];
 

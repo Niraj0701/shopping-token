@@ -1,0 +1,17 @@
+.shops-list{
+   .shop-item {
+      padding: 10px 0;
+      margin: 2vh 4vw;
+      .shop-name{
+         font-size: 15px;
+         font-weight: 600;
+         font-family: sans-serif;
+      }
+
+      .shop-address {
+         font-size: 12px;
+         font-weight: 500;
+         font-family: sans-serif;
+      }
+   }
+}

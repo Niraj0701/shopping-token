@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <section class="form-logo">
+    <img src="../../../assets/icons/sharing.svg" />
+  </section>
+  <section class="form-inputs">
+    <p class="form-text">Shopping Token</p>
+    <p class="form-text" style="font-size: 25px; font-family: sans-serif;">Login</p>
+    <form [formGroup]="signinForm" class="signupForm" (ngSubmit)="onSubmit()" >
+      <ion-input class="input" type="text" placeholder="Enter your Full Name" formControlName="name"></ion-input>
+      <ion-input class="input" type="password" placeholder="Enter your Password" formControlName="password"></ion-input>
+      <ion-button class="brder-btn button shopping-button "> Login</ion-button>
+    </form>
+  </section>
+  <section class="form-inputs">
+    <p class="form-text" style="font-size: 12px; font-family: sans-serif;text-decoration: underline;">forgot password ?</p>
+  </section>
+</ion-content>
