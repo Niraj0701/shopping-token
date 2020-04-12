@@ -16,7 +16,7 @@
 @import "~@ionic/angular/css/normalize.css";
 @import "~@ionic/angular/css/structure.css";
 @import "~@ionic/angular/css/typography.css";
-@import '~@ionic/angular/css/display.css';
+@import "~@ionic/angular/css/display.css";
 
 /* Optional CSS utils that can be commented out */
 @import "~@ionic/angular/css/padding.css";
@@ -25,11 +25,38 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
-
 ion-modal.confirmation-popup {
-   padding: 30vh 5vw;
-   background: rgba(0,0,0,0.5);
-   .modal-wrapper{
-      border-radius: 30px;
-   }
+  padding: 30vh 5vw;
+  background: rgba(0, 0, 0, 0.5);
+  .modal-wrapper {
+    border-radius: 30px;
+  }
 }
+
+.input {
+  margin: 10px 0;
+  border: 1px solid black;
+  border-radius: 25px;
+  --padding-start: 15px !important;
+  min-height: 6vh;
+  box-shadow: 2px 2px 5px #a4a4a4;
+}
+
+.brder-btn{
+   --border-radius: 25px;
+   margin: 10px 0;
+}
+
+
+.g-btn--purple-to-blue {
+  background: linear-gradient(135deg, #b721ff, #6121fd);
+}
+.g-btn--purple-to-blue:hover {
+  background: #8b21fe;
+}
+
+
+.shopping-button {
+   --background: linear-gradient(135deg, #b721ff, #6121fd) !important;
+ }
+ 
