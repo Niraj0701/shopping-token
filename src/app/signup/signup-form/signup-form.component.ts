@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { LoaderService } from 'src/app/services/api/loading.service';
+import { ApiService } from 'src/app/services/api/api.service';
 
 @Component({
   selector: 'app-signup-form',
@@ -14,14 +15,16 @@ export class SignupFormComponent implements OnInit {
   signupForm: FormGroup;
   constructor(private formBuilder: FormBuilder, 
     private loading: LoaderService,
-    private router: Router) { }
+    private router: Router,
+    private apiService: ApiService) { }
 
   ngOnInit() {
     this.signupForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
+      email : new FormControl('', [Validators.required]),
       mobile: new FormControl('', [Validators.required, Validators.minLength(10)]),
-      user_type: new FormControl('', [Validators.required]),
+      profile: new FormControl('', [Validators.required]),
       service: new FormControl('', [Validators.required])
     });
   }
@@ -34,11 +37,21 @@ export class SignupFormComponent implements OnInit {
 
   onSubmit(){
     this.loading.show();
-    setTimeout(()=> {
+    /* setTimeout(()=> {
       this.loading.hide();
       this.router.navigate(['/signup/verify'])
-    }, 3000)
+    }, 3000) 
     
+    
+      "name": name? name: '',
+      "email": email? email : '',
+      "mobile": mobile,
+      "profile": profile,
+      "password": password
+    }
+    */
+    const body = this.signupForm.value;
+    this.apiService.signup()
     console.log('***: ', this.signupForm.value)
   }
 
