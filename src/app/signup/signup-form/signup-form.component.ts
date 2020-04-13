@@ -28,6 +28,7 @@ export class SignupFormComponent implements OnInit {
 
   typeChanged(event) {
     this.isUser = event.target.value === 'service_provider';
+    localStorage.setItem('user_type', event.target.value);
     this.signupForm.controls['user_type'].setValue(event.target.value);
   }
 

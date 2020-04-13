@@ -1,9 +1,11 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
     <ion-title>Shops List</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content class="shops-list">
   <ion-card class="shop-item" [routerLink]="['/time-slots']"> 
     <ion-item lines="none">

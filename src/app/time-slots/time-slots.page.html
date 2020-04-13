@@ -1,24 +1,26 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>timeSlots</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Time Slots List</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="timeSlots">
   <section class="shop-details">
-    Shopr dtaisl
     <ion-item lines="none">
       <ion-label class="ion-text-wrap">
         <ion-text color="dark" class="shop-name">
-          Uttam Market Shoppee
+          {{shop.name}}
         </ion-text>
         <p class="address"> 
-          <span>H3 Primary Title</span>
+          <span>{{shop.address ? shop.address : 'Not Given'}}</span>
           <ion-icon style="margin: 0 5vw;" name="navigate"></ion-icon>
         </p>
         <ion-text color="medium" class="time">
           <ion-icon class="clock" name="time-outline"></ion-icon>
-          <p>09:00 AM - 09:00 PM</p>
+          {{getTime(shop.start_time)}} - {{getTime(shop.end_time)}}
         </ion-text>
       </ion-label>
     </ion-item>
@@ -39,87 +41,34 @@
   <section class="hours">
     <p class="section-title">Available time slots</p>
     <ion-grid class="timeBtns">
-      <ion-text class="margin-to-text"> Morning Time Slots</ion-text>
       <ion-row>
-        <ion-col size="4">
-          <ion-button fill="outline" class="time-slot-button">
-            00:00 AM
+        <ion-col size="4" *ngFor="let item of shop.slots; let i = index" >
+          <ion-button [ngClass]="selectedSlot === i ? 'selected': '' " size="small" fill="outline" class="time-slot-button" (click)=select(i)>
+            {{getTime(item)}}
           </ion-button>
         </ion-col>
       </ion-row>
-      <ion-text class="margin-to-text"> Afternoon Time Slots</ion-text>
+      <!-- <ion-text class="margin-to-text"> Afternoon Time Slots</ion-text>
       <ion-row>
-        <ion-col size="4">
-          <ion-button fill="outline" class="time-slot-button">
-            4:00 PM
+        <ion-col size="4" *ngFor="let item of dayInParts(shop.slots, '12:00', '17:00'); let i = index">
+          <ion-button [ngClass]="selectedSlot === i ? 'selected': '' " size="small" fill="outline" class="time-slot-button" (click)=select(i)>
+            {{getTime(item)}}
           </ion-button>
         </ion-col>
       </ion-row>
       <ion-text class="margin-to-text"> Evening Time Slots</ion-text>
       <ion-row>
-        <ion-col size="4">
-          <ion-button fill="outline" class="time-slot-button">
-            20:00 PM
-          </ion-button>
-        </ion-col><ion-col size="4">
-          <ion-button fill="outline" class="time-slot-button">
-            20:00 PM
-          </ion-button>
-        </ion-col><ion-col size="4">
-          <ion-button fill="outline" class="time-slot-button">
-            20:00 PM
-          </ion-button>
-        </ion-col><ion-col size="4">
-          <ion-button fill="outline" class="time-slot-button">
-            20:00 PM
-          </ion-button>
-        </ion-col><ion-col size="4">
-          <ion-button fill="outline" class="time-slot-button">
-            20:00 PM
-          </ion-button>
-        </ion-col><ion-col size="4">
-          <ion-button fill="outline" class="time-slot-button">
-            20:00 PM
-          </ion-button>
-        </ion-col><ion-col size="4">
-          <ion-button fill="outline" class="time-slot-button">
-            20:00 PM
-          </ion-button>
-        </ion-col><ion-col size="4">
-          <ion-button fill="outline" class="time-slot-button">
-            20:00 PM
-          </ion-button>
-        </ion-col><ion-col size="4">
-          <ion-button fill="outline" class="time-slot-button">
-            20:00 PM
-          </ion-button>
-        </ion-col><ion-col size="4">
-          <ion-button fill="outline" class="time-slot-button">
-            20:00 PM
-          </ion-button>
-        </ion-col><ion-col size="4">
-          <ion-button fill="outline" class="time-slot-button">
-            20:00 PM
-          </ion-button>
-        </ion-col><ion-col size="4">
-          <ion-button fill="outline" class="time-slot-button">
-            20:00 PM
-          </ion-button>
-        </ion-col><ion-col size="4">
-          <ion-button fill="outline" class="time-slot-button">
-            20:00 PM
-          </ion-button>
-        </ion-col><ion-col size="4">
-          <ion-button fill="outline" class="time-slot-button">
-            20:00 PM
-          </ion-button>
-        </ion-col><ion-col size="4">
-          <ion-button fill="outline" class="time-slot-button">
-            20:00 PM
+        <ion-col size="4" *ngFor="let item of dayInParts(shop.slots, '17:00', '23:50'); let i = index">
+          <ion-button [ngClass]="selectedSlot === i ? 'selected': '' " size="small" fill="outline" class="time-slot-button" (click)=select(i)>
+            {{getTime(item)}}
           </ion-button>
         </ion-col>
-      </ion-row>
+      </ion-row> -->
     </ion-grid>
-
+  </section>
+  <section style="text-align: center; margin: 30px 10px;" class="dates">
+    <ion-button shape="round" class="shopping-button">
+      Book Now
+    </ion-button>
   </section>
 </ion-content>

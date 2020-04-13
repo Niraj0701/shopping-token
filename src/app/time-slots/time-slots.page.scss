@@ -57,11 +57,23 @@
     .timeBtns {
       height: 45vh;
       overflow: scroll;
+      box-shadow: 2px 1px 10px #ebebeb;
+      border-radius: 4px;
+      padding: 12px;
     }
     .time-slot-button {
       font-size: 15px;
       font-weight: 500;
       font-family: sans-serif;
+      --color: grey;
+      
+      --border-color: grey;
+    }
+
+    & .selected {
+      --color: #3880ff;
+      
+      --border-color: #3880ff !important;
     }
   }
 }

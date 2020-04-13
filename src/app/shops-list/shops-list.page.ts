@@ -13,7 +13,6 @@ export class ShopsListPage implements OnInit {
   constructor(private route: Router, private apiService: ApiService) { }
 
   ngOnInit() {
-    console.log('=== : ', this.route.getCurrentNavigation().extras.state.coords);
     this.coords = this.route.getCurrentNavigation().extras.state.coords;
     this.getAllShops('grocery', this.coords['lat'], this.coords['long'] )
   }
