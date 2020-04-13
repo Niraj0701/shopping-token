@@ -7,6 +7,7 @@ import { SignupPage } from './signup.page';
 import { SignupFormComponent } from './signup-form/signup-form.component';
 import { PhoneCheckComponent } from './phone-check/phone-check.component';
 import { ModalPage } from './phone-check/modal.page';
+import { ApiServiceModule } from '../services/api/apiService.module';
 
 
 
@@ -17,7 +18,8 @@ import { ModalPage } from './phone-check/modal.page';
     ReactiveFormsModule,
     FormsModule,
     IonicModule,
-    SignupPageRoutingModule
+    SignupPageRoutingModule,
+    ApiServiceModule
   ],
   declarations: [
     ModalPage,
