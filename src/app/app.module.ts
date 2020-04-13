@@ -9,6 +9,9 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { GuardsModule } from './services/guards/guards.module';
+import { AuthInterceptor } from './security/interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { SecurityModule } from './security/security.module';
 
 @NgModule({
   declarations: [AppComponent],

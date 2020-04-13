@@ -1,14 +1,25 @@
 import { NgModule } from '@angular/core';
 import { ApiService } from './api.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoaderService } from './loading.service';
+import { AuthInterceptor } from 'src/app/security/interceptor';
+import { SecurityModule } from 'src/app/security/security.module';
 
 @NgModule({
    imports: [
-      HttpClientModule
+      HttpClientModule,
+      SecurityModule,
    ],
-   providers: [ ApiService, LoaderService ],
+   providers: [
+      {
+         provide: HTTP_INTERCEPTORS,
+         useClass: AuthInterceptor,
+         multi: true
+      },
+      ApiService,
+      LoaderService
+   ],
 })
-export class ApiServiceModule { 
+export class ApiServiceModule {
 
 }
