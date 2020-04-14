@@ -14,7 +14,7 @@ export class AuthInterceptor implements HttpInterceptor {
          .pipe(
             switchMap(token => {
                if (token) {
-                  request = request.clone({ headers: request.headers.set('Authorization', 'Bearer ' + token) });
+                  request = request.clone({ headers: request.headers.set('authorization', 'Bearer ' + token) });
                }
 
                return next.handle(request).pipe(

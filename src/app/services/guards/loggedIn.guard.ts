@@ -26,7 +26,7 @@ export class LoggedInGuard implements CanActivate {
    constructor(private router: Router) { }
 
    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-      if (localStorage['user'] && localStorage['password']) {
+      if (localStorage['mobile'] && localStorage['authorization']) {
          return true;
       } else {
          this.router.navigate(['/login']);

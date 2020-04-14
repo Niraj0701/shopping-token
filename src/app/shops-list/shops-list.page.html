@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 <ion-content class="shops-list">
-  <ion-card class="shop-item" [routerLink]="['/time-slots']"> 
+  <ion-card class="shop-item"> 
     <ion-item lines="none">
       <ion-label class="ion-text-wrap">
         <ion-text>
@@ -23,15 +23,15 @@
     </ion-item>
   </ion-card> 
   
-  <ion-card class="shop-item"> 
-    <ion-item lines="none">
+  <ion-card class="shop-item" *ngFor="let item of shopsList" > 
+    <ion-item lines="none" (click)="goToSlots(item)">
       <ion-label class="ion-text-wrap">
         <ion-text style="margin-bottom: 10px;">
-          <span class="shop-name">H2 Primary Title</span>
-          <ion-badge style="float:right;" color="medium">99 m</ion-badge>
+          <span class="shop-name">{{item.name}}</span>
+          <ion-badge style="float:right;" color="medium">{{item.distance}} m</ion-badge>
         </ion-text>
         <ion-text class="shop-address" color="medium">
-          <p>Paragraph line 2 secondary</p>
+          <p>{{item.address}}</p>
         </ion-text>
       </ion-label>
     </ion-item>
