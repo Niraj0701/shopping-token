@@ -43,7 +43,7 @@
     <ion-grid class="timeBtns">
       <ion-row>
         <ion-col size="4" *ngFor="let item of shop.slots; let i = index" >
-          <ion-button [ngClass]="selectedSlot === i ? 'selected': '' " size="small" fill="outline" class="time-slot-button" (click)=select(i, item)>
+          <ion-button [ngClass]="selectedSlot === i ? 'selected': '' " size="small" fill="outline" class="time-slot-button" (click)="select(i, item)">
             {{getTime(item)}}
           </ion-button>
         </ion-col>
