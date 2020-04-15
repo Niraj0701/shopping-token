@@ -11,6 +11,7 @@ export class TimeSlotsPage implements OnInit {
 
   datesAndDays = [];
   selectedSlot: any;
+  slotString: string;
   weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   public shop = {};
   constructor(private route: Router) { }
@@ -43,8 +44,9 @@ export class TimeSlotsPage implements OnInit {
   };
 
 
-  select(index: number) {
+  select(index: number, slot: string) {
     this.selectedSlot = index;
+    this.slotString = slot;
   }
 
 }
