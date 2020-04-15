@@ -46,9 +46,9 @@ export class UserServicesPage implements OnInit {
     await alert.present();
   }
 
-  navigateToList() {
+  navigateToList(business_type: string) {
     console.log('***')
-    this.router.navigate(['/shops-list'], { state: { coords: this.userCoords } })
+    this.router.navigate(['/shops-list'], { state: {type:business_type,  coords: this.userCoords } })
   }
 
   checkUserPreference() {

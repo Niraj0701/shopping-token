@@ -10,11 +10,13 @@ import { ApiService } from './../services/api/api.service';
 export class ShopsListPage implements OnInit {
 
   coords: any = {};
+  business_type: string;
   shopsList: any;
   constructor(private route: Router, private apiService: ApiService) { }
 
   ngOnInit() {
     this.coords = this.route.getCurrentNavigation().extras.state.coords;
+    this.business_type = this.route.getCurrentNavigation().extras.state.type;
     this.getAllShops('grocery', this.coords['lat'], this.coords['long'])
   }
 
@@ -23,7 +25,7 @@ export class ShopsListPage implements OnInit {
   }
 
   getAllShops(type, lat, long) {
-    this.apiService.getShopList('GROCERY', lat, long).subscribe(data => {
+    this.apiService.getShopList(this.business_type, lat, long).subscribe(data => {
       console.log('*** : ', data);
       this.shopsList = data;
     }, error => {
