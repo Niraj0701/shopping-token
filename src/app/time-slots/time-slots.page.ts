@@ -1,6 +1,7 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
+import { IShop } from '../models/shop.interface';
 
 @Component({
   selector: 'app-time-slots',
@@ -13,7 +14,7 @@ export class TimeSlotsPage implements OnInit {
   selectedSlot: any;
   slotString: string;
   weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-  public shop = {};
+  public shop: IShop;
   constructor(private route: Router) { }
 
   ngOnInit() {
