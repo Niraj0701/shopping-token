@@ -6,7 +6,7 @@ export class ApiService {
   constructor(private http: HttpClient) { }
   
   getShopList(type: string, lat: number, long: number) {
-    const url = "https://api.healthybank.in/api/businesses";
+    const url = "https://api.healthybank.in/api/businesses/";
   let params: any = {
     params: {
       business_type: type
@@ -15,9 +15,9 @@ export class ApiService {
   if (lat && long) {
     params = {
       params: {
-        business_type: type,
         latitude: lat,
-        longitude: long
+        longitude: long,
+        business_type: type
       }
     };
   }
@@ -35,14 +35,14 @@ export class ApiService {
 
   }
 
-  signup(mobile: string, password: string, profile: string, email?: string, name?: string, ) {
+  signup(person: any) {
     const url = "https://api.healthybank.in/api/users/";
     const body = {
-      "name": name? name: '',
-      "email": email? email : '',
-      "mobile": mobile,
-      "profile": profile,
-      "password": password
+      "name": person.name? person.name: '',
+      "email": person.email? person.email : '',
+      "mobile": person.mobile,
+      "profile": person.profile,
+      "password": person.password
     }
     
     return this.http.post(url, body);

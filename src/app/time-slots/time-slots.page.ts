@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 
@@ -10,50 +11,14 @@ export class TimeSlotsPage implements OnInit {
 
   datesAndDays = [];
   selectedSlot: any;
+  slotString: string;
   weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-  public shop = {
-    "name": "The Walnut Baner",
-    "coords": {
-      "longitude": 73.7866886,
-      "latitude": 18.5597859
-    },
-    "id": 4,
-    "business_type": "GROCERY",
-    "users_allowed": 12,
-    "slot_size_min": 20,
-    "slots": [
-      "09:00",
-      "09:20",
-      "09:40",
-      "10:00",
-      "10:20",
-      "10:40",
-      "11:00",
-      "11:20",
-      "11:40",
-      "12:00",
-      "12:20",
-      "12:40",
-      "13:00",
-      "13:20",
-      "13:40",
-      "14:00",
-      "14:20",
-      "14:40",
-      "15:00",
-      "15:20",
-      "15:40",
-      "16:00",
-      "16:20",
-      "16:40"
-    ],
-    "start_time": "09:00:00",
-    "end_time": "17:00:00",
-    "address": null
-  }
-  constructor() { }
+  public shop = {};
+  constructor(private route: Router) { }
 
   ngOnInit() {
+    this.shop = this.route.getCurrentNavigation().extras.state.shop;
+
     [0, 1, 2].forEach(item => {
       this.datesAndDays.push({
         date: this.getDate(item).getDate(),
@@ -79,8 +44,9 @@ export class TimeSlotsPage implements OnInit {
   };
 
 
-  select(index: number) {
+  select(index: number, slot: string) {
     this.selectedSlot = index;
+    this.slotString = slot;
   }
 
 }

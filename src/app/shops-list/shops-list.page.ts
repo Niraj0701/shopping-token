@@ -10,16 +10,22 @@ import { ApiService } from './../services/api/api.service';
 export class ShopsListPage implements OnInit {
 
   coords: any = {};
+  shopsList: any;
   constructor(private route: Router, private apiService: ApiService) { }
 
   ngOnInit() {
     this.coords = this.route.getCurrentNavigation().extras.state.coords;
-    this.getAllShops('grocery', this.coords['lat'], this.coords['long'] )
+    this.getAllShops('grocery', this.coords['lat'], this.coords['long'])
+  }
+
+  goToSlots(shop: any) {
+    this.route.navigate(['/time-slots'], { state: { shop: shop }});
   }
 
   getAllShops(type, lat, long) {
-    this.apiService.getShopList(type, lat, long).subscribe(data => {
+    this.apiService.getShopList('GROCERY', lat, long).subscribe(data => {
       console.log('*** : ', data);
+      this.shopsList = data;
     }, error => {
       console.log('ERROR: ', error)
     })

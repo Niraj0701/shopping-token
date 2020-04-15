@@ -25,25 +25,24 @@ export class SigninPage implements OnInit {
   onSubmit() {
     //localStorage.setItem('user', 'niraj');
     //localStorage.setItem('password', 'niraj');
-    if (!localStorage.getItem('authorization')) {
-      localStorage.setItem('authorization', 'nrj');
-    }
+    
     const name = this.signinForm.controls['name'].value;
     const pass = this.signinForm.controls['password'].value;
+    localStorage.setItem('mobile', name);
     this.apiService.signIn(name, pass).subscribe((data: any) => {
-      console.log('data : ', data)
       this.onSignupSuccess(data);
     });
   }
 
-  private onSignupSuccess(data: any ) {
+  private onSignupSuccess(data: any) {
+    console.log('data : ', data)
     localStorage.setItem('refresh', data.refresh);
-      localStorage.setItem('authorization', data.access);
-      if (localStorage.getItem('user_type') === 'service_provider') {
-        this.router.navigate(['/business-profile'])
-        return;
-      }
-      this.router.navigate(['/user-services'])
+    localStorage.setItem('authorization', data.access);
+    if (localStorage.getItem('user_type') === 'service_provider') {
+      this.router.navigate(['/business-profile'])
+      return;
+    }
+    this.router.navigate(['/user-services'])
   }
 
 

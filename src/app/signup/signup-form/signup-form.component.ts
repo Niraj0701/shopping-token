@@ -51,7 +51,7 @@ export class SignupFormComponent implements OnInit {
     }
     */
     const body = this.signupForm.value;
-    this.apiService.signup()
+    this.apiService.signup(body)
     console.log('***: ', this.signupForm.value)
   }
 
