@@ -130,6 +130,7 @@ export class UserServicesPage implements OnInit {
 
   logout() {
     localStorage.clear();
+    this.router.navigate(['/login']);
   }
 
 }
