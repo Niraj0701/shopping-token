@@ -14,7 +14,7 @@
         <ion-text color="dark" class="shop-name">
           {{shop.name}}
         </ion-text>
-        <p class="address"> 
+        <p class="address">
           <span>{{shop.address ? shop.address : 'Not Given'}}</span>
           <ion-icon style="margin: 0 5vw;" name="navigate"></ion-icon>
         </p>
@@ -28,7 +28,7 @@
   <section class="dates">
     <p class="section-title">Available Dates to book slot</p>
     <ion-row>
-      <ion-col size='4' *ngFor="let item of datesAndDays">
+      <ion-col size="4" *ngFor="let item of datesAndDays">
         <ion-card class="service" [ngClass]="item.present ? 'active-date': ''">
           <p class="service-icon">{{item.date}}</p>
           <ion-card-content class="name">
@@ -42,8 +42,14 @@
     <p class="section-title">Available time slots</p>
     <ion-grid class="timeBtns">
       <ion-row>
-        <ion-col size="4" *ngFor="let item of shop.slots; let i = index" >
-          <ion-button [ngClass]="selectedSlot === i ? 'selected': '' " size="small" fill="outline" class="time-slot-button" (click)="select(i, item)">
+        <ion-col size="4" *ngFor="let item of shop.slots; let i = index">
+          <ion-button
+            [ngClass]="selectedSlot === i ? 'selected': '' "
+            size="small"
+            fill="outline"
+            class="time-slot-button"
+            (click)="select(i, item)"
+          >
             {{getTime(item)}}
           </ion-button>
         </ion-col>
@@ -51,7 +57,7 @@
     </ion-grid>
   </section>
   <section style="text-align: center; margin: 30px 10px;" class="dates">
-    <ion-button shape="round" class="shopping-button">
+    <ion-button (click)="bookNowSlot()" shape="round" class="shopping-button">
       Book Now
     </ion-button>
   </section>

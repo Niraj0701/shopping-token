@@ -1,0 +1,30 @@
+<ion-content>
+  <div class="success-tick">
+    <img
+      src="../../../assets/icons/tick.svg"
+      style="width: 40px; height: 40px;"
+    />
+  </div>
+  <p class="success-text">
+    {{bookDetails.user.name}} have successfully booked your slot
+  </p>
+  <div class="slot-details">
+    <div class="time-wrapper">
+      <div class="display-time">
+        <div class="time">{{bookDetails.date | date: 'dd MMM' }}</div>
+        <div class="time">{{bookDetails.date | date: 'EEE' }}</div>
+      </div>
+    </div>
+    <div class="shop-info">
+      <div class="title">
+        {{bookDetails.business.name}}
+      </div>
+      <div class="shop-time">
+        <!-- <ClockCircleOutlined /> -->
+        <span>
+          {{bookDetails.slot}}
+        </span>
+      </div>
+    </div>
+  </div>
+</ion-content>

@@ -1,20 +1,22 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { FormsModule } from "@angular/forms";
 
-import { IonicModule } from '@ionic/angular';
+import { IonicModule } from "@ionic/angular";
 
-import { TimeSlotsPageRoutingModule } from './time-slots-routing.module';
+import { TimeSlotsPageRoutingModule } from "./time-slots-routing.module";
 
-import { TimeSlotsPage } from './time-slots.page';
+import { TimeSlotsPage } from "./time-slots.page";
+import { ApiServiceModule } from "../services/api/apiService.module";
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    TimeSlotsPageRoutingModule
+    TimeSlotsPageRoutingModule,
+    ApiServiceModule,
   ],
-  declarations: [TimeSlotsPage]
+  declarations: [TimeSlotsPage],
 })
 export class TimeSlotsPageModule {}

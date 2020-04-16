@@ -47,6 +47,10 @@ const routes: Routes = [
     path: 'time-slots',
     loadChildren: () => import('./time-slots/time-slots.module').then( m => m.TimeSlotsPageModule)
   },
+  {
+    path: 'book-success',
+    loadChildren: () => import('./book-success/book-success.module').then( m => m.BookSuccessPageModule)
+  },
 ];
 
 @NgModule({
