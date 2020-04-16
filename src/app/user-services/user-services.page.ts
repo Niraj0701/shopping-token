@@ -83,6 +83,7 @@ export class UserServicesPage implements OnInit {
       this.presentAlertConfirm();
     }
     const data = this.geolocation.watchUserLocation().then(data => {
+      alert('lat - '+data['coords'].latitude+ ' long - '+ data['coords'].longitude )
       console.log('***: ', data);
       const _coords: ICoords = {
         latitude: data['coords'].latitude,
@@ -95,7 +96,7 @@ export class UserServicesPage implements OnInit {
       localStorage.setItem('long', data['coords'].longitude.toString());
       this.buttonType = 'solid';
       this.buttinText = 'Using Current Location'
-      this.loading.dismiss();
+      //this.loading.dismiss();
     }) ;
       
   }
@@ -117,7 +118,7 @@ export class UserServicesPage implements OnInit {
           handler: () => {
             console.log('Confirm Okay');
             localStorage.setItem('useCurrentLocation', 'true');
-            this.loading.present();
+            //this.loading.present();
             this.useCurrentLocation();
           }
         }
