@@ -12,4 +12,7 @@ export class BookSuccessPage implements OnInit {
   ngOnInit() {
     this.bookDetails = this.route.getCurrentNavigation().extras.state.bookDetails;
   }
+  home() {
+    this.route.navigate(["/user-services"]);
+  }
 }
