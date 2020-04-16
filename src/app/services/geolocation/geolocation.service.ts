@@ -27,9 +27,7 @@ export class GeolocationService {
     return Observable.create((observer) => {
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          observer.next({
-            coords: { latitude: 18.5672956, longitude: 73.7741256 },
-          });
+          observer.next(position);
         },
         (error) => {
           observer.next(error);
