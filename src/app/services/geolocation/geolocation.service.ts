@@ -28,7 +28,7 @@ export class GeolocationService {
         observer.next(position);
       }, error => {
         observer.next(error);
-      }, {enableHighAccuracy: true} )
+      })
     })
   }
 }
