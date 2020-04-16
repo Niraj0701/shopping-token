@@ -1,8 +1,11 @@
+import { ICoords } from './../../models/shop.interface';
 import { Injectable } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable()
 export class GeolocationService {
 
+  userCoords: Subject<ICoords> = new Subject();
   constructor() { }
 
   getCurrentLocation () {
@@ -17,5 +20,13 @@ export class GeolocationService {
         console.log("Geolocation is not supported by this browser.");
       }
     });
+  }
+
+  watchUserLocation(): Observable<Object> {
+    return Observable.create(observer => {
+      navigator.geolocation.watchPosition(position => {
+        observer.next(position);
+      })
+    })
   }
 }
