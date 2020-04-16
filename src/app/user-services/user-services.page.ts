@@ -3,6 +3,7 @@ import { GeolocationService } from './../services/geolocation/geolocation.servic
 import { Component, OnInit } from '@angular/core';
 import { NavController, AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { LoaderService } from '../services/api/loading.service';
 
 @Component({
   selector: 'app-user-services',
@@ -14,17 +15,16 @@ export class UserServicesPage implements OnInit {
   private userCoords: any = {};
   lat: any;
   long: any;
+  public buttonType = 'outline';
+  public buttinText = 'Use Current Location?';
   constructor(public router: Router,
     public alertController: AlertController,
+    private loading: LoaderService,
     private geolocation: GeolocationService) { }
 
 
   ngOnInit() {
     this.checkUserPreference();
-    this.geolocation.userCoords.subscribe(data => {
-      this.presentAlertConfirm2();
-    });
-
   }
 
   async presentAlertConfirm() {
@@ -53,16 +53,29 @@ export class UserServicesPage implements OnInit {
   }
 
   navigateToList(business_type: string) {
-    console.log('***')
-    this.router.navigate(['/shops-list'], { state: {type:business_type,  coords: this.userCoords } })
+    this.router.navigate(['/shops-list'], { state: { type: business_type, coords: this.userCoords } })
   }
 
   checkUserPreference() {
     console.log(JSON.parse(localStorage.getItem('useCurrentLocation')));
-    if (localStorage.getItem('useCurrentLocation')) {
-      console.log('User said yes.....');
-      this.useCurrentLocation();
+    if (localStorage.getItem('useCurrentLocation') &&
+      localStorage.getItem('lat') &&
+      localStorage.getItem('long')) {
+      this.alreadyHaveCoords();
+    } else {
+      this.presentAlertConfirm2();
     }
+  }
+
+  alreadyHaveCoords() {
+    const _coords: ICoords = {
+      latitude: parseInt(localStorage.getItem('lat')),
+      longitude: parseInt(localStorage.getItem('long'))
+    }
+    this.buttinText = 'Using Current Location';
+    this.buttonType = 'solid';
+
+    this.geolocation.userCoords.next(_coords);
   }
 
   useCurrentLocation() {
@@ -71,8 +84,6 @@ export class UserServicesPage implements OnInit {
     }
     this.geolocation.watchUserLocation().subscribe(data => {
       console.log('***: ', data);
-      this.lat = data['coords'].latitude;
-      this.long = data['coords'].longitude;
       const _coords: ICoords = {
         latitude: data['coords'].latitude,
         longitude: data['coords'].longitude
@@ -80,14 +91,22 @@ export class UserServicesPage implements OnInit {
       this.geolocation.userCoords.next(_coords);
       this.userCoords['lat'] = data['coords'].latitude;
       this.userCoords['long'] = data['coords'].longitude;
+      localStorage.setItem('lat', data['coords'].latitude);
+      localStorage.setItem('long', data['coords'].longitude);
+      this.buttonType = 'solid';
+      this.buttinText = 'Using Current Location'
+      this.loading.hide();
 
+    }, error => {
+      console.log('GEO LOCA ERROR ; ', error);
+      this.loading.hide();
     })
   }
 
   async presentAlertConfirm2() {
     const alert = await this.alertController.create({
-      header: 'Save preference',
-      message: `<strong>Lat: ${this.lat} - Long: ${this.long}</strong>!!!`,
+      header: 'Need Location',
+      message: `<strong>Need to get your current location to list all stores near you...</strong>!!!`,
       buttons: [
         {
           text: 'Cancel',
@@ -101,6 +120,8 @@ export class UserServicesPage implements OnInit {
           handler: () => {
             console.log('Confirm Okay');
             localStorage.setItem('useCurrentLocation', 'true');
+            this.loading.show();
+            this.useCurrentLocation();
           }
         }
       ]

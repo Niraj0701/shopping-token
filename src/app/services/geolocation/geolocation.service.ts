@@ -11,7 +11,7 @@ export class GeolocationService {
   getCurrentLocation () {
     return new Promise((resolve, reject) => {
       if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(resolve, reject);
+        window.navigator.geolocation.getCurrentPosition(resolve, reject, {enableHighAccuracy: true});
         /* resolve({
           lat: 18.5673,
           long: 73.7699
@@ -24,9 +24,11 @@ export class GeolocationService {
 
   watchUserLocation(): Observable<Object> {
     return Observable.create(observer => {
-      navigator.geolocation.watchPosition(position => {
+      navigator.geolocation.getCurrentPosition(position => {
         observer.next(position);
-      })
+      }, error => {
+        observer.next(error);
+      }, {enableHighAccuracy: true} )
     })
   }
 }

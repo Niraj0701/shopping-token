@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from './../services/api/api.service';
+import { LoaderService } from '../services/api/loading.service';
 
 @Component({
   selector: 'app-shops-list',
@@ -12,7 +13,9 @@ export class ShopsListPage implements OnInit {
   coords: any = {};
   business_type: string;
   shopsList: any;
-  constructor(private route: Router, private apiService: ApiService) { }
+  constructor(private route: Router, 
+    private apiService: ApiService,
+    private loading: LoaderService) { }
 
   ngOnInit() {
     this.coords = this.route.getCurrentNavigation().extras.state.coords;
@@ -25,11 +28,14 @@ export class ShopsListPage implements OnInit {
   }
 
   getAllShops(type, lat, long) {
+    this.loading.show();
     this.apiService.getShopList(this.business_type, lat, long).subscribe(data => {
       console.log('*** : ', data);
       this.shopsList = data;
+      this.loading.hide();
     }, error => {
-      console.log('ERROR: ', error)
+      console.log('ERROR: ', error);
+      this.loading.hide();
     })
   }
 
