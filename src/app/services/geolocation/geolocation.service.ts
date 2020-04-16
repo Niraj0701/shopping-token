@@ -1,7 +1,10 @@
 import { ICoords } from './../../models/shop.interface';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { Plugins } from '@capacitor/core';
 
+ const { Geolocation } = Plugins;
+ 
 @Injectable()
 export class GeolocationService {
 
@@ -22,13 +25,10 @@ export class GeolocationService {
     });
   }
 
-  watchUserLocation(): Observable<Object> {
-    return Observable.create(observer => {
-      navigator.geolocation.getCurrentPosition(position => {
-        observer.next(position);
-      }, error => {
-        observer.next(error);
-      })
-    })
+  async watchUserLocation() {
+    
+    const coords = await Geolocation.getCurrentPosition();
+      console.log('***SERVICE GEO***: ', coords);
+      return coords;
   }
 }

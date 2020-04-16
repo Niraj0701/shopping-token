@@ -5,10 +5,11 @@ import { LoadingController } from '@ionic/angular';
 export class LoaderService {
 
   loading: any;
+  private isLoading: boolean;
   constructor(public loadingController: LoadingController) {
   }
 
-  async show() {
+  /* async show() {
     this.loading = await this.loadingController.create({
       message: 'Please Wait...'
     });
@@ -18,6 +19,25 @@ export class LoaderService {
 
   async hide() {
     await this.loading.dismiss();
+  } */
+
+  async present() {
+    this.isLoading = true;
+    return await this.loadingController.create({
+      // duration: 5000,
+    }).then(a => {
+      a.present().then(() => {
+        console.log('presented');
+        if (!this.isLoading) {
+          a.dismiss().then(() => console.log('abort presenting'));
+        }
+      });
+    });
+  }
+
+  async dismiss() {
+    this.isLoading = false;
+    return await this.loadingController.dismiss().then(() => console.log('dismissed'));
   }
 
 

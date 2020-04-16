@@ -36,7 +36,7 @@ export class SignupFormComponent implements OnInit {
   }
 
   onSubmit(){
-    this.loading.show();
+    this.loading.present();
     /* setTimeout(()=> {
       this.loading.hide();
       this.router.navigate(['/signup/verify'])

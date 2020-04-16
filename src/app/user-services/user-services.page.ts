@@ -82,7 +82,7 @@ export class UserServicesPage implements OnInit {
     if (!localStorage.getItem('useCurrentLocation')) {
       this.presentAlertConfirm();
     }
-    this.geolocation.watchUserLocation().subscribe(data => {
+    const data = this.geolocation.watchUserLocation().then(data => {
       console.log('***: ', data);
       const _coords: ICoords = {
         latitude: data['coords'].latitude,
@@ -91,16 +91,13 @@ export class UserServicesPage implements OnInit {
       this.geolocation.userCoords.next(_coords);
       this.userCoords['lat'] = data['coords'].latitude;
       this.userCoords['long'] = data['coords'].longitude;
-      localStorage.setItem('lat', data['coords'].latitude);
-      localStorage.setItem('long', data['coords'].longitude);
+      localStorage.setItem('lat', data['coords'].latitude.toString());
+      localStorage.setItem('long', data['coords'].longitude.toString());
       this.buttonType = 'solid';
       this.buttinText = 'Using Current Location'
-      this.loading.hide();
-
-    }, error => {
-      console.log('GEO LOCA ERROR ; ', error);
-      this.loading.hide();
-    })
+      this.loading.dismiss();
+    }) ;
+      
   }
 
   async presentAlertConfirm2() {
@@ -120,7 +117,7 @@ export class UserServicesPage implements OnInit {
           handler: () => {
             console.log('Confirm Okay');
             localStorage.setItem('useCurrentLocation', 'true');
-            this.loading.show();
+            this.loading.present();
             this.useCurrentLocation();
           }
         }

@@ -1,7 +1,8 @@
 {
   "name": "shoppingToken",
   "integrations": {
-    "cordova": {}
+    "cordova": {},
+    "capacitor": {}
   },
   "type": "angular"
 }
