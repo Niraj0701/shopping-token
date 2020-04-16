@@ -7,22 +7,6 @@
   </ion-toolbar>
 </ion-header>
 <ion-content class="shops-list">
-  <ion-card class="shop-item"> 
-    <ion-item lines="none">
-      <ion-label class="ion-text-wrap">
-        <ion-text>
-          <span class="shop-name">H3 Primary Title</span>
-          <ion-badge style="float:right;" color="medium">99 m</ion-badge>
-        </ion-text>
-        <p style="text-align: end;">
-        </p>
-        <ion-text class="shop-address" color="medium">
-          <p>Paragraph line 2 secondary</p>
-        </ion-text>
-      </ion-label>
-    </ion-item>
-  </ion-card> 
-  
   <ion-card class="shop-item" *ngFor="let item of shopsList" > 
     <ion-item lines="none" (click)="goToSlots(item)">
       <ion-label class="ion-text-wrap">
@@ -36,6 +20,4 @@
       </ion-label>
     </ion-item>
   </ion-card>
-
-
 </ion-content>

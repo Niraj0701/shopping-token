@@ -8,6 +8,7 @@ import { UserServicesPageRoutingModule } from './user-services-routing.module';
 
 import { UserServicesPage } from './user-services.page';
 import { GeolocationModule } from '../services/geolocation/geolocation.module';
+import { ApiServiceModule } from '../services/api/apiService.module';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { GeolocationModule } from '../services/geolocation/geolocation.module';
     FormsModule,
     IonicModule,
     UserServicesPageRoutingModule,
+    ApiServiceModule,
     GeolocationModule
   ],
   declarations: [UserServicesPage]
