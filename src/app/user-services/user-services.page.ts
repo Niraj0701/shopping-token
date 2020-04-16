@@ -127,4 +127,9 @@ export class UserServicesPage implements OnInit {
     await alert.present();
   }
 
+
+  logout() {
+    localStorage.clear();
+  }
+
 }
