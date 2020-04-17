@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { GeolocationService } from './geolocation.service';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+
 
 @NgModule({
    imports: [
-      
    ],
    exports: [ ],
-   providers: [ GeolocationService ],
+   providers: [ Geolocation, GeolocationService ],
 })
 export class GeolocationModule { 
 

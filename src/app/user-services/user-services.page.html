@@ -1,9 +1,9 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Signup Form</ion-title>
-    <ion-buttons slot="end">
+    <ion-button fill="clear" color="danger" slot="end" (click)="logout($event)">
       <ion-icon style="font-size: 25px;" name="power"></ion-icon>
-    </ion-buttons> 
+    </ion-button> 
   </ion-toolbar>
 </ion-header>
 
@@ -12,7 +12,7 @@
   <section class="location">
     <ion-grid>
 
-      <ion-row>
+      <!-- <ion-row>
         <ion-col>
           <ion-item class="locate" lines="none">
             <ion-icon name="navigate-circle" slot="start" align-self-center></ion-icon>
@@ -20,7 +20,7 @@
             </ion-input>
           </ion-item>
         </ion-col>
-      </ion-row>
+      </ion-row> -->
 
       <ion-row>
         <ion-col>
@@ -34,7 +34,7 @@
   </section>
 
   <section class="title">
-    <p>Choose service you need</p>
+    <ion-text color="medium">Choose service you need</ion-text>
   </section>
 
   <section class="services-list">
