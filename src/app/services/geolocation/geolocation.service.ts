@@ -2,10 +2,13 @@ import { ICoords } from "./../../models/shop.interface";
 import { Injectable } from "@angular/core";
 import { Observable, Subject } from "rxjs";
 
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+
+
 @Injectable()
 export class GeolocationService {
   userCoords: Subject<ICoords> = new Subject();
-  constructor() {}
+  constructor(private geolocation: Geolocation) { }
 
   getCurrentLocation() {
     return new Promise((resolve, reject) => {
@@ -24,16 +27,13 @@ export class GeolocationService {
   }
 
   watchUserLocation(): Observable<Object> {
-    return Observable.create((observer) => {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          observer.next(position);
-        },
-        (error) => {
-          observer.next(error);
-        },
-        { enableHighAccuracy: true }
-      );
-    });
+    return Observable.create(observer => {
+      this.geolocation.getCurrentPosition().then(position => {
+       
+        observer.next(position);
+      }).catch( error => {
+        observer.next(error);
+      })
+    })
   }
 }
