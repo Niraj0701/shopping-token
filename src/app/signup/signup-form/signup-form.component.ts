@@ -37,19 +37,6 @@ export class SignupFormComponent implements OnInit {
 
   onSubmit(){
     this.loading.show();
-    /* setTimeout(()=> {
-      this.loading.hide();
-      this.router.navigate(['/signup/verify'])
-    }, 3000) 
-    
-    
-      "name": name? name: '',
-      "email": email? email : '',
-      "mobile": mobile,
-      "profile": profile,
-      "password": password
-    }
-    */
     const body = this.signupForm.value;
     this.apiService.signup(body)
     console.log('***: ', this.signupForm.value)

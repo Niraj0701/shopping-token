@@ -22,11 +22,12 @@ export class UserServicesPage implements OnInit {
     public alertController: AlertController,
     private loading: LoaderService,
     private geolocation: Geolocation,
-    private geolocation2: GeolocationService) { }
+    private geolocationService: GeolocationService) { }
 
 
   ngOnInit() {
-    this.checkUserPreference();
+    //this.checkUserPreference();
+    this.useCurrentLocation();
   }
 
   logout(event) {
@@ -75,6 +76,7 @@ export class UserServicesPage implements OnInit {
   }
 
   alreadyHaveCoords() {
+
     const _coords: ICoords = {
       latitude: parseInt(localStorage.getItem('lat')),
       longitude: parseInt(localStorage.getItem('long'))
@@ -82,30 +84,28 @@ export class UserServicesPage implements OnInit {
     this.buttinText = 'Using Current Location';
     this.buttonType = 'solid';
 
-    this.geolocation2.userCoords.next(_coords);
+    this.geolocationService.userCoords.next(_coords);
   }
 
   useCurrentLocation() {
-    if (!localStorage.getItem('useCurrentLocation')) {
+    /* if (!localStorage.getItem('useCurrentLocation')) {
       this.presentAlertConfirm2();
-    }
+    } */
     this.geolocation.getCurrentPosition({enableHighAccuracy:true}).then(data => {
       const _coords: ICoords = {
         latitude: data['coords'].latitude,
         longitude: data['coords'].longitude
       }
-      alert('== '+data['coords'].latitude+' --- '+data['coords'].longitude)
-      this.geolocation2.userCoords.next(_coords);
+      this.geolocationService.userCoords.next(_coords);
       this.userCoords['lat'] = data['coords'].latitude;
       this.userCoords['long'] = data['coords'].longitude;
       localStorage.setItem('lat', data['coords'].latitude.toString());
       localStorage.setItem('long', data['coords'].longitude.toString());
       this.buttonType = 'solid';
       this.buttinText = 'Using Current Location'
-      this.loading.hide();
+      this.loading.show();
 
     }).catch(error => {
-      console.log('GEO LOCA ERROR ; ', error);
       this.loading.hide();
     })
   }
@@ -133,7 +133,6 @@ export class UserServicesPage implements OnInit {
         }
       ]
     });
-
     await alert.present();
   }
 
