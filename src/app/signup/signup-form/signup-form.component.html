@@ -13,24 +13,88 @@
   </section>
   <section class="form-inputs">
     <p class="form-text">Sign up Form</p>
-    <form [formGroup]="signupForm" class="signupForm" (ngSubmit)="onSubmit()" >
-      <ion-input class="input" type="text" placeholder="Enter your Full Name" formControlName="name"></ion-input>
-      <ion-input class="input" type="password" placeholder="Enter your Password" formControlName="password"></ion-input>
-      <ion-input class="input" type="tel" placeholder="Enter your mobile Number" formControlName="mobile"></ion-input>
-
-      <ion-select class="input" (ionChange)="typeChanged($event)" interface="action-sheet" placeholder="Select you profile">
-        <ion-select-option value="customer">Customer</ion-select-option>
-        <ion-select-option value="service_provider">Service Provider</ion-select-option></ion-select>
-
-      <ion-select *ngIf="isUser"  class="input" placeholder="Chose your service" formControlName="service" okText="Ok" cancelText="Cancel">
-        <ion-select-option value="grocery">Grocery</ion-select-option>
-        <ion-select-option value="medicines">Medicines</ion-select-option>
-        <ion-select-option value="restarunts">Restaurants</ion-select-option>
-        <ion-select-option value="banks">Banks</ion-select-option>
-        <ion-select-option value="gasStation">Gas Station</ion-select-option>
-        <ion-select-option value="other">Other</ion-select-option>
-      </ion-select>
-      <ion-button type="submit" class="brder-btn button shopping-button "> Sign Up</ion-button>
+    <form [formGroup]="signupForm" class="signupForm" (ngSubmit)="onSubmit()">
+      <ion-input
+        class="input"
+        type="text"
+        placeholder="Enter your Full Name"
+        formControlName="name"
+      ></ion-input>
+      <span
+        style="color: red;"
+        *ngIf="
+          signupForm.get('name').hasError('required') &&
+          signupForm.get('name').touched
+        "
+        >Please enter name</span
+      >
+      <ion-input
+        class="input"
+        type="text"
+        placeholder="Enter your Email"
+        formControlName="email"
+      ></ion-input>
+      <ion-input
+        class="input"
+        type="password"
+        placeholder="Enter your Password"
+        formControlName="password"
+      ></ion-input>
+      <span
+        style="color: red;"
+        *ngIf="
+          signupForm.get('password').hasError('required') &&
+          signupForm.get('password').touched
+        "
+        >Please enter password</span
+      >
+      <ion-input
+        class="input"
+        type="tel"
+        placeholder="Enter your mobile Number"
+        formControlName="mobile"
+      ></ion-input>
+      <span
+        style="color: red;"
+        *ngIf="
+          signupForm.get('mobile').hasError('required') &&
+          signupForm.get('mobile').touched
+        "
+        >Please enter your mobile number</span
+      >
+      <span
+        style="color: red;"
+        *ngIf="
+          signupForm.get('mobile').hasError('maxlength') ||
+          (signupForm.get('mobile').hasError('minlength') &&
+            signupForm.get('mobile').touched)
+        "
+      >
+        and max and min length 10 digit</span
+      >
+      <ion-select
+        class="input"
+        (ionChange)="typeChanged($event)"
+        interface="action-sheet"
+        placeholder="Select you profile"
+        formControlName="profile"
+      >
+        <ion-select-option value="Consumer">Customer</ion-select-option>
+        <ion-select-option value="ServiceProvider"
+          >Service Provider</ion-select-option
+        ></ion-select
+      >
+      <span
+        style="color: red;"
+        *ngIf="
+          signupForm.get('profile').hasError('required') &&
+          signupForm.get('profile').touched
+        "
+        >Please select profile</span
+      >
+      <ion-button type="submit" class="brder-btn button shopping-button">
+        Sign Up</ion-button
+      >
     </form>
   </section>
 </ion-content>

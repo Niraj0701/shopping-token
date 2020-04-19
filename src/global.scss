@@ -42,11 +42,10 @@ ion-modal.confirmation-popup {
   box-shadow: 2px 2px 5px #a4a4a4;
 }
 
-.brder-btn{
-   --border-radius: 25px;
-   margin: 10px 0;
+.brder-btn {
+  --border-radius: 25px;
+  margin: 10px 0;
 }
-
 
 .g-btn--purple-to-blue {
   background: linear-gradient(135deg, #b721ff, #6121fd);
@@ -59,12 +58,11 @@ ion-modal.confirmation-popup {
   border: 1px solid linear-gradient(135deg, #b721ff, #6121fd) !important;
 }
 
-
 .shopping-button {
-   --background: linear-gradient(135deg, #b721ff, #6121fd) !important;
- }
- 
- .border-gradient {
+  --background: linear-gradient(135deg, #b721ff, #6121fd) !important;
+}
+
+.border-gradient {
   border: 2px solid;
   border-image-slice: 1;
   border-width: 2px;
