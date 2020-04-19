@@ -1,18 +1,20 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
+    <ion-button slot="start">
       <ion-back-button text=""></ion-back-button>
-    </ion-buttons>
+    </ion-button>
     <ion-title>Shops List</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content class="shops-list">
-  <ion-card class="shop-item" *ngFor="let item of shopsList" > 
+  <ion-card class="shop-item" *ngFor="let item of shopsList">
     <ion-item lines="none" (click)="goToSlots(item)">
       <ion-label class="ion-text-wrap">
         <ion-text style="margin-bottom: 10px;">
           <span class="shop-name">{{item.name}}</span>
-          <ion-badge style="float:right;" color="medium">{{item.distance}} m</ion-badge>
+          <ion-badge style="float: right;" color="medium"
+            >{{item.distance}} m</ion-badge
+          >
         </ion-text>
         <ion-text class="shop-address" color="medium">
           <p>{{item.address}}</p>

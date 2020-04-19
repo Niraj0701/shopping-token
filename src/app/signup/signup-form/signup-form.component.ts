@@ -52,7 +52,7 @@ export class SignupFormComponent implements OnInit {
       this.apiService.signup(body).subscribe(
         (data) => {
           this.loading.hide();
-          this.router.navigate(["/complete-profile"]);
+          this.router.navigate(["/"]);
         },
         (err) => {
           this.loading.hide();

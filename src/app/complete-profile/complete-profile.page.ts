@@ -28,12 +28,14 @@ export class CompleteProfilePage implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.apiService.userProfile.subscribe((user) => {});
     this.completeProfile = new FormGroup({
       name: new FormControl("", [Validators.required]),
       business_type: new FormControl("", [Validators.required]),
       users_allowed: new FormControl("", [Validators.required]),
       slot_size_min: new FormControl("", [Validators.required]),
-      latLong: new FormControl("", [Validators.required]),
+      latitude: new FormControl("", [Validators.required]),
+      longitude: new FormControl("", [Validators.required]),
       start_time: new FormControl("", [Validators.required]),
       end_time: new FormControl("", [Validators.required]),
       address: new FormControl("", [Validators.required]),
@@ -41,7 +43,23 @@ export class CompleteProfilePage implements OnInit {
   }
 
   onSubmit() {
-    console.log("in complete profile");
+    let obj = {
+      ...this.completeProfile.value,
+    };
+
+    console.log("in complete profile", this.completeProfile.value, obj);
+    this.loading.show();
+    this.apiService.completeProfile(obj).subscribe(
+      (data) => {
+        this.loading.hide();
+        localStorage.setItem("isCompleteProfile", "true");
+        this.router.navigate(["/business-profile"]);
+      },
+      (err) => {
+        this.loading.hide();
+        localStorage.setItem("isCompleteProfile", "false");
+      }
+    );
   }
   async presentAlertConfirm() {
     const alert = await this.alertController.create({

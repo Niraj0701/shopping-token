@@ -41,14 +41,20 @@
             <ion-input
               class="input"
               type="text"
-              placeholder="Latitude & Longitude"
-              formControlName="latLong"
+              placeholder="Latitude"
+              formControlName="latitude"
             ></ion-input>
           </ion-col>
           <ion-col>
-            <ion-button (click)="useCurrentLocation()"
+            <ion-input
+              class="input"
+              type="text"
+              placeholder="Longitude"
+              formControlName="longitude"
+            ></ion-input>
+            <!-- <ion-button (click)="useCurrentLocation()"
               >Use current location</ion-button
-            >
+            > -->
           </ion-col>
         </ion-row>
       </ion-grid>
