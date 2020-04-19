@@ -47,14 +47,12 @@ export class SigninPage implements OnInit {
     this.apiService.me().subscribe((data) => {
       localStorage.setItem("user_type", data["user"].profile);
       this.apiService.userProfile.next(data["user"]);
-      if (
-        localStorage.getItem("user_type") === "ServiceProvider" &&
-        localStorage.getItem("isCompleteProfile") === "true"
-      ) {
-        this.router.navigate(["/business-profile"]);
-        return;
-      } else if (localStorage.getItem("user_type") === "ServiceProvider") {
-        this.router.navigate(["/complete-profile"]);
+      if (localStorage.getItem("user_type") === "ServiceProvider") {
+        if (data["user"].businesses.length > 0) {
+          this.router.navigate(["/business-profile"]);
+        } else {
+          this.router.navigate(["/complete-profile"]);
+        }
         return;
       }
       this.router.navigate(["/user-services"]);
