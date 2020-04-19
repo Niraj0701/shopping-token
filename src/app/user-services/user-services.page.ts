@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { LoaderService } from '../services/api/loading.service';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 @Component({
   selector: 'app-user-services',
@@ -20,17 +21,25 @@ export class UserServicesPage implements OnInit {
   constructor(public router: Router,
     public alertController: AlertController,
     private loading: LoaderService,
-    private geolocation: GeolocationService) { }
+    private geolocation: Geolocation,
+    private geolocationService: GeolocationService) { }
 
 
   ngOnInit() {
-    this.checkUserPreference();
+    //this.checkUserPreference();
+    this.useCurrentLocation();
   }
 
-  async presentAlertConfirm() {
+  logout(event) {
+    localStorage.clear();
+    this.router.navigate(['/login']);
+
+  }
+
+  async presentAlertConfirm(message: string) {
     const alert = await this.alertController.create({
       header: 'Save preference',
-      message: '<strong>Do you want to save your current location bydefault ?</strong>!!!',
+      message: `<strong>${message}</strong>!!!`,
       buttons: [
         {
           text: 'Cancel',
@@ -57,7 +66,6 @@ export class UserServicesPage implements OnInit {
   }
 
   checkUserPreference() {
-    console.log(JSON.parse(localStorage.getItem('useCurrentLocation')));
     if (localStorage.getItem('useCurrentLocation') &&
       localStorage.getItem('lat') &&
       localStorage.getItem('long')) {
@@ -68,6 +76,7 @@ export class UserServicesPage implements OnInit {
   }
 
   alreadyHaveCoords() {
+
     const _coords: ICoords = {
       latitude: parseInt(localStorage.getItem('lat')),
       longitude: parseInt(localStorage.getItem('long'))
@@ -75,30 +84,28 @@ export class UserServicesPage implements OnInit {
     this.buttinText = 'Using Current Location';
     this.buttonType = 'solid';
 
-    this.geolocation.userCoords.next(_coords);
+    this.geolocationService.userCoords.next(_coords);
   }
 
   useCurrentLocation() {
-    if (!localStorage.getItem('useCurrentLocation')) {
-      this.presentAlertConfirm();
-    }
-    this.geolocation.watchUserLocation().subscribe(data => {
-      console.log('***: ', data);
+    /* if (!localStorage.getItem('useCurrentLocation')) {
+      this.presentAlertConfirm2();
+    } */
+    this.geolocation.getCurrentPosition({enableHighAccuracy:true}).then(data => {
       const _coords: ICoords = {
         latitude: data['coords'].latitude,
         longitude: data['coords'].longitude
       }
-      this.geolocation.userCoords.next(_coords);
+      this.geolocationService.userCoords.next(_coords);
       this.userCoords['lat'] = data['coords'].latitude;
       this.userCoords['long'] = data['coords'].longitude;
-      localStorage.setItem('lat', data['coords'].latitude);
-      localStorage.setItem('long', data['coords'].longitude);
+      localStorage.setItem('lat', data['coords'].latitude.toString());
+      localStorage.setItem('long', data['coords'].longitude.toString());
       this.buttonType = 'solid';
       this.buttinText = 'Using Current Location'
-      this.loading.hide();
+      this.loading.show();
 
-    }, error => {
-      console.log('GEO LOCA ERROR ; ', error);
+    }).catch(error => {
       this.loading.hide();
     })
   }
@@ -109,14 +116,14 @@ export class UserServicesPage implements OnInit {
       message: `<strong>Need to get your current location to list all stores near you...</strong>!!!`,
       buttons: [
         {
-          text: 'Cancel',
+          text: 'Block',
           role: 'cancel',
-          cssClass: 'danger',
+          cssClass: 'secondary',
           handler: (blah) => {
             console.log('Confirm Cancel: blah');
           }
         }, {
-          text: 'Okay',
+          text: 'Allow',
           handler: () => {
             console.log('Confirm Okay');
             localStorage.setItem('useCurrentLocation', 'true');
@@ -126,7 +133,6 @@ export class UserServicesPage implements OnInit {
         }
       ]
     });
-
     await alert.present();
   }
 

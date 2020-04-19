@@ -10,7 +10,8 @@ export class LoaderService {
 
   async show() {
     this.loading = await this.loadingController.create({
-      message: 'Please Wait...'
+      message: 'Please Wait...',
+      duration: 2000
     });
     return await this.loading.present();
 
