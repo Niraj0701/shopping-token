@@ -55,6 +55,10 @@ const routes: Routes = [
     path: 'complete-profile',
     loadChildren: () => import('./complete-profile/complete-profile.module').then( m => m.CompleteProfilePageModule)
   },
+  {
+    path: 'view-businesses',
+    loadChildren: () => import('./view-businesses/view-businesses.module').then( m => m.ViewBusinessesPageModule)
+  },
 ];
 
 @NgModule({
