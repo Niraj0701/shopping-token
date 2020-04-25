@@ -19,7 +19,6 @@ import { GeolocationService } from "./../services/geolocation/geolocation.servic
 export class CompleteProfilePage implements OnInit {
   completeProfile: FormGroup;
   private userCoords: any = {};
-  private countries: any[] = [];
   constructor(
     private loading: LoaderService,
     private router: Router,
@@ -29,9 +28,6 @@ export class CompleteProfilePage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.apiService.getCountries().subscribe((countries) => {
-      this.countries = this.countries.concat(countries);
-    });
     this.completeProfile = new FormGroup({
       name: new FormControl("", [Validators.required]),
       business_type: new FormControl("", [Validators.required]),
@@ -42,8 +38,6 @@ export class CompleteProfilePage implements OnInit {
       start_time: new FormControl("", [Validators.required]),
       end_time: new FormControl("", [Validators.required]),
       address: new FormControl("", [Validators.required]),
-      country: new FormControl("", [Validators.required]),
-      country_code: new FormControl("", [Validators.required]),
     });
   }
 
@@ -76,13 +70,5 @@ export class CompleteProfilePage implements OnInit {
         localStorage.setItem("isCompleteProfile", "false");
       }
     );
-  }
-
-  selectCountry(e) {
-    let code = this.countries.filter(
-      (country) => country.Name === e.detail.value
-    );
-    console.log("asasds", e, code);
-    this.completeProfile.controls.country_code.setValue(code[0].Dial);
   }
 }

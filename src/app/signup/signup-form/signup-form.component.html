@@ -48,6 +48,24 @@
         "
         >Please enter password</span
       >
+      <ion-select
+        formControlName="country"
+        class="input"
+        placeholder="Choose your Country"
+        (ionChange)="selectCountry($event)"
+      >
+        <ion-select-option
+          *ngFor="let country of countries"
+          value="{{ country.Name }}"
+          >{{ country.Name }}</ion-select-option
+        >
+      </ion-select>
+      <ion-input
+        class="input"
+        type="text"
+        placeholder="Country Code"
+        formControlName="country_code"
+      ></ion-input>
       <ion-input
         class="input"
         type="tel"

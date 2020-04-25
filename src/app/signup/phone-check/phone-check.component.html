@@ -16,22 +16,39 @@
     <span>Sent to (+91 12345 67890)</span>
   </section>
 
-  <ion-grid class="code-section">
-    <ion-row>
-      <ion-col class="code-col">
-        <ion-input class="code" type="tel" placeHolder="Enter OTP"></ion-input>
+  <form
+    [formGroup]="verifyOtpForm"
+    class="verifyOtpForm"
+    (ngSubmit)="onVerifyClick()"
+  >
+    <ion-grid class="code-section">
+      <ion-row>
+        <ion-col class="code-col">
+          <ion-input
+            class="code"
+            type="tel"
+            placeHolder="Enter OTP"
+            formControlName="otp"
+          ></ion-input>
+          <span
+            style="color: red;"
+            *ngIf="
+              verifyOtpForm.get('otp').hasError('required') &&
+              verifyOtpForm.get('otp').touched
+            "
+            >Enter the OTP received</span
+          >
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="8" class="verification-number">
+        <ion-button type="submit" class="verification-button shopping-button"
+          >Veryfy Phone Number</ion-button
+        >
       </ion-col>
     </ion-row>
-  </ion-grid>
-  <ion-row class="ion-justify-content-center">
-    <ion-col size="8" class="verification-number">
-      <ion-button
-        (click)="onVerifyClick()"
-        class="verification-button shopping-button"
-        >Veryfy Phone Number</ion-button
-      >
-    </ion-col>
-  </ion-row>
+  </form>
   <ion-row class="ion-justify-content-center text">
     <ion-col size="10" class="verification-number">
       Haven't received the code!
