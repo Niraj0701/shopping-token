@@ -37,16 +37,16 @@ ion-modal.confirmation-popup {
   margin: 10px 0;
   border: 1px solid black;
   border-radius: 25px;
-  --padding-start: 15px !important;
+  --padding-start: 15px;
+  --padding-end: 15px;
   //min-height: 6vh;
   box-shadow: 2px 2px 5px #a4a4a4;
 }
 
-.brder-btn{
-   --border-radius: 25px;
-   margin: 10px 0;
+.brder-btn {
+  --border-radius: 25px;
+  margin: 10px 0;
 }
-
 
 .g-btn--purple-to-blue {
   background: linear-gradient(135deg, #b721ff, #6121fd);
@@ -59,12 +59,11 @@ ion-modal.confirmation-popup {
   border: 1px solid linear-gradient(135deg, #b721ff, #6121fd) !important;
 }
 
-
 .shopping-button {
-   --background: linear-gradient(135deg, #b721ff, #6121fd) !important;
- }
- 
- .border-gradient {
+  --background: linear-gradient(135deg, #b721ff, #6121fd) !important;
+}
+
+.border-gradient {
   border: 2px solid;
   border-image-slice: 1;
   border-width: 2px;
@@ -79,4 +78,20 @@ ion-modal.confirmation-popup {
 .margin-to-text {
   margin: 0 5px;
   color: grey;
+}
+
+.pac-container {
+  top: 533px;
+  border: 1px solid black;
+  border-radius: 20px;
+  .pac-item {
+    border: none;
+    margin: 5px;
+    .pac-icon {
+      background: url(./assets/icons/location2.svg) no-repeat center center;
+    }
+  } 
+}
+.pac-logo:after {
+  display: none;
 }

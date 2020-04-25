@@ -1,0 +1,98 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title text-center>Complete Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row class="ion-justify-content-center text">
+    <ion-col size="10" class="verification-number">
+      We ask everyone for a few dtails before hosting, so get a head start by
+      doing it now.
+    </ion-col>
+  </ion-row>
+  <section class="form-inputs">
+    <form
+      [formGroup]="completeProfile"
+      class="complete-profile"
+      (ngSubmit)="onSubmit()"
+    >
+      <ion-input
+        class="input"
+        type="text"
+        placeholder="Enter your Full Name"
+        formControlName="name"
+      ></ion-input>
+      <ion-input
+        class="input"
+        type="text"
+        placeholder="Number of User allowed per slots"
+        formControlName="users_allowed"
+      ></ion-input>
+      <ion-input
+        class="input"
+        type="text"
+        placeholder="Slot minimum size"
+        formControlName="slot_size_min"
+      ></ion-input>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6">
+            <ion-input
+              class="input"
+              type="text"
+              placeholder="Latitude"
+              formControlName="latitude"
+            ></ion-input>
+          </ion-col>
+          <ion-col>
+            <ion-input
+              class="input"
+              type="text"
+              placeholder="Longitude"
+              formControlName="longitude"
+            ></ion-input>
+            <!-- <ion-button (click)="useCurrentLocation()"
+              >Use current location</ion-button
+            > -->
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-input
+        class="input"
+        type="text"
+        placeholder="shop start time"
+        formControlName="start_time"
+      ></ion-input>
+      <ion-input
+        class="input"
+        type="text"
+        placeholder="shop end time"
+        formControlName="end_time"
+      ></ion-input>
+      <!-- <ion-input
+        class="input"
+        type="text"
+        placeholder="enter your business address"
+        formControlName="address"
+      ></ion-input> -->
+      <app-address-autocomplete (getCoords)="getCoords($event)"></app-address-autocomplete>
+      <ion-select
+        class="input"
+        placeholder="Chose your Business type"
+        okText="Ok"
+        cancelText="Cancel"
+        formControlName="business_type"
+      >
+        <ion-select-option value="UNKNOWN">UNKNOWN</ion-select-option>
+        <ion-select-option value="BANK">Bank</ion-select-option>
+        <ion-select-option value="GROCERY">Grocery</ion-select-option>
+        <ion-select-option value="PHARMACY">Pharmacy</ion-select-option>
+      </ion-select>
+      <ion-button type="submit" class="brder-btn button shopping-button">
+        Complete Profile</ion-button
+      >
+    </form>
+  </section>
+</ion-content>

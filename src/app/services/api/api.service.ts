@@ -1,8 +1,10 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
+import { Subject } from "rxjs";
 
 @Injectable()
 export class ApiService {
+  userProfile: Subject<any> = new Subject();
   constructor(private http: HttpClient) {}
 
   getShopList(type: string, lat: number, long: number) {
@@ -56,5 +58,17 @@ export class ApiService {
     };
 
     return this.http.post(url, body);
+  }
+
+  me() {
+    const url = "https://api.healthybank.in/api/me/";
+
+    return this.http.get(url);
+  }
+
+  completeProfile(profile: any) {
+    const url = "https://api.healthybank.in/api/businesses/";
+
+    return this.http.post(url, profile);
   }
 }
