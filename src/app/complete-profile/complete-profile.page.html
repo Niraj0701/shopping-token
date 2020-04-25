@@ -88,12 +88,13 @@
         placeholder="shop end time"
         formControlName="end_time"
       ></ion-input>
-      <ion-input
+      <!-- <ion-input
         class="input"
         type="text"
         placeholder="enter your business address"
         formControlName="address"
-      ></ion-input>
+      ></ion-input> -->
+      <app-address-autocomplete (getCoords)="getCoords($event)"></app-address-autocomplete>
       <ion-select
         class="input"
         placeholder="Chose your Business type"

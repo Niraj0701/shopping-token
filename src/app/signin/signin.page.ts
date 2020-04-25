@@ -23,8 +23,8 @@ export class SigninPage implements OnInit {
 
   ngOnInit() {
     this.signinForm = new FormGroup({
-      name: new FormControl("9766818825", [Validators.required]),
-      password: new FormControl("icecream39", [Validators.required]),
+      name: new FormControl("0782082524", [Validators.required]),
+      password: new FormControl("test", [Validators.required]),
     });
   }
 

@@ -9,9 +9,12 @@ import { CompleteProfilePageRoutingModule } from "./complete-profile-routing.mod
 import { CompleteProfilePage } from "./complete-profile.page";
 import { ApiServiceModule } from "../services/api/apiService.module";
 import { GeolocationModule } from "../services/geolocation/geolocation.module";
+import { AddressAutocompleteComponent } from './address-autocomplete/address-autocomplete.component';
+import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 
 @NgModule({
   imports: [
+    GooglePlaceModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
@@ -20,6 +23,6 @@ import { GeolocationModule } from "../services/geolocation/geolocation.module";
     IonicModule,
     CompleteProfilePageRoutingModule,
   ],
-  declarations: [CompleteProfilePage],
+  declarations: [AddressAutocompleteComponent,CompleteProfilePage],
 })
 export class CompleteProfilePageModule {}
