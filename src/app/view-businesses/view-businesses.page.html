@@ -8,7 +8,10 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <ion-list *ngFor="let business of businesses.user.businesses">
+        <ion-list
+          (click)="viewBookedSlots(business)"
+          *ngFor="let business of businesses.user.businesses"
+        >
           <ion-item>
             <ion-label>{{business.name}}</ion-label>
             <div>{{business.address}}</div>

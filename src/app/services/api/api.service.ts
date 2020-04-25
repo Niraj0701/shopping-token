@@ -71,4 +71,40 @@ export class ApiService {
 
     return this.http.post(url, profile);
   }
+
+  getBookedSlots(date: string, id: number, type: string) {
+    const url = `https://api.healthybank.in/api/business/${id}/slots`;
+    let params: any = {
+      params: {
+        business_type: type,
+        date: date,
+      },
+    };
+
+    return this.http.get(url, params);
+  }
+
+  getCountries() {
+    const url = "https://api.healthybank.in/api/countries/";
+
+    return this.http.get(url);
+  }
+
+  getOtp() {
+    const url = "https://api.healthybank.in/api/otp/";
+    let params: any = {
+      params: {
+        purpose: "VERIFICATION",
+      },
+    };
+    return this.http.get(url, params);
+  }
+
+  verifyOtp(otp, id) {
+    const url = `https://api.healthybank.in/api/user/${id}/verify`;
+    const body = {
+      otp: otp,
+    };
+    return this.http.post(url, body);
+  }
 }

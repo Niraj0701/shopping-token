@@ -24,14 +24,21 @@ import { AlertController, ModalController } from "@ionic/angular";
   </div>`,
 })
 export class ModalPage {
+  userdata;
   constructor(public viewCtrl: ModalController, private router: Router) {}
 
   dismiss() {
     this.viewCtrl.dismiss().then((data) => {
-      console.log("** : ", data);
-      let profile = localStorage.getItem("profile");
+      console.log("** : ", data, this.router);
+      let profile = localStorage.getItem("user_type");
       if (profile === "ServiceProvider") {
-        this.router.navigate(["/complete-profile"]);
+        if (this.userdata["user"].businesses.length > 0) {
+          this.router.navigate(["/view-businesses"], {
+            state: { businesses: this.userdata },
+          });
+        } else {
+          this.router.navigate(["/complete-profile"]);
+        }
       } else {
         this.router.navigate(["/"]);
       }
