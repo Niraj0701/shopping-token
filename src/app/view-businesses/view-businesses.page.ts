@@ -15,7 +15,7 @@ export class ViewBusinessesPage implements OnInit {
     private loading: LoaderService,
     private route: Router,
     private apiService: ApiService
-  ) { }
+  ) {}
 
   ngOnInit() {
     if (this.route.getCurrentNavigation().extras.state) {
