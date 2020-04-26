@@ -10,11 +10,15 @@ import { MenuController } from "@ionic/angular";
 export class MenuPage implements OnInit {
   selectedPath: any;
   pages: any;
+  userName: any;
+  userMobile: any;
 
   tt: any;
   constructor(private router: Router, private menu: MenuController) {}
 
   ngOnInit() {
+    this.userName = localStorage.getItem("user_name");
+    this.userMobile = localStorage.getItem("mobile");
     this.pages = [
       {
         title: "View businesses",

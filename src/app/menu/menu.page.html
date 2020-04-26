@@ -1,20 +1,31 @@
-<ion-menu side="start" contentId='xyz'>
+<ion-menu side="start" contentId="xyz">
   <ion-header>
     <ion-toolbar translucent>
-      <ion-title>Menu</ion-title>
+      <!-- <ion-title> -->
+      <div class="user-title ion-text-center">
+        <div class="ion-margin-bottom">{{userName}}</div>
+        <div>{{userMobile}}</div>
+      </div>
+      <!-- </ion-title> -->
     </ion-toolbar>
   </ion-header>
 
   <ion-content>
-
-    <ion-item *ngFor="let page of pages" [ngClass]="{'hide-page': page.isConsumer}"
-      [class.active-item]="selectedPath === page.url" [routerLink]="[page.url]" lines="none" detail="false">
-      {{page.title}}
+    <ion-item
+      *ngFor="let page of pages"
+      [ngClass]="{'hide-page': page.isConsumer}"
+      [class.active-item]="selectedPath === page.url"
+      [routerLink]="[page.url]"
+      lines="none"
+      detail="false"
+      color="grey"
+    >
+      <ion-label> {{page.title}}</ion-label>
     </ion-item>
     <ion-item button (click)="logout()" lines="none" detail="false">
       <ion-icon name="power" style="color: #b721ff;"></ion-icon>
-      <ion-label style="color: #6121fd;"> Logout</ion-label>  
+      <ion-label style="color: #6121fd; margin-left: 10px;"> Logout</ion-label>
     </ion-item>
   </ion-content>
 </ion-menu>
-<ion-router-outlet id='xyz'></ion-router-outlet>
+<ion-router-outlet id="xyz"></ion-router-outlet>

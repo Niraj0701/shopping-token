@@ -3,7 +3,23 @@
 }
 
 .active-item {
-  border: 2px solid #6121fd;
-  border-left: 10px solid #b721ff;
-  border-radius: 30px;
+  border-color: #6b32f7;
+  font-weight: 500;
+  --highlight-color-valid: #6b32f7;
+  .item-native {
+    color: white;
+  }
+}
+
+.user-title {
+  color: #525252;
+  font-weight: 600;
+}
+.in-toolbar {
+  height: 100px;
+  padding: 27px 0;
+}
+.item {
+  border-bottom: 1px solid #7b7b7b;
+  box-shadow: none;
 }

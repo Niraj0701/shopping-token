@@ -45,6 +45,7 @@ export class SigninPage implements OnInit {
     localStorage.setItem("authorization", data.access);
     this.apiService.me().subscribe((data) => {
       localStorage.setItem("user_type", data["user"].profile);
+      localStorage.setItem("user_name", data["user"].name);
       this.apiService.userProfile.next(data["user"]);
       if (data["user"].verification_state == "UNVERIFIED") {
         this.router.navigate(["/signup/verify"], {
