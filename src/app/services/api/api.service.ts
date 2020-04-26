@@ -107,4 +107,13 @@ export class ApiService {
     };
     return this.http.post(url, body);
   }
+  myBookedSlots(date: string, id: number) {
+    const url = `https://api.healthybank.in/api/user/${id}/slots`;
+    let params: any = {
+      params: {
+        date: date,
+      },
+    };
+    return this.http.get(url, params);
+  }
 }

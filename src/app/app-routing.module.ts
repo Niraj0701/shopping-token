@@ -5,9 +5,9 @@ import { BusinessGuard } from "./services/guards/business.guard";
 
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: 'menu/user-services',
-    pathMatch: 'full'
+    path: "",
+    redirectTo: "menu/user-services",
+    pathMatch: "full",
   },
   {
     path: "signup",
@@ -77,9 +77,14 @@ const routes: Routes = [
     loadChildren: () => import('./view-businesses/view-businesses.module').then( m => m.ViewBusinessesPageModule)
   }, */
   {
-    path: 'menu',
-    loadChildren: () => import('./menu/menu.module').then( m => m.MenuPageModule)
+    path: "menu",
+    loadChildren: () =>
+      import("./menu/menu.module").then((m) => m.MenuPageModule),
   },
+  // {
+  //   path: 'my-booked-slots',
+  //   loadChildren: () => import('./my-booked-slots/my-booked-slots.module').then( m => m.MyBookedSlotsPageModule)
+  // },
 ];
 
 @NgModule({

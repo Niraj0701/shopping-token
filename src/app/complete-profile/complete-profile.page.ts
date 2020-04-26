@@ -28,6 +28,7 @@ export class CompleteProfilePage implements OnInit {
   ) {}
 
   ngOnInit() {
+    console.log(this.router.getCurrentNavigation().extras.state);
     if (this.router.getCurrentNavigation().extras.state) {
       this.isTitle = this.router.getCurrentNavigation().extras.state.txt;
     } else {

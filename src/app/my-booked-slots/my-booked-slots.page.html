@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>My booked slots</ion-title>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngIf="listBookedSlots">
+        <div class="card" *ngFor="let list of listBookedSlots;">
+          <div class="container">
+            <h5><b>{{list.business.name}}</b></h5>
+            <div>
+              <div class="ion-float-left">{{list.date}}</div>
+              <div class="ion-float-right">{{list.slot}}</div>
+            </div>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div *ngIf="listBookedSlots.length===0">
+    <p class="ion-text-center">No booked slots</p>
+  </div>
+</ion-content>

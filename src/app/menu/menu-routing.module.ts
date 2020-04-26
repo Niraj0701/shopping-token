@@ -74,6 +74,13 @@ const routes: Routes = [
             (m) => m.ViewBusinessesPageModule
           ),
       },
+      {
+        path: "my-booked-slots",
+        loadChildren: () =>
+          import("../my-booked-slots/my-booked-slots.module").then(
+            (m) => m.MyBookedSlotsPageModule
+          ),
+      },
     ],
   },
 ];
