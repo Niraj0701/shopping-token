@@ -5,36 +5,33 @@ import { BusinessGuard } from "./services/guards/business.guard";
 
 const routes: Routes = [
   {
-    path: "",
-    redirectTo: "user-services",
-    pathMatch: "full",
+    path: '',
+    redirectTo: 'menu/user-services',
+    pathMatch: 'full'
   },
   {
     path: "signup",
     loadChildren: () =>
       import("./signup/signup.module").then((m) => m.SignupPageModule),
   },
-  {
+  /* {
     path: "profile",
     loadChildren: () =>
       import("./profile/profile.module").then((m) => m.ProfilePageModule),
   },
   {
-    path: "business-profile",
-    canLoad: [BusinessGuard],
-    loadChildren: () =>
-      import("./business-profile/business-profile.module").then(
-        (m) => m.BusinessProfilePageModule
-      ),
-  },
+    path: 'business-profile',
+    canLoad: [ BusinessGuard ],
+    loadChildren: () => import('./business-profile/business-profile.module').then( m => m.BusinessProfilePageModule)
+  }, */
   {
     path: "login",
     loadChildren: () =>
       import("./signin/signin.module").then((m) => m.SigninPageModule),
   },
-  {
-    path: "user-services",
-    canActivate: [LoggedInGuard],
+  /* {
+    path: 'user-services',
+    canActivate: [ LoggedInGuard ], 
     children: [
       {
         path: "",
@@ -76,12 +73,12 @@ const routes: Routes = [
       ),
   },
   {
-    path: "view-businesses",
-    canActivate: [LoggedInGuard],
-    loadChildren: () =>
-      import("./view-businesses/view-businesses.module").then(
-        (m) => m.ViewBusinessesPageModule
-      ),
+    path: 'view-businesses',
+    loadChildren: () => import('./view-businesses/view-businesses.module').then( m => m.ViewBusinessesPageModule)
+  }, */
+  {
+    path: 'menu',
+    loadChildren: () => import('./menu/menu.module').then( m => m.MenuPageModule)
   },
 ];
 

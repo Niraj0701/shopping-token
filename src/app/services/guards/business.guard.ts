@@ -6,10 +6,12 @@ export class BusinessGuard implements CanLoad {
   constructor(private router: Router) {}
 
   canLoad(route: Route) {
+    alert(localStorage.getItem("user_type"))
     if (localStorage.getItem("user_type") === "ServiceProvider") {
+      alert('====')
       return true;
     } else {
-      this.router.navigate(["/user-services"]);
+      this.router.navigate(["/menu/user-services"]);
     }
   }
 }

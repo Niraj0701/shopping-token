@@ -60,7 +60,7 @@ export class CompleteProfilePage implements OnInit {
         this.loading.hide();
         localStorage.setItem("isCompleteProfile", "true");
         this.apiService.me().subscribe((data) => {
-          this.router.navigate(["/view-businesses"], {
+          this.router.navigate(["/menu/view-businesses"], {
             state: { businesses: data },
           });
         });

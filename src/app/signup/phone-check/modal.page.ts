@@ -33,11 +33,11 @@ export class ModalPage {
       let profile = localStorage.getItem("user_type");
       if (profile === "ServiceProvider") {
         if (this.userdata["user"].businesses.length > 0) {
-          this.router.navigate(["/view-businesses"], {
+          this.router.navigate(["/menu/view-businesses"], {
             state: { businesses: this.userdata },
           });
         } else {
-          this.router.navigate(["/complete-profile"]);
+          this.router.navigate(["/menu/complete-profile"]);
         }
       } else {
         this.router.navigate(["/"]);

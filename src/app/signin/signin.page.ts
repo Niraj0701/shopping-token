@@ -23,8 +23,8 @@ export class SigninPage implements OnInit {
 
   ngOnInit() {
     this.signinForm = new FormGroup({
-      name: new FormControl("0782082524", [Validators.required]),
-      password: new FormControl("test", [Validators.required]),
+      name: new FormControl("9766818825", [Validators.required]),
+      password: new FormControl("icecream39", [Validators.required]),
     });
   }
 
@@ -55,16 +55,15 @@ export class SigninPage implements OnInit {
         return;
       } else if (localStorage.getItem("user_type") === "ServiceProvider") {
         if (data["user"].businesses.length > 0) {
-          this.router.navigate(["/view-businesses"], {
+          this.router.navigate(["/menu/view-businesses"], {
             state: { businesses: data },
           });
         } else {
-          this.router.navigate(["/complete-profile"]);
+          this.router.navigate(["/menu/complete-profile"]);
         }
         return;
       }
-      this.router.navigate(["/user-services"]);
-
+      this.router.navigate(["/menu/user-services"]);
       // if (localStorage.getItem("user_type") === "ServiceProvider") {
       //   if (data["user"].businesses.length > 0) {
       //     this.router.navigate(["/view-businesses"], {
