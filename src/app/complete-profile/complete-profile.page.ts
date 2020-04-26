@@ -18,7 +18,7 @@ import { GeolocationService } from "./../services/geolocation/geolocation.servic
 })
 export class CompleteProfilePage implements OnInit {
   completeProfile: FormGroup;
-  private userCoords: any = {};
+  private isTitle: any;
   constructor(
     private loading: LoaderService,
     private router: Router,
@@ -28,6 +28,11 @@ export class CompleteProfilePage implements OnInit {
   ) {}
 
   ngOnInit() {
+    if (this.router.getCurrentNavigation().extras.state) {
+      this.isTitle = this.router.getCurrentNavigation().extras.state.txt;
+    } else {
+      this.isTitle = "Complete";
+    }
     this.completeProfile = new FormGroup({
       name: new FormControl("", [Validators.required]),
       business_type: new FormControl("", [Validators.required]),

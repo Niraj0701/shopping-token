@@ -34,4 +34,10 @@ export class ViewBusinessesPage implements OnInit {
       state: { business: business },
     });
   }
+
+  goToAddProfile(txt) {
+    this.route.navigate(["/menu/complete-profile"], {
+      state: { txt: txt },
+    });
+  }
 }
