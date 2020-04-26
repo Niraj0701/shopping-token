@@ -20,10 +20,6 @@ export class ViewBusinessesPage implements OnInit {
   ngOnInit() {
     this.businesses = this.route.getCurrentNavigation().extras.state.businesses;
     console.log("in ngOninit", this.businesses);
-    // this.apiService.userProfile.pipe(first()).subscribe((user) => {
-    //   console.log("user1", user);
-    //   this.businesses = user.businesses;
-    // });
   }
 
   viewBookedSlots(business) {
