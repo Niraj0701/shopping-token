@@ -51,7 +51,6 @@ export class UserServicesPage implements OnInit {
         {
           text: "Okay",
           handler: () => {
-            console.log("Confirm Okay");
             localStorage.setItem("useCurrentLocation", "true");
           },
         },
@@ -132,7 +131,6 @@ export class UserServicesPage implements OnInit {
         {
           text: "Allow",
           handler: () => {
-            console.log("Confirm Okay");
             localStorage.setItem("useCurrentLocation", "true");
             this.loading.show();
             this.useCurrentLocation();

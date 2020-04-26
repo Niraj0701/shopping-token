@@ -21,7 +21,6 @@ export class GeolocationService {
           long: 73.7699
         }); */
       } else {
-        console.log("Geolocation is not supported by this browser.");
       }
     });
   }

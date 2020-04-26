@@ -47,7 +47,6 @@ export class CompleteProfilePage implements OnInit {
   }
 
   getCoords(event) {
-    console.log("**** : ", event);
     this.completeProfile.controls["latitude"].setValue(event.lat);
     this.completeProfile.controls["longitude"].setValue(event.long);
   }
@@ -56,8 +55,6 @@ export class CompleteProfilePage implements OnInit {
     let obj = {
       ...this.completeProfile.value,
     };
-
-    console.log("in complete profile", this.completeProfile.value, obj);
     this.loading.show();
 
     this.apiService.completeProfile(obj).subscribe(

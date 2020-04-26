@@ -39,7 +39,6 @@ export class AddressAutocompleteComponent implements OnInit {
         google.maps.event.addListener(this.service, 'place_changed', () => {
 
           let place = this.service.getPlace().geometry.location;
-          console.log('########### ', place.lat(), place.lng());
           this.getCoords.emit({
               lat: place.lat(),
               long: place.lng()
@@ -65,7 +64,6 @@ export class AddressAutocompleteComponent implements OnInit {
 
 
   onSubmit() {
-    console.log('**** : ', this.addressForm.value);
   }
 
 }

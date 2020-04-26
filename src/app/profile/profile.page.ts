@@ -22,11 +22,9 @@ export class ProfilePage implements OnInit {
   }
 
   onSubmit() {
-    console.log('*** : ', this.profileForm.value) 
   }
 
   getCoords(event) {
-    console.log('**** : ', event)
     /* this.profileForm.controls['latitude'].setValue(event.lat);
     this.completeProfile.controls['longitude'].setValue(event.long); */
   }

@@ -36,7 +36,6 @@ export class PhoneCheckComponent implements OnInit {
       },
       (err) => {
         if (err.status === 400) {
-          alert(err.error);
           localStorage.clear();
           this.router.navigate(["/login"]);
         }
@@ -48,7 +47,6 @@ export class PhoneCheckComponent implements OnInit {
   }
 
   async onVerifyClick() {
-    console.log(this.verifyOtpForm.valid);
     if (this.verifyOtpForm.valid) {
       this.apiService.verifyOtp(this.otp, this.data.id).subscribe();
       const modal = await this.modalController.create({

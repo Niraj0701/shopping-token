@@ -22,14 +22,12 @@ export class ViewBusinessesPage implements OnInit {
       this.businesses = this.route.getCurrentNavigation().extras.state.businesses;
     } else {
       this.apiService.me().subscribe((user) => {
-        console.log("user1", user);
         this.businesses = user;
       });
     }
   }
 
   viewBookedSlots(business) {
-    console.log(business);
     this.route.navigate(["/menu/business-profile"], {
       state: { business: business },
     });

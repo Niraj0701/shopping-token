@@ -51,7 +51,6 @@ export class SignupFormComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log("sdsdfsdfsd", this.signupForm);
     const body = this.signupForm.value;
     if (this.signupForm.valid) {
       this.loading.show();
@@ -75,7 +74,6 @@ export class SignupFormComponent implements OnInit {
     let code = this.countries.filter(
       (country) => country.Name === e.detail.value
     );
-    console.log("asasds", e, code);
     this.signupForm.controls.country_code.setValue(code[0].Dial);
   }
 }

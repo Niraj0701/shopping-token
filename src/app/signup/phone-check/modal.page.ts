@@ -29,7 +29,6 @@ export class ModalPage {
 
   dismiss() {
     this.viewCtrl.dismiss().then((data) => {
-      console.log("** : ", data, this.router);
       let profile = localStorage.getItem("user_type");
       if (profile === "ServiceProvider") {
         if (this.userdata["user"].businesses.length > 0) {

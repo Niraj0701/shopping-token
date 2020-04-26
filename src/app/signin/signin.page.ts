@@ -41,13 +41,11 @@ export class SigninPage implements OnInit {
   }
 
   private onSignupSuccess(data: any) {
-    console.log("data : ", data);
     localStorage.setItem("refresh", data.refresh);
     localStorage.setItem("authorization", data.access);
     this.apiService.me().subscribe((data) => {
       localStorage.setItem("user_type", data["user"].profile);
       this.apiService.userProfile.next(data["user"]);
-      console.log("=====> ", data["user"]);
       if (data["user"].verification_state == "UNVERIFIED") {
         this.router.navigate(["/signup/verify"], {
           state: { businesses: data },
@@ -64,19 +62,6 @@ export class SigninPage implements OnInit {
         return;
       }
       this.router.navigate(["/menu/user-services"]);
-      // if (localStorage.getItem("user_type") === "ServiceProvider") {
-      //   if (data["user"].businesses.length > 0) {
-      //     this.router.navigate(["/view-businesses"], {
-      //       state: { businesses: data },
-      //     });
-      //   } else {
-      //     this.router.navigate(["/complete-profile"], {
-      //       state: { businesses: data },
-      //     });
-      //   }
-      //   return;
-      // }
-      // this.router.navigate(["/user-services"]);
     });
   }
 }

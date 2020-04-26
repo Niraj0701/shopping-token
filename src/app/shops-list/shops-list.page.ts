@@ -32,7 +32,6 @@ export class ShopsListPage implements OnInit {
     this.loading.show();
     this.apiService.getShopList(this.business_type, lat, long).subscribe(
       (data) => {
-        console.log("*** : ", data);
         this.shopsList = data;
         this.loading.hide();
       },

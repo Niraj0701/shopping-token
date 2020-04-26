@@ -36,8 +36,6 @@ export class BusinessProfilePage implements OnInit {
       this.daysList.push(day.toDate().toString());
       day = day.clone().add(1, "d");
     }
-
-    console.log(this.bookedSlots);
   }
   openFirst() {
     this.menu.enable(true, "first");
@@ -58,7 +56,6 @@ export class BusinessProfilePage implements OnInit {
   }
 
   selectDate(selectedDate, index) {
-    console.log(selectedDate);
     this.isDateActive = index;
     this.apiService
       .getBookedSlots(
@@ -68,7 +65,6 @@ export class BusinessProfilePage implements OnInit {
       )
       .subscribe((data) => {
         this.responseSlot = data;
-        console.log(this.viewDetailSlots);
         let obj = {};
         for (var i = 0; i < this.responseSlot.length; i++) {
           if (!obj.hasOwnProperty(this.responseSlot[i].slot)) {
@@ -77,8 +73,6 @@ export class BusinessProfilePage implements OnInit {
           obj[this.responseSlot[i].slot].push(this.responseSlot[i].user);
         }
         this.viewDetailSlots = obj;
-        // arr.push(obj);
-        console.log("Asdasda", obj, this.viewDetailSlots);
       });
   }
 
