@@ -12,20 +12,21 @@ export class MenuPage implements OnInit {
   pages: any;
 
   tt: any;
-  constructor(private router: Router, private menu: MenuController) {}
+  constructor(private router: Router, private menu: MenuController) { }
 
   ngOnInit() {
+    
     this.pages = [
       {
-        title: "user-services",
-        url: "/menu/user-services",
-        isConsumer: this.isConsumer(),
+        title: "Businesses",
+        url: "/menu/view-businesses",
+        isConsumer: !this.isBusinessProvider(),
       },
       {
-        title: "view-businesses",
-        url: "/menu/view-businesses",
-        isConsumer: !this.isConsumer(),
-      },
+        title: "Services",
+        url: "/menu/user-services",
+        isConsumer: false,
+      }
     ];
     this.initMenu();
   }
@@ -39,6 +40,10 @@ export class MenuPage implements OnInit {
       this.selectedPath = event.url;
       this.menu.close();
     });
+  }
+
+  isBusinessProvider() {
+    return localStorage.getItem("user_type") == 'ServiceProvider';
   }
 
   logout() {

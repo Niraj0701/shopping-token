@@ -7,13 +7,13 @@
 
   <ion-content>
 
-    <ion-item *ngFor="let page of pages" [ngClass]="{'hide-page': !page.isConsumer}"
+    <ion-item *ngFor="let page of pages" [ngClass]="{'hide-page': page.isConsumer}"
       [class.active-item]="selectedPath === page.url" [routerLink]="[page.url]" lines="none" detail="false">
       {{page.title}}
     </ion-item>
     <ion-item button (click)="logout()" lines="none" detail="false">
       <ion-icon name="power" style="color: #b721ff;"></ion-icon>
-      <ion-label style="color: #6121fd;"> Logout</ion-label>
+      <ion-label style="color: #6121fd;"> Logout</ion-label>  
     </ion-item>
   </ion-content>
 </ion-menu>
