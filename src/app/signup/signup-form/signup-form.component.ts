@@ -17,6 +17,7 @@ import { ApiService } from "src/app/services/api/api.service";
 export class SignupFormComponent implements OnInit {
   isUser: boolean;
   signupForm: FormGroup;
+  private countries: any[] = [];
   constructor(
     private formBuilder: FormBuilder,
     private loading: LoaderService,
@@ -25,10 +26,15 @@ export class SignupFormComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.apiService.getCountries().subscribe((countries) => {
+      this.countries = this.countries.concat(countries);
+    });
     this.signupForm = new FormGroup({
       name: new FormControl("", [Validators.required]),
       password: new FormControl("", [Validators.required]),
       email: new FormControl("", [Validators.required]),
+      country: new FormControl("", [Validators.required]),
+      country_code: new FormControl("", [Validators.required]),
       mobile: new FormControl("", [
         Validators.required,
         Validators.minLength(10),
@@ -63,5 +69,13 @@ export class SignupFormComponent implements OnInit {
       );
     } else {
     }
+  }
+
+  selectCountry(e) {
+    let code = this.countries.filter(
+      (country) => country.Name === e.detail.value
+    );
+    console.log("asasds", e, code);
+    this.signupForm.controls.country_code.setValue(code[0].Dial);
   }
 }

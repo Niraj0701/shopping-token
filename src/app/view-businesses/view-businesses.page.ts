@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { LoaderService } from "src/app/services/api/loading.service";
 import { ApiService } from "src/app/services/api/api.service";
@@ -9,24 +9,29 @@ import { first } from "rxjs/operators";
   templateUrl: "./view-businesses.page.html",
   styleUrls: ["./view-businesses.page.scss"],
 })
-export class ViewBusinessesPage implements OnInit, OnDestroy {
-  private businesses: any = [];
+export class ViewBusinessesPage implements OnInit {
+  private businesses: any;
   constructor(
     private loading: LoaderService,
     private route: Router,
     private apiService: ApiService
-  ) {}
+  ) { }
 
   ngOnInit() {
-    this.businesses = this.route.getCurrentNavigation().extras.state.businesses;
-    console.log("in ngOninit", this.businesses);
-    this.apiService.userProfile.pipe(first()).subscribe((user) => {
-      console.log("user1", user);
-      this.businesses = user.businesses;
-    });
+    if (this.route.getCurrentNavigation().extras.state) {
+      this.businesses = this.route.getCurrentNavigation().extras.state.businesses;
+    } else {
+      this.apiService.me().subscribe((user) => {
+        console.log("user1", user);
+        this.businesses = user;
+      });
+    }
   }
 
-  ngOnDestroy() {
-    // this.apiService.userProfile.unsubscribe();
+  viewBookedSlots(business) {
+    console.log(business);
+    this.route.navigate(["/menu/business-profile"], {
+      state: { business: business },
+    });
   }
 }

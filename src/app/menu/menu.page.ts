@@ -1,61 +1,52 @@
-import { Router, RouterEvent } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Router, RouterEvent } from "@angular/router";
+import { Component, OnInit } from "@angular/core";
+import { MenuController } from "@ionic/angular";
 
 @Component({
-  selector: 'app-menu',
-  templateUrl: './menu.page.html',
-  styleUrls: ['./menu.page.scss'],
+  selector: "app-menu",
+  templateUrl: "./menu.page.html",
+  styleUrls: ["./menu.page.scss"],
 })
 export class MenuPage implements OnInit {
-
-  pages = [
-    {
-      title: "profile",
-      url: '/menu/profile',
-      isConsumer: localStorage.getItem('user_type') === 'Consumer'
-    },
-    {
-      title: 'business-profile',
-      url: '/menu/business-profile',
-      isConsumer: localStorage.getItem('user_type') === 'ServiceProvider'
-    },
-    {
-      title: 'user-services',
-      url: '/menu/user-services',
-      isConsumer: localStorage.getItem('user_type') === 'Consumer'
-    },
-    {
-      title: 'complete-profile',
-      url: '/menu/complete-profile',
-      isConsumer: localStorage.getItem('user_type') === 'ServiceProvider'
-    },
-    {
-      title: 'view-businesses',
-      url: '/menu/view-businesses',
-      isConsumer: localStorage.getItem('user_type') === 'ServiceProvider'
-    }
-  ]
-
-  selectedPath: any
+  selectedPath: any;
+  pages: any;
 
   tt: any;
-  constructor(private router: Router) {
-  }
+  constructor(private router: Router, private menu: MenuController) {}
 
   ngOnInit() {
+    this.pages = [
+      {
+        title: "user-services",
+        url: "/menu/user-services",
+        isConsumer: this.isConsumer(),
+      },
+      {
+        title: "view-businesses",
+        url: "/menu/view-businesses",
+        isConsumer: !this.isConsumer(),
+      },
+    ];
     this.initMenu();
+  }
+
+  private isConsumer() {
+    return localStorage.getItem("user_type") == "Consumer";
   }
 
   initMenu() {
     this.router.events.subscribe((event: RouterEvent) => {
       this.selectedPath = event.url;
+      this.menu.close();
     });
   }
 
   logout() {
     localStorage.clear();
-    this.router.navigate(['/login']);
-
+    this.router.navigate(["/login"]);
   }
 
+  openEnd() {
+    this.menu.close();
+  }
 }

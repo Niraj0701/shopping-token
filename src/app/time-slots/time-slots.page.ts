@@ -64,7 +64,7 @@ export class TimeSlotsPage implements OnInit {
     this.apiService.bookNowSlot(tempObj).subscribe(
       (data) => {
         this.loading.hide();
-        this.route.navigate(["/book-success"], {
+        this.route.navigate(["/menu/book-success"], {
           state: { bookDetails: data },
         });
       },
@@ -73,5 +73,8 @@ export class TimeSlotsPage implements OnInit {
         this.loading.hide();
       }
     );
+  }
+  goBack() {
+    this.route.navigate(["/menu/shops-list"]);
   }
 }

@@ -1,129 +1,69 @@
-<ion-menu side="start" menuId="first" contentId="main">
-  <ion-header>
-    <ion-toolbar color="primary">
-      <ion-title>Start Menu</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content>
-    <ion-list>
-      <ion-item>Menu Item</ion-item>
-      <ion-item>Menu Item</ion-item>
-      <ion-item>Menu Item</ion-item>
-      <ion-item>Menu Item</ion-item>
-      <ion-item>Menu Item</ion-item>
-    </ion-list>
-  </ion-content>
-</ion-menu>
-<div class="ion-page" id="main">
-  <ion-header>
-    <ion-toolbar>
-      <ion-icon slot="start" name="chevron-back-outline"></ion-icon>
-      <ion-menu-button slot="end"
+<ion-header>
+  <ion-toolbar>
+    <ion-icon
+      (click)="goBack()"
+      slot="start"
+      name="chevron-back-outline"
+    ></ion-icon>
+    <!-- <ion-menu-button slot="end"
         ><ion-icon name="person-circle-outline"></ion-icon
-      ></ion-menu-button>
-      <ion-title>View Book Slots</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content class="ion-padding">
-    <p>Welcome, Uttam Super Shopee</p>
-    <div>
-      Check out today’s booked slots
+      ></ion-menu-button> -->
+    <ion-title>View Book Slots</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <p>Welcome, {{bookedSlots.name}}</p>
+  <div>
+    Check out today’s booked slots
+  </div>
+  <ion-grid>
+    <ion-row>
+      <ion-col
+        (click)="selectDate(element)"
+        *ngFor="let element of daysList; let i = index;"
+      >
+        <ion-button
+          class="date-button"
+          [ngClass]="isDateActive === i ? 'selected': '' "
+          color="light"
+          >{{element | date: 'dd' }} <br />
+          {{element | date: 'EEE' }}</ion-button
+        >
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div>
+    <div *ngIf="responseSlot.length === 0 && (viewDetailSlots | json) != '{}'">
+      Select Date to view booked slot
     </div>
-    <ion-grid>
-      <ion-row>
-        <ion-col *ngFor="let element of daysList">
-          <ion-button color="light"
-            >{{element | date: 'dd' }} <br />
-            {{element | date: 'EEE' }}</ion-button
-          >
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-    <div>
-      <ul class="timeline">
-        <li>
-          <div class="timeline-thumb timeline-icon">
-            <i class="ion-heart"></i>
-          </div>
-          <div class="timeline-item start">
-            20 booked slot
-          </div>
-        </li>
-        <li>
-          <ion-button class="timeline-time" color="light">
-            09:00 AM
-          </ion-button>
-          <div class="timeline-item">
-            <ion-card class="card">
-              <ion-card-title class="header">Mahesh Jawadi</ion-card-title>
-              <ion-card-content class="card-content">
-                <p><span>20 Items</span> | <span>Rs 1840.00</span></p>
-              </ion-card-content>
-            </ion-card>
-          </div>
-          <div class="timeline-item">
-            <ion-card class="card">
-              <ion-card-title class="header">Mahesh Jawadi</ion-card-title>
-              <ion-card-content class="card-content">
-                <p><span>20 Items</span> | <span>Rs 1840.00</span></p>
-              </ion-card-content>
-            </ion-card>
-          </div>
-          <div class="timeline-item">
-            <ion-card class="card">
-              <ion-card-title class="header">Mahesh Jawadi</ion-card-title>
-              <ion-card-content class="card-content">
-                <p><span>20 Items</span> | <span>Rs 1840.00</span></p>
-              </ion-card-content>
-            </ion-card>
-          </div>
-          <div class="timeline-item">
-            <ion-card class="card">
-              <ion-card-title class="header">Mahesh Jawadi</ion-card-title>
-              <ion-card-content class="card-content">
-                <p><span>20 Items</span> | <span>Rs 1840.00</span></p>
-              </ion-card-content>
-            </ion-card>
-          </div>
-        </li>
-        <li>
-          <ion-button class="timeline-time" color="light">
-            09:30 AM
-          </ion-button>
-          <div class="timeline-item">
-            <ion-card class="card">
-              <ion-card-title class="header">Mahesh Jawadi</ion-card-title>
-              <ion-card-content class="card-content">
-                <p><span>20 Items</span> | <span>Rs 1840.00</span></p>
-              </ion-card-content>
-            </ion-card>
-          </div>
-          <div class="timeline-item">
-            <ion-card class="card">
-              <ion-card-title class="header">Mahesh Jawadi</ion-card-title>
-              <ion-card-content class="card-content">
-                <p><span>20 Items</span> | <span>Rs 1840.00</span></p>
-              </ion-card-content>
-            </ion-card>
-          </div>
-          <div class="timeline-item">
-            <ion-card class="card">
-              <ion-card-title class="header">Mahesh Jawadi</ion-card-title>
-              <ion-card-content class="card-content">
-                <p><span>20 Items</span> | <span>Rs 1840.00</span></p>
-              </ion-card-content>
-            </ion-card>
-          </div>
-          <div class="timeline-item">
-            <ion-card class="card">
-              <ion-card-title class="header">Mahesh Jawadi</ion-card-title>
-              <ion-card-content class="card-content">
-                <p><span>20 Items</span> | <span>Rs 1840.00</span></p>
-              </ion-card-content>
-            </ion-card>
-          </div>
-        </li>
-      </ul>
+    <div *ngIf="(viewDetailSlots | json) === '{}'">
+      No Booked Slots
     </div>
-  </ion-content>
-</div>
+    <ul *ngIf="responseSlot.length > 0" class="timeline">
+      <li>
+        <div class="timeline-thumb timeline-icon">
+          <i class="ion-heart"></i>
+        </div>
+        <div class="timeline-item start">
+          {{this.responseSlot.length}} booked slot
+        </div>
+      </li>
+      <li *ngFor="let key of keys();">
+        <ion-button class="timeline-time" color="light">
+          {{key}}
+        </ion-button>
+        <div
+          *ngFor="let bookedslot of viewDetailSlots[key]"
+          class="timeline-item"
+        >
+          <ion-card class="card">
+            <ion-card-title class="header">{{bookedslot.name}}</ion-card-title>
+            <ion-card-content class="card-content">
+              <p><span>20 Items</span> | <span>Rs 1840.00</span></p>
+            </ion-card-content>
+          </ion-card>
+        </div>
+      </li>
+    </ul>
+  </div>
+</ion-content>

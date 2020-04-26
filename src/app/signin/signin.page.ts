@@ -48,7 +48,12 @@ export class SigninPage implements OnInit {
       localStorage.setItem("user_type", data["user"].profile);
       this.apiService.userProfile.next(data["user"]);
       console.log("=====> ", data["user"]);
-      if (localStorage.getItem("user_type") === "ServiceProvider") {
+      if (data["user"].verification_state == "UNVERIFIED") {
+        this.router.navigate(["/signup/verify"], {
+          state: { businesses: data },
+        });
+        return;
+      } else if (localStorage.getItem("user_type") == "ServiceProvider") {
         if (data["user"].businesses.length > 0) {
           this.router.navigate(["/menu/view-businesses"], {
             state: { businesses: data },
@@ -59,6 +64,19 @@ export class SigninPage implements OnInit {
         return;
       }
       this.router.navigate(["/menu/user-services"]);
+      // if (localStorage.getItem("user_type") === "ServiceProvider") {
+      //   if (data["user"].businesses.length > 0) {
+      //     this.router.navigate(["/view-businesses"], {
+      //       state: { businesses: data },
+      //     });
+      //   } else {
+      //     this.router.navigate(["/complete-profile"], {
+      //       state: { businesses: data },
+      //     });
+      //   }
+      //   return;
+      // }
+      // this.router.navigate(["/user-services"]);
     });
   }
 }

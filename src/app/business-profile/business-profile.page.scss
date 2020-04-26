@@ -113,3 +113,11 @@ ion-icon {
   position: absolute;
   font-size: 13px;
 }
+
+.date-button {
+  & .selected {
+    --color: #3880ff;
+
+    --border-color: #3880ff !important;
+  }
+}

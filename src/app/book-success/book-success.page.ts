@@ -13,6 +13,6 @@ export class BookSuccessPage implements OnInit {
     this.bookDetails = this.route.getCurrentNavigation().extras.state.bookDetails;
   }
   home() {
-    this.route.navigate(["/user-services"]);
+    this.route.navigate(["/menu/user-services"]);
   }
 }

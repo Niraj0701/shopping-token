@@ -1,7 +1,15 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import {
+  FormBuilder,
+  FormGroup,
+  FormControl,
+  Validators,
+} from "@angular/forms";
 import { AlertController, ModalController } from "@ionic/angular";
 import { ModalPage } from "./modal.page";
 import { LoaderService } from "src/app/services/api/loading.service";
+import { ApiService } from "src/app/services/api/api.service";
 
 @Component({
   selector: "app-phone-check",
@@ -9,20 +17,48 @@ import { LoaderService } from "src/app/services/api/loading.service";
   styleUrls: ["./phone-check.component.scss"],
 })
 export class PhoneCheckComponent implements OnInit {
+  private data: any;
+  private otp: any;
+  verifyOtpForm: FormGroup;
   constructor(
     public modalController: ModalController,
-    private loading: LoaderService
+    private loading: LoaderService,
+    private router: Router,
+    private apiService: ApiService
   ) {}
 
   ngOnInit() {
-    this.loading.hide();
+    this.data = this.router.getCurrentNavigation().extras.state.businesses;
+    this.apiService.getOtp().subscribe(
+      (data) => {
+        this.verifyOtpForm.controls.otp.setValue(data["otp"]);
+        this.otp = data["otp"];
+      },
+      (err) => {
+        if (err.status === 400) {
+          alert(err.error);
+          localStorage.clear();
+          this.router.navigate(["/login"]);
+        }
+      }
+    );
+    this.verifyOtpForm = new FormGroup({
+      otp: new FormControl("", [Validators.required]),
+    });
   }
 
   async onVerifyClick() {
-    const modal = await this.modalController.create({
-      component: ModalPage,
-      cssClass: "confirmation-popup",
-    });
-    return await modal.present();
+    console.log(this.verifyOtpForm.valid);
+    if (this.verifyOtpForm.valid) {
+      this.apiService.verifyOtp(this.otp, this.data.id).subscribe();
+      const modal = await this.modalController.create({
+        component: ModalPage,
+        componentProps: {
+          userdata: this.data,
+        },
+        cssClass: "confirmation-popup",
+      });
+      return await modal.present();
+    }
   }
 }

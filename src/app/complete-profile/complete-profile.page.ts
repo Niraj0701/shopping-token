@@ -28,7 +28,6 @@ export class CompleteProfilePage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.apiService.userProfile.subscribe((user) => {});
     this.completeProfile = new FormGroup({
       name: new FormControl("", [Validators.required]),
       business_type: new FormControl("", [Validators.required]),
@@ -43,9 +42,9 @@ export class CompleteProfilePage implements OnInit {
   }
 
   getCoords(event) {
-    console.log('**** : ', event)
-    this.completeProfile.controls['latitude'].setValue(event.lat);
-    this.completeProfile.controls['longitude'].setValue(event.long);
+    console.log("**** : ", event);
+    this.completeProfile.controls["latitude"].setValue(event.lat);
+    this.completeProfile.controls["longitude"].setValue(event.long);
   }
 
   onSubmit() {
@@ -55,94 +54,21 @@ export class CompleteProfilePage implements OnInit {
 
     console.log("in complete profile", this.completeProfile.value, obj);
     this.loading.show();
+
     this.apiService.completeProfile(obj).subscribe(
       (data) => {
         this.loading.hide();
         localStorage.setItem("isCompleteProfile", "true");
-        this.router.navigate(["/menu/business-profile"]);
+        this.apiService.me().subscribe((data) => {
+          this.router.navigate(["/menu/view-businesses"], {
+            state: { businesses: data },
+          });
+        });
       },
       (err) => {
         this.loading.hide();
         localStorage.setItem("isCompleteProfile", "false");
       }
     );
-  }
-  async presentAlertConfirm() {
-    const alert = await this.alertController.create({
-      header: "Save preference",
-      message:
-        "<strong>Do you want to save your current location bydefault ?</strong>!!!",
-      buttons: [
-        {
-          text: "Cancel",
-          role: "cancel",
-          cssClass: "danger",
-          handler: (blah) => {
-            console.log("Confirm Cancel: blah");
-          },
-        },
-        {
-          text: "Okay",
-          handler: () => {
-            console.log("Confirm Okay");
-            localStorage.setItem("useCurrentLocation", "true");
-          },
-        },
-      ],
-    });
-
-    await alert.present();
-  }
-  useCurrentLocation() {
-    if (!localStorage.getItem("useCurrentLocation")) {
-      this.presentAlertConfirm();
-    }
-    this.geolocation.watchUserLocation().subscribe(
-      (data) => {
-        console.log("***: ", data);
-        const _coords = {
-          latitude: data["coords"].latitude,
-          longitude: data["coords"].longitude,
-        };
-        this.geolocation.userCoords.next(_coords);
-        this.userCoords["lat"] = data["coords"].latitude;
-        this.userCoords["long"] = data["coords"].longitude;
-        localStorage.setItem("lat", data["coords"].latitude);
-        localStorage.setItem("long", data["coords"].longitude);
-        this.loading.hide();
-      },
-      (error) => {
-        console.log("GEO LOCA ERROR ; ", error);
-        this.loading.hide();
-      }
-    );
-  }
-
-  async presentAlertConfirm2() {
-    const alert = await this.alertController.create({
-      header: "Need Location",
-      message: `<strong>Need to get your current location to list all stores near you...</strong>!!!`,
-      buttons: [
-        {
-          text: "Cancel",
-          role: "cancel",
-          cssClass: "danger",
-          handler: (blah) => {
-            console.log("Confirm Cancel: blah");
-          },
-        },
-        {
-          text: "Okay",
-          handler: () => {
-            console.log("Confirm Okay");
-            localStorage.setItem("useCurrentLocation", "true");
-            this.loading.show();
-            this.useCurrentLocation();
-          },
-        },
-      ],
-    });
-
-    await alert.present();
   }
 }

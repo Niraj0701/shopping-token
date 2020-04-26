@@ -25,7 +25,7 @@ export class ShopsListPage implements OnInit {
   }
 
   goToSlots(shop: any) {
-    this.route.navigate(["/time-slots"], { state: { shop: shop } });
+    this.route.navigate(["/menu/time-slots"], { state: { shop: shop } });
   }
 
   getAllShops(type, lat, long) {
@@ -41,5 +41,8 @@ export class ShopsListPage implements OnInit {
         this.loading.hide();
       }
     );
+  }
+  goBack() {
+    this.route.navigate(["/menu/user-services"]);
   }
 }
