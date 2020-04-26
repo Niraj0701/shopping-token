@@ -31,7 +31,7 @@ export class ModalPage {
       console.log("** : ", data);
       let profile = localStorage.getItem("profile");
       if (profile === "ServiceProvider") {
-        this.router.navigate(["/complete-profile"]);
+        this.router.navigate(["/menu/complete-profile"]);
       } else {
         this.router.navigate(["/"]);
       }

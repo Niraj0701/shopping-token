@@ -14,7 +14,7 @@ export class ProfilePage implements OnInit {
   ngOnInit() {
     this.profileForm = new FormGroup({
       service: new FormControl('', [Validators.required]),
-      location: new FormControl('Pune', [Validators.required]),
+      location: new FormControl('', [Validators.required]),
       workDays: new FormControl('', [Validators.required]),
       timeperPerson: new FormControl('', [Validators.required]),
       peronsPerSlot: new FormControl('', [Validators.required]),
@@ -23,6 +23,12 @@ export class ProfilePage implements OnInit {
 
   onSubmit() {
     console.log('*** : ', this.profileForm.value) 
+  }
+
+  getCoords(event) {
+    console.log('**** : ', event)
+    /* this.profileForm.controls['latitude'].setValue(event.lat);
+    this.completeProfile.controls['longitude'].setValue(event.long); */
   }
 
 }

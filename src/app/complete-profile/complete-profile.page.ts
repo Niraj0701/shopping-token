@@ -59,7 +59,7 @@ export class CompleteProfilePage implements OnInit {
       (data) => {
         this.loading.hide();
         localStorage.setItem("isCompleteProfile", "true");
-        this.router.navigate(["/business-profile"]);
+        this.router.navigate(["/menu/business-profile"]);
       },
       (err) => {
         this.loading.hide();

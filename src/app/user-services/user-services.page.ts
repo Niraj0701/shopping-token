@@ -62,7 +62,7 @@ export class UserServicesPage implements OnInit {
   }
 
   navigateToList(business_type: string) {
-    this.router.navigate(['/shops-list'], { state: { type: business_type, coords: this.userCoords } })
+    this.router.navigate(['/menu/shops-list'], { state: { type: business_type, coords: this.userCoords } })
   }
 
   checkUserPreference() {
