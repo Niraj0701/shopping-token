@@ -1,20 +1,18 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
+
+    <ion-title>List of Businesses</ion-title>
+    <ion-buttons slot="end">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>List of Businesses</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-grid>
+  <ion-grid *ngIf='businesses'>
     <ion-row>
       <ion-col>
-        <ion-list
-          (click)="viewBookedSlots(business)"
-          *ngFor="let business of businesses.user.businesses"
-        >
+        <ion-list (click)="viewBookedSlots(business)" *ngFor="let business of businesses.user.businesses">
           <ion-item>
             <ion-label>{{business.name}}</ion-label>
             <div>{{business.address}}</div>

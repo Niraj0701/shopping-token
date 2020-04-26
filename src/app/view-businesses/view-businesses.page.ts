@@ -10,25 +10,27 @@ import { first } from "rxjs/operators";
   styleUrls: ["./view-businesses.page.scss"],
 })
 export class ViewBusinessesPage implements OnInit {
-  private businesses: any = [];
+  private businesses: any;
   constructor(
     private loading: LoaderService,
     private route: Router,
     private apiService: ApiService
-  ) {}
+  ) { }
 
   ngOnInit() {
-    this.businesses = this.route.getCurrentNavigation().extras.state.businesses;
-    console.log("in ngOninit", this.businesses);
-    // this.apiService.userProfile.pipe(first()).subscribe((user) => {
-    //   console.log("user1", user);
-    //   this.businesses = user.businesses;
-    // });
+    if (this.route.getCurrentNavigation().extras.state) {
+      this.businesses = this.route.getCurrentNavigation().extras.state.businesses;
+    } else {
+      this.apiService.me().subscribe((user) => {
+        console.log("user1", user);
+        this.businesses = user;
+      });
+    }
   }
 
   viewBookedSlots(business) {
     console.log(business);
-    this.route.navigate(["/business-profile"], {
+    this.route.navigate(["/menu/business-profile"], {
       state: { business: business },
     });
   }

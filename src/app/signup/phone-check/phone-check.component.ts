@@ -29,10 +29,8 @@ export class PhoneCheckComponent implements OnInit {
 
   ngOnInit() {
     this.data = this.router.getCurrentNavigation().extras.state.businesses;
-    console.log("=======", this.data);
     this.apiService.getOtp().subscribe(
       (data) => {
-        console.log("sdSad", data);
         this.verifyOtpForm.controls.otp.setValue(data["otp"]);
         this.otp = data["otp"];
       },

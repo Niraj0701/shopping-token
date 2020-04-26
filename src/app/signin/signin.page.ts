@@ -53,7 +53,7 @@ export class SigninPage implements OnInit {
           state: { businesses: data },
         });
         return;
-      } else if (localStorage.getItem("user_type") === "ServiceProvider") {
+      } else if (localStorage.getItem("user_type") == "ServiceProvider") {
         if (data["user"].businesses.length > 0) {
           this.router.navigate(["/menu/view-businesses"], {
             state: { businesses: data },
