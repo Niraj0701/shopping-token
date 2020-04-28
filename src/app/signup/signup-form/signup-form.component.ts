@@ -17,7 +17,7 @@ import { ApiService } from "src/app/services/api/api.service";
 export class SignupFormComponent implements OnInit {
   isUser: boolean;
   signupForm: FormGroup;
-  private countries: any[] = [];
+  public countries: any[] = [];
   constructor(
     private formBuilder: FormBuilder,
     private loading: LoaderService,

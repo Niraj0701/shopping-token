@@ -18,7 +18,7 @@ import { GeolocationService } from "./../services/geolocation/geolocation.servic
 })
 export class CompleteProfilePage implements OnInit {
   completeProfile: FormGroup;
-  private isTitle: any;
+  public isTitle: any;
   constructor(
     private loading: LoaderService,
     private router: Router,
