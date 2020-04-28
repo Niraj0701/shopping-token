@@ -1,6 +1,7 @@
 import { Router, RouterEvent } from "@angular/router";
 import { Component, OnInit } from "@angular/core";
 import { MenuController } from "@ionic/angular";
+import { Storage } from "@ionic/storage";
 
 @Component({
   selector: "app-menu",
@@ -14,7 +15,11 @@ export class MenuPage implements OnInit {
   userMobile: any;
 
   tt: any;
-  constructor(private router: Router, private menu: MenuController) {}
+  constructor(
+    private storage: Storage,
+    private router: Router,
+    private menu: MenuController
+  ) {}
 
   ngOnInit() {
     this.userName = localStorage.getItem("user_name");
@@ -56,6 +61,7 @@ export class MenuPage implements OnInit {
 
   logout() {
     localStorage.clear();
+    this.storage.clear();
     this.router.navigate(["/login"]);
   }
 

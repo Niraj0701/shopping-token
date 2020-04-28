@@ -2,6 +2,7 @@ import { ICoords } from "./../models/shop.interface";
 import { GeolocationService } from "./../services/geolocation/geolocation.service";
 import { Component, OnInit } from "@angular/core";
 import { NavController, AlertController } from "@ionic/angular";
+import { Storage } from "@ionic/storage";
 import { Router } from "@angular/router";
 import { LoaderService } from "../services/api/loading.service";
 import { Geolocation } from "@ionic-native/geolocation/ngx";
@@ -18,6 +19,7 @@ export class UserServicesPage implements OnInit {
   public buttonType = "outline";
   public buttinText = "Use Current Location?";
   constructor(
+    private storage: Storage,
     public router: Router,
     public alertController: AlertController,
     private loading: LoaderService,
@@ -30,8 +32,13 @@ export class UserServicesPage implements OnInit {
     this.useCurrentLocation();
   }
 
+  ionViewWillEnter() {
+    this.useCurrentLocation();
+  }
+
   logout(event) {
     localStorage.clear();
+    this.storage.clear();
     this.router.navigate(["/login"]);
   }
 
@@ -52,6 +59,7 @@ export class UserServicesPage implements OnInit {
           text: "Okay",
           handler: () => {
             localStorage.setItem("useCurrentLocation", "true");
+            this.storage.set("useCurrentLocation", "true");
           },
         },
       ],
@@ -105,7 +113,9 @@ export class UserServicesPage implements OnInit {
         this.userCoords["lat"] = data["coords"].latitude;
         this.userCoords["long"] = data["coords"].longitude;
         localStorage.setItem("lat", data["coords"].latitude.toString());
+        this.storage.set("lat", data["coords"].latitude.toString());
         localStorage.setItem("long", data["coords"].longitude.toString());
+        this.storage.set("long", data["coords"].longitude.toString());
         this.buttonType = "solid";
         this.buttinText = "Using Current Location";
         this.loading.show();
@@ -132,6 +142,7 @@ export class UserServicesPage implements OnInit {
           text: "Allow",
           handler: () => {
             localStorage.setItem("useCurrentLocation", "true");
+            this.storage.set("useCurrentLocation", "true");
             this.loading.show();
             this.useCurrentLocation();
           },

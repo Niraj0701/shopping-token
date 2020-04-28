@@ -7,6 +7,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { AlertController, ModalController } from "@ionic/angular";
+import { Storage } from "@ionic/storage";
 import { ModalPage } from "./modal.page";
 import { LoaderService } from "src/app/services/api/loading.service";
 import { ApiService } from "src/app/services/api/api.service";
@@ -21,6 +22,7 @@ export class PhoneCheckComponent implements OnInit {
   private otp: any;
   verifyOtpForm: FormGroup;
   constructor(
+    private storage: Storage,
     public modalController: ModalController,
     private loading: LoaderService,
     private router: Router,
@@ -37,6 +39,7 @@ export class PhoneCheckComponent implements OnInit {
       (err) => {
         if (err.status === 400) {
           localStorage.clear();
+          this.storage.clear();
           this.router.navigate(["/login"]);
         }
       }

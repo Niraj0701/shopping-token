@@ -1,13 +1,12 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { IonicModule } from "@ionic/angular";
 
-import { IonicModule } from '@ionic/angular';
+import { SigninPageRoutingModule } from "./signin-routing.module";
 
-import { SigninPageRoutingModule } from './signin-routing.module';
-
-import { SigninPage } from './signin.page';
-import { ApiServiceModule } from '../services/api/apiService.module';
+import { SigninPage } from "./signin.page";
+import { ApiServiceModule } from "../services/api/apiService.module";
 
 @NgModule({
   imports: [
@@ -16,8 +15,8 @@ import { ApiServiceModule } from '../services/api/apiService.module';
     FormsModule,
     IonicModule,
     SigninPageRoutingModule,
-    ApiServiceModule
+    ApiServiceModule,
   ],
-  declarations: [SigninPage]
+  declarations: [SigninPage],
 })
 export class SigninPageModule {}
