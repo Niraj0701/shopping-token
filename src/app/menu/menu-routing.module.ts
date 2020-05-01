@@ -29,6 +29,7 @@ const routes: Routes = [
       },
       {
         path: "user-services",
+        canActivate: [LoggedInGuard],
         children: [
           {
             path: "",

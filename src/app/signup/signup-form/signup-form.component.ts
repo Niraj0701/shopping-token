@@ -8,6 +8,8 @@ import {
 } from "@angular/forms";
 import { LoaderService } from "src/app/services/api/loading.service";
 import { ApiService } from "src/app/services/api/api.service";
+import { Storage } from '@ionic/storage';
+
 
 @Component({
   selector: "app-signup-form",
@@ -22,7 +24,8 @@ export class SignupFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private loading: LoaderService,
     private router: Router,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private storage: Storage
   ) {}
 
   ngOnInit() {
@@ -46,7 +49,7 @@ export class SignupFormComponent implements OnInit {
 
   typeChanged(event) {
     this.isUser = event.target.value === "service_provider";
-    localStorage.setItem("profile", event.target.value);
+    this.storage.set("profile", event.target.value);
     this.signupForm.controls["profile"].setValue(event.target.value);
   }
 

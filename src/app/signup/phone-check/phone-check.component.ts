@@ -38,7 +38,6 @@ export class PhoneCheckComponent implements OnInit {
       },
       (err) => {
         if (err.status === 400) {
-          localStorage.clear();
           this.storage.clear();
           this.router.navigate(["/login"]);
         }

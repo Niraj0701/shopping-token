@@ -10,6 +10,7 @@ import { AlertController } from "@ionic/angular";
 import { LoaderService } from "src/app/services/api/loading.service";
 import { ApiService } from "src/app/services/api/api.service";
 import { GeolocationService } from "./../services/geolocation/geolocation.service";
+import { Storage } from "@ionic/storage";
 
 @Component({
   selector: "app-complete-profile",
@@ -21,6 +22,7 @@ export class CompleteProfilePage implements OnInit {
   public isTitle: any;
   constructor(
     private loading: LoaderService,
+    private storage: Storage,
     private router: Router,
     private apiService: ApiService,
     public alertController: AlertController,
@@ -61,7 +63,7 @@ export class CompleteProfilePage implements OnInit {
     this.apiService.completeProfile(obj).subscribe(
       (data) => {
         this.loading.hide();
-        localStorage.setItem("isCompleteProfile", "true");
+        this.storage.set("isCompleteProfile", "true");
         this.apiService.me().subscribe((data) => {
           this.router.navigate(["/menu/view-businesses"], {
             state: { businesses: data },
@@ -70,7 +72,7 @@ export class CompleteProfilePage implements OnInit {
       },
       (err) => {
         this.loading.hide();
-        localStorage.setItem("isCompleteProfile", "false");
+        this.storage.set("isCompleteProfile", "false");
       }
     );
   }
