@@ -6,16 +6,6 @@ import { Storage } from '@ionic/storage';
 export class LoggedInGuard implements CanActivate {
    constructor(private router: Router, private storage: Storage) { }
 
-   /* canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-      if (localStorage['mobile'] && localStorage['authorization'] && this.isConsumer()) {
-         return true;
-      } else if (localStorage['mobile'] && localStorage['authorization'] && !this.isConsumer()) {
-         this.router.navigate(['/menu/view-businesses']);
-         return;
-      }
-      this.router.navigate(['/login']);
-   } */
-
    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) { 
       return Promise.all([this.storage.get('mobile'), this.storage.get('authorization')])
       .then(([mobile, auth]) => {

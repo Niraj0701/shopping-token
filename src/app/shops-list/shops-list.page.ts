@@ -25,7 +25,6 @@ export class ShopsListPage implements OnInit {
   }
 
   goToSlots(shop: any) {
-    alert('Hello')
     this.route.navigate(["/menu/detail"], { state: { shop: shop } });
   }
 

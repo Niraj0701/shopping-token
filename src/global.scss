@@ -35,17 +35,19 @@ ion-modal.confirmation-popup {
 
 .input {
   margin: 10px 0;
-  border: 1px solid black;
-  border-radius: 25px;
+  border: 1px solid #535355;
+  border-radius: 5px;
   --padding-start: 15px;
   --padding-end: 15px;
-  //min-height: 6vh;
-  box-shadow: 2px 2px 5px #a4a4a4;
+  box-shadow: 2px 2px 5px #535355;
+  background: #fff;
+  color: #262627;
 }
 
 .brder-btn {
-  --border-radius: 25px;
+  border-radius: 4px;
   margin: 10px 0;
+  border: 4px solid #3fd4a0;
 }
 
 .g-btn--purple-to-blue {
@@ -60,7 +62,14 @@ ion-modal.confirmation-popup {
 }
 
 .shopping-button {
-  --background: linear-gradient(135deg, #b721ff, #6121fd) !important;
+  --background: transparent;
+  background: transparent;
+  font-weight: 800;
+  font-size: 18px;
+  --color: #545455;
+  --background-activated: #3fd4a0 !important;
+  --background-focused: #3fd4a0 !important;
+  --color: #ffff;
 }
 
 .border-gradient {
@@ -90,8 +99,30 @@ ion-modal.confirmation-popup {
     .pac-icon {
       background: url(./assets/icons/location2.svg) no-repeat center center;
     }
-  } 
+  }
 }
 .pac-logo:after {
   display: none;
+}
+
+.light-black {
+  --color: #ffff;
+  --background: #535355;
+}
+
+.shopping-button:hover {
+  --background: #3fd4a0 !important;
+  background: #3fd4a0 !important;
+  --color: white;
+  --border-radius: 0px;
+}
+
+.shopping-button:active {
+  --background: #3fd4a0 !important;
+  --color: white;
+  --border-radius: 0px;
+}
+
+.content-center {
+  margin: 60px auto;
 }

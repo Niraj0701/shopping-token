@@ -15,7 +15,7 @@ import { AlertController, ModalController } from "@ionic/angular";
         You phone number has been verified
       </h3>
       <ion-button
-        class="shopping-button"
+        class="brder-btn shopping-button"
         style="--border-radius: 30px; width:30vw; margin: 3vh 0"
         (click)="dismiss()"
       >

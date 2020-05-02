@@ -1,19 +1,17 @@
 <ion-header>
   <ion-toolbar>
-    <ion-button slot="start">
-      <ion-back-button text=""></ion-back-button>
-    </ion-button>
-    <ion-title>Signup Form</ion-title>
+    <ion-icon
+      (click)="goBack()"
+      slot="start"
+      name="chevron-back-outline"
+    ></ion-icon>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <section class="form-logo">
-    <img src="../../../assets/icons/sharing.svg" />
-  </section>
+<ion-content class="light-black">
   <section class="form-inputs">
-    <p class="form-text">Sign up Form</p>
     <form [formGroup]="signupForm" class="signupForm" (ngSubmit)="onSubmit()">
+      <img src="../../../assets/icons/queued-logo.svg" height="180" />
       <ion-input
         class="input"
         type="text"
@@ -51,7 +49,7 @@
       <ion-select
         formControlName="country"
         class="input"
-        placeholder="Choose your Country"
+        placeholder="Choose Country"
         (ionChange)="selectCountry($event)"
       >
         <ion-select-option
@@ -67,6 +65,7 @@
         formControlName="country_code"
         readonly
       ></ion-input>
+
       <ion-input
         class="input"
         type="tel"
@@ -91,11 +90,12 @@
       >
         and max and min length 10 digit</span
       >
+
       <ion-select
         class="input"
+        placeholder="Select Profile Type"
         (ionChange)="typeChanged($event)"
         interface="action-sheet"
-        placeholder="Select you profile"
         formControlName="profile"
       >
         <ion-select-option value="Consumer">Customer</ion-select-option>
@@ -111,7 +111,7 @@
         "
         >Please select profile</span
       >
-      <ion-button type="submit" class="brder-btn button shopping-button">
+      <ion-button type="submit" class="brder-btn shopping-button">
         Sign Up</ion-button
       >
     </form>

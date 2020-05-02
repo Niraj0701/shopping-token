@@ -1,3 +1,3 @@
 export const icons = (name) => {
-   logo: './icons/sharing.svg' 
-}
+  logo: "./icons/queued-logo.svg";
+};

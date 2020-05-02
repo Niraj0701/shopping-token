@@ -9,7 +9,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="timeSlots">
+<ion-content class="timeSlots light-black">
   <section class="shop-details">
     <ion-item lines="none">
       <ion-label class="ion-text-wrap">
@@ -28,7 +28,7 @@
     </ion-item>
   </section>
   <section class="dates">
-    <p class="section-title">Available Dates to book slot</p>
+    <p class="section-title">Available dates to book slot</p>
     <ion-row>
       <ion-col size="4" *ngFor="let item of datesAndDays">
         <ion-card class="service" [ngClass]="item.present ? 'active-date': ''">
@@ -59,7 +59,11 @@
     </ion-grid>
   </section>
   <section style="text-align: center; margin: 30px 10px;" class="dates">
-    <ion-button (click)="bookNowSlot()" shape="round" class="shopping-button">
+    <ion-button
+      (click)="bookNowSlot()"
+      shape="round"
+      class="shopping-button brder-btn"
+    >
       Book Now
     </ion-button>
   </section>
