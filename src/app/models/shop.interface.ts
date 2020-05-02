@@ -10,6 +10,7 @@ export interface IShop {
    users_allowed?: number;
    slot_size_min?: number;
    distance?: string;
+   comment?: string;
 }
 
 export interface ICoords {
