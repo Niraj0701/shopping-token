@@ -76,4 +76,8 @@ export class SignupFormComponent implements OnInit {
     );
     this.signupForm.controls.country_code.setValue(code[0].Dial);
   }
+
+  goBack() {
+    this.router.navigate(["/login"]);
+  }
 }

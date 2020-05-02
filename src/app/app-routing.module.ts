@@ -81,6 +81,10 @@ const routes: Routes = [
     loadChildren: () =>
       import("./menu/menu.module").then((m) => m.MenuPageModule),
   },
+  {
+    path: 'password-reset',
+    loadChildren: () => import('./password-reset/password-reset.module').then( m => m.PasswordResetPageModule)
+  },
   // {
   //   path: 'my-booked-slots',
   //   loadChildren: () => import('./my-booked-slots/my-booked-slots.module').then( m => m.MyBookedSlotsPageModule)

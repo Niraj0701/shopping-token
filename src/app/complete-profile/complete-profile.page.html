@@ -2,16 +2,18 @@
   <ion-toolbar>
     <ion-title text-center *ngIf="isTitle">{{isTitle}} Profile</ion-title>
     <ion-buttons slot="end">
-      <ion-menu-button></ion-menu-button>
+      <ion-menu-button style="color: #525252;"></ion-menu-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="light-black">
   <ion-row class="ion-justify-content-center text">
     <ion-col size="10" class="verification-number" *ngIf="isTitle==='Complete'">
-      We ask everyone for a few dtails before hosting, so get a head start by
-      doing it now.
+      <p style="font-weight: 600;">
+        We ask everyone for a few dtails before hosting, so get a head start by
+        doing it now.
+      </p>
     </ion-col>
   </ion-row>
   <section class="form-inputs">
@@ -71,7 +73,7 @@
         <ion-select-option value="GROCERY">Grocery</ion-select-option>
         <ion-select-option value="PHARMACY">Pharmacy</ion-select-option>
       </ion-select>
-      <ion-button type="submit" class="brder-btn button shopping-button">
+      <ion-button type="submit" class="brder-btn shopping-button">
         {{isTitle}} Profile</ion-button
       >
     </form>

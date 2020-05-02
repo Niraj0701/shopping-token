@@ -2,27 +2,48 @@
   <ion-toolbar>
     <ion-title>My Businesses</ion-title>
     <ion-buttons slot="end">
-      <ion-menu-button></ion-menu-button>
+      <ion-menu-button style="color: #525252;"></ion-menu-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="light-black">
   <ion-fab horizontal="start" vertical="bottom" slot="fixed">
-    <ion-fab-button (click)="goToAddProfile('Add')">
+    <ion-fab-button
+      style="--background: #41df98;"
+      (click)="goToAddProfile('Add')"
+    >
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
+
   <ion-grid *ngIf="businesses">
     <ion-row>
       <ion-col>
         <ion-list
+          style="
+            border: 1px solid;
+            padding: 10px;
+            background: #ffff;
+            margin: 10px 8px;
+            border-radius: 4px;
+          "
           (click)="viewBookedSlots(business)"
           *ngFor="let business of businesses.user.businesses"
         >
-          <ion-item>
-            <ion-label>{{business.name}}</ion-label>
+          <ion-item
+            style="
+              --background: #ffffff;
+              color: #020202;
+              --border-color: transparent;
+            "
+          >
+            <ion-label style="margin: 0;">{{business.name}}</ion-label>
             <div>{{business.address}}</div>
+            <ion-icon
+              name="chevron-forward-outline"
+              style="width: 65px; height: 30px; margin: 0 0 50px 30px;"
+            ></ion-icon>
           </ion-item>
         </ion-list>
       </ion-col>

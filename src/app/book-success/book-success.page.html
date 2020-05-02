@@ -1,9 +1,10 @@
-<ion-content>
+<ion-content class="light-black">
   <div class="success-tick">
-    <img
+    <!-- <img
       src="../../../assets/icons/tick.svg"
       style="width: 40px; height: 40px;"
-    />
+    /> -->
+    <ion-icon style="font-size: 40px;" name="checkmark-circle"></ion-icon>
   </div>
   <p class="success-text">
     Your slot is successfully booked.
@@ -29,7 +30,11 @@
   </div>
 
   <section style="text-align: center; margin: 30px 10px;" class="dates">
-    <ion-button (click)="home()" shape="round" class="shopping-button">
+    <ion-button
+      (click)="home()"
+      shape="round"
+      class="shopping-button brder-btn"
+    >
       Back to Home
     </ion-button>
   </section>

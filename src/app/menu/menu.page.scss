@@ -4,6 +4,7 @@
 
 .active-item {
   border-color: #6b32f7;
+  --background: #41df99 !important;
   font-weight: 500;
   --highlight-color-valid: #6b32f7;
   .item-native {
@@ -22,4 +23,27 @@
 .item {
   border-bottom: 1px solid #7b7b7b;
   box-shadow: none;
+}
+
+ion-menu {
+  ion-content {
+    --background: #525252 !important;
+    ion-list-header {
+    }
+    ion-list {
+    }
+    ion-item {
+      --background: #525252;
+      --color: #ffffff !important;
+
+      ion-icon {
+        padding-right: 10px !important;
+      }
+      &:hover,
+      &:active {
+        --background: #41df99 !important;
+        --background-activated: #41df99 !important;
+      }
+    }
+  }
 }

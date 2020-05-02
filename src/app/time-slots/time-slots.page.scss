@@ -1,7 +1,7 @@
 .timeSlots {
   .section-title {
-    font-size: 15px;
-    font-weight: 500;
+    font-size: 16px;
+    font-weight: 600;
     font-family: sans-serif;
   }
   .shop-details {
@@ -18,7 +18,7 @@
     .time {
       display: flex;
       .clock {
-        margin-right: 10px;
+        margin: 4px 4px 0px 0;
       }
     }
   }
@@ -39,14 +39,15 @@
       }
     }
     & .active-date {
-      border: 2px solid #3880ff;
+      border: 2px solid #40c496;
+      background: #40c496;
 
       .name {
-        color: #3880ff;
+        color: #ffff;
         font-weight: 900;
       }
       .service-icon {
-        color: #3880ff;
+        color: #ffff;
         font-weight: 900;
       }
     }
@@ -55,9 +56,9 @@
   .hours {
     margin: 0 4vw;
     .timeBtns {
-      height: 35vh;
+      height: 45vh;
       overflow: scroll;
-      box-shadow: 2px 1px 10px #ebebeb;
+      box-shadow: 0px 0px 4px #ebebeb;
       border-radius: 4px;
       padding: 12px;
     }
@@ -66,14 +67,16 @@
       font-weight: 500;
       font-family: sans-serif;
       --color: grey;
-      
+
       --border-color: grey;
+      --background: #ffff;
+      font-weight: 500;
     }
 
     & .selected {
-      --color: #3880ff;
-      
-      --border-color: #3880ff !important;
+      --color: #ffff;
+      --border-color: #40c496 !important;
+      --background: #40c496;
     }
   }
 }

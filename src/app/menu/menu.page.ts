@@ -26,18 +26,21 @@ export class MenuPage implements OnInit {
     this.userMobile = localStorage.getItem("mobile");
     this.pages = [
       {
-        title: "View businesses",
+        title: "My businesses",
         url: "/menu/view-businesses",
+        icon: "briefcase",
         isConsumer: !this.isBusinessProvider(),
       },
       {
-        title: "View services",
-        url: "/menu/user-services",
+        title: "My Booked Slots",
+        icon: "clipboard",
+        url: "/menu/my-booked-slots",
         isConsumer: false,
       },
       {
-        title: "My Booked Slots",
-        url: "/menu/my-booked-slots",
+        title: "Book Slot",
+        icon: "calendar",
+        url: "/menu/user-services",
         isConsumer: false,
       },
     ];

@@ -2,15 +2,12 @@
   <ion-toolbar>
     <ion-title>Services</ion-title>
     <ion-buttons slot="end">
-      <ion-menu-button></ion-menu-button>
+      <ion-menu-button style="color: #525252;"></ion-menu-button>
     </ion-buttons>
-    <!-- <ion-button fill="clear" color="danger" slot="end" (click)="logout($event)">
-      <ion-icon style="font-size: 25px;" name="power"></ion-icon>
-    </ion-button> -->
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="userServices">
+<ion-content class="userServices light-black">
   <section class="location">
     <ion-grid>
       <ion-row>
@@ -19,6 +16,7 @@
             (click)="useCurrentLocation()"
             fill="{{buttonType}}"
             shape="round"
+            class="shopping-button brder-btn"
             icon-start
           >
             <ion-icon name="locate" style="margin: 0 5px;"></ion-icon>
@@ -30,7 +28,9 @@
   </section>
 
   <section class="title">
-    <ion-text color="medium">Choose service you need</ion-text>
+    <ion-text style="color: #ffff; font-weight: 600;" color="medium"
+      >Choose service you need</ion-text
+    >
   </section>
 
   <section class="services-list">

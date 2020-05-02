@@ -11,9 +11,11 @@
     <ion-title>View Book Slots</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content class="ion-padding">
-  <p>Welcome, {{bookedSlots.name}}</p>
-  <div>
+<ion-content class="ion-padding light-black">
+  <p style="font-weight: 600; font-size: 18px;">
+    Welcome, {{bookedSlots.name}}
+  </p>
+  <div style="font-size: 16px; font-weight: 600; margin-bottom: 16px;">
     Check out today’s booked slots
   </div>
   <ion-grid>
@@ -33,7 +35,10 @@
     </ion-row>
   </ion-grid>
   <div>
-    <div *ngIf="responseSlot.length === 0 && (viewDetailSlots | json) != '{}'">
+    <div
+      style="font-size: 16px; font-weight: 600;"
+      *ngIf="responseSlot.length === 0 && (viewDetailSlots | json) != '{}'"
+    >
       Select Date to view booked slot
     </div>
     <div *ngIf="(viewDetailSlots | json) === '{}'">
