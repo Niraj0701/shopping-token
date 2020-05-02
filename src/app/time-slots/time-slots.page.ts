@@ -24,7 +24,6 @@ export class TimeSlotsPage implements OnInit {
 
   ngOnInit() {
     this.shop = this.route.getCurrentNavigation().extras.state.shop;
-    alert(this.shop.comment);
     [0, 1, 2].forEach((item) => {
       this.datesAndDays.push({
         date: this.getDate(item).getDate(),
