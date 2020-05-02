@@ -28,6 +28,7 @@
     "@ionic/storage": "^2.2.0",
     "cordova-android": "8.1.0",
     "cordova-plugin-geolocation": "^4.0.2",
+    "cordova-sqlite-storage": "^5.0.0",
     "core-js": "^2.5.4",
     "moment": "^2.24.0",
     "rxjs": "~6.5.1",
@@ -78,7 +79,8 @@
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-geolocation": {
         "GEOLOCATION_USAGE_DESCRIPTION": "Need to access your location"
-      }
+      },
+      "cordova-sqlite-storage": {}
     },
     "platforms": [
       "android"

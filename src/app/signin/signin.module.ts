@@ -15,7 +15,7 @@ import { ApiServiceModule } from "../services/api/apiService.module";
     FormsModule,
     IonicModule,
     SigninPageRoutingModule,
-    ApiServiceModule,
+    ApiServiceModule
   ],
   declarations: [SigninPage],
 })
