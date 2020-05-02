@@ -36,23 +36,27 @@ export class MenuPage implements OnInit {
         this.userName = userName;
         this.userMobile = userMobile;
         this.user_type = userType;
+
+
         this.pages = [
           {
-            title: "View businesses",
+            title: "My Businesses",
             url: "/menu/view-businesses",
-            isConsumer: !(userType == "ServiceProvider"),
-          },
-          {
-            title: "View services",
-            url: "/menu/user-services",
-            isConsumer: false,
+            icon: "briefcase",
+            iisConsumer: !(userType == "ServiceProvider"),
           },
           {
             title: "My Booked Slots",
+            icon: "clipboard",
             url: "/menu/my-booked-slots",
             isConsumer: false,
           },
-        ];
+          {
+            title: "Book Slot",
+            icon: "calendar",
+            url: "/menu/user-services",
+            isConsumer: false,
+          }];
       });
   }
 
