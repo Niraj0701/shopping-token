@@ -116,4 +116,26 @@ export class ApiService {
     };
     return this.http.get(url, params);
   }
+
+  forgotPassword(mobile: string) {
+    const url = "https://api.healthybank.in/api/ootp";
+    let params: any = {
+      params: {
+        mobile: mobile,
+        purpose: "PASSWORD_UPDATE",
+      },
+    };
+    return this.http.get(url, params);
+  }
+
+  resetPassword(data: any) {
+    const url = "https://api.healthybank.in/api/password/";
+    const body = {
+      otp: data.otp,
+      password: data.password,
+      confirmed_password: data.confirmedPassword,
+      mobile: data.mobile,
+    };
+    return this.http.post(url, body);
+  }
 }

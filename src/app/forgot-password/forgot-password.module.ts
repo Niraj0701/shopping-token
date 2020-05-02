@@ -4,19 +4,19 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { IonicModule } from "@ionic/angular";
 
-import { PasswordResetPageRoutingModule } from "./password-reset-routing.module";
+import { ForgotPasswordPageRoutingModule } from "./forgot-password-routing.module";
 import { ApiServiceModule } from "../services/api/apiService.module";
-import { PasswordResetPage } from "./password-reset.page";
+import { ForgotPasswordPage } from "./forgot-password.page";
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    IonicModule,
     ApiServiceModule,
-    PasswordResetPageRoutingModule,
+    IonicModule,
+    ForgotPasswordPageRoutingModule,
   ],
-  declarations: [PasswordResetPage],
+  declarations: [ForgotPasswordPage],
 })
-export class PasswordResetPageModule {}
+export class ForgotPasswordPageModule {}
