@@ -26,7 +26,7 @@ export class MenuPage implements OnInit {
     this.userMobile = localStorage.getItem("mobile");
     this.pages = [
       {
-        title: "My businesses",
+        title: "My Businesses",
         url: "/menu/view-businesses",
         icon: "briefcase",
         isConsumer: !this.isBusinessProvider(),
