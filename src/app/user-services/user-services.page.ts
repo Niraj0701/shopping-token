@@ -37,7 +37,6 @@ export class UserServicesPage implements OnInit {
   }
 
   logout(event) {
-    localStorage.clear();
     this.storage.clear();
     this.router.navigate(["/login"]);
   }
@@ -58,7 +57,6 @@ export class UserServicesPage implements OnInit {
         {
           text: "Okay",
           handler: () => {
-            localStorage.setItem("useCurrentLocation", "true");
             this.storage.set("useCurrentLocation", "true");
           },
         },
@@ -76,9 +74,9 @@ export class UserServicesPage implements OnInit {
 
   checkUserPreference() {
     if (
-      localStorage.getItem("useCurrentLocation") &&
-      localStorage.getItem("lat") &&
-      localStorage.getItem("long")
+      this.storage.get("useCurrentLocation") &&
+      this.storage.get("lat") &&
+      this.storage.get("long")
     ) {
       this.alreadyHaveCoords();
     } else {
@@ -86,10 +84,13 @@ export class UserServicesPage implements OnInit {
     }
   }
 
-  alreadyHaveCoords() {
+  async alreadyHaveCoords() {
+    const lat = await this.storage.get('lat');
+    const long = await this.storage.get('long');
+
     const _coords: ICoords = {
-      latitude: parseInt(localStorage.getItem("lat")),
-      longitude: parseInt(localStorage.getItem("long")),
+      latitude: parseInt(lat),
+      longitude: parseInt(long),
     };
     this.buttinText = "Using Current Location";
     this.buttonType = "solid";
@@ -97,11 +98,8 @@ export class UserServicesPage implements OnInit {
     this.geolocationService.userCoords.next(_coords);
   }
 
-  useCurrentLocation() {
+  async useCurrentLocation() {
     this.loading.show();
-    /* if (!localStorage.getItem('useCurrentLocation')) {
-      this.presentAlertConfirm2();
-    } */
     this.geolocation
       .getCurrentPosition({ enableHighAccuracy: true })
       .then((data) => {
@@ -112,9 +110,7 @@ export class UserServicesPage implements OnInit {
         this.geolocationService.userCoords.next(_coords);
         this.userCoords["lat"] = data["coords"].latitude;
         this.userCoords["long"] = data["coords"].longitude;
-        localStorage.setItem("lat", data["coords"].latitude.toString());
         this.storage.set("lat", data["coords"].latitude.toString());
-        localStorage.setItem("long", data["coords"].longitude.toString());
         this.storage.set("long", data["coords"].longitude.toString());
         this.buttonType = "solid";
         this.buttinText = "Using Current Location";
@@ -141,7 +137,6 @@ export class UserServicesPage implements OnInit {
         {
           text: "Allow",
           handler: () => {
-            localStorage.setItem("useCurrentLocation", "true");
             this.storage.set("useCurrentLocation", "true");
             this.loading.show();
             this.useCurrentLocation();

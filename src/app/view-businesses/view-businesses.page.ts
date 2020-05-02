@@ -10,7 +10,7 @@ import { first } from "rxjs/operators";
   styleUrls: ["./view-businesses.page.scss"],
 })
 export class ViewBusinessesPage implements OnInit {
-  private businesses: any;
+  public businesses: any;
   constructor(
     private loading: LoaderService,
     private route: Router,

@@ -19,7 +19,10 @@ import { SecurityModule } from "./security/security.module";
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
-    IonicStorageModule.forRoot(),
+    IonicStorageModule.forRoot({
+      name: '__mydb',
+      driverOrder: ['sqlite']
+    }),
     AppRoutingModule,
     GuardsModule,
   ],
@@ -30,4 +33,4 @@ import { SecurityModule } from "./security/security.module";
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
