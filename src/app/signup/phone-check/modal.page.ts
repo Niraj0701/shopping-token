@@ -6,7 +6,10 @@ import { AlertController, ModalController } from "@ionic/angular";
   selector: "modal-page",
   template: ` <div style="display: flex; margin:auto;">
     <div style="margin:auto; text-align: center;">
-      <ion-icon style="font-size: 40px;" name="checkmark-circle"></ion-icon>
+      <img
+        src="../../../assets/icons/tick.svg"
+        style="width: 40px; height:40px;"
+      />
       <h3 style="font-family: sans-serif; padding: 10px;">
         You phone number has been verified
       </h3>
