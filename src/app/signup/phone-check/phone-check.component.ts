@@ -37,7 +37,7 @@ export class PhoneCheckComponent implements OnInit {
       this.data = this.router.getCurrentNavigation().extras.state.businesses;
       this.apiService.getOtp().subscribe(
         (data) => {
-          this.verifyOtpForm.controls.otp.setValue(data["otp"]);
+          // this.verifyOtpForm.controls.otp.setValue(data["otp"]);
           this.otp = data["otp"];
         },
         (err) => {

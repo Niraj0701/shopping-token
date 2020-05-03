@@ -31,10 +31,9 @@ export class ForgotPasswordPage implements OnInit {
     this.submitted = true;
     const body = this.ForgotPass.value;
     if (body.mobile != "") {
-      this.showOtpInput = true;
       this.apiService.forgotPassword(body.mobile).subscribe(
         (data) => {
-          this.ForgotPass.controls.otp.setValue(data["otp"]);
+          this.showOtpInput = true;
         },
         (err) => {
           this.showOtpInput = false;
