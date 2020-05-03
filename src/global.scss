@@ -65,11 +65,13 @@ ion-modal.confirmation-popup {
   --background: transparent;
   background: transparent;
   font-weight: 800;
-  font-size: 18px;
+  font-size: 16px;
   --color: #545455;
   --background-activated: #3fd4a0 !important;
   --background-focused: #3fd4a0 !important;
   --color: #ffff;
+  box-shadow: none;
+  text-transform: initial;
 }
 
 .border-gradient {
@@ -114,13 +116,14 @@ ion-modal.confirmation-popup {
   --background: #3fd4a0 !important;
   background: #3fd4a0 !important;
   --color: white;
-  --border-radius: 0px;
+  border: none;
 }
 
 .shopping-button:active {
   --background: #3fd4a0 !important;
   --color: white;
   --border-radius: 0px;
+  border: none;
 }
 
 .content-center {
