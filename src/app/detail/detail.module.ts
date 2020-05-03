@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { DetailPageRoutingModule } from './detail-routing.module';
 
 import { DetailPage } from './detail.page';
+import { ApiServiceModule } from '../services/api/apiService.module';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { DetailPage } from './detail.page';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    DetailPageRoutingModule
+    DetailPageRoutingModule,
+    ApiServiceModule,
   ],
   declarations: [DetailPage]
 })

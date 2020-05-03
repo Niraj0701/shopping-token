@@ -54,30 +54,17 @@ export class TimeSlotsPage implements OnInit {
   }
 
   bookNowSlot() {
-    this.loading.show();
     let tempObj = { ...this.shop };
     let currentDate = this.datesAndDays.filter((date) => date.present === true);
 
     tempObj["selectedDate"] = currentDate[0].fullDateFormat;
     tempObj["selectedTime"] = this.slotString;
     if (this.slotString) {
-      this.apiService.bookNowSlot(tempObj).subscribe(
-        (data) => {
-          this.loading.hide();
-          this.route.navigate(["/menu/book-success"], {
-            state: { bookDetails: data },
-          });
-        },
-        (error) => {
-          console.log("ERROR: ", error);
-          this.loading.hide();
-        }
-      );
+      this.route.navigate(['/menu/detail'], { state: { bookdetails: tempObj } })
     } else {
-      this.loading.hide();
     }
   }
   goBack() {
-    this.route.navigate(["/menu/detail"]);
+    this.route.navigate(["/menu/shops-list"]);
   }
 }

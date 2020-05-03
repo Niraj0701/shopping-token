@@ -11,11 +11,6 @@ const routes: Routes = [
     component: MenuPage,
     children: [
       {
-        path: "profile",
-        loadChildren: () =>
-          import("../profile/profile.module").then((m) => m.ProfilePageModule),
-      },
-      {
         path: "business-profile",
         canLoad: [BusinessGuard],
         loadChildren: () =>
