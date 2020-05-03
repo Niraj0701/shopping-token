@@ -13,23 +13,50 @@
       <form [formGroup]="signinForm" class="signupForm" (ngSubmit)="onSubmit()">
         <ion-input
           class="input"
-          type="text"
+          type="number"
           placeholder="Mobile Number"
           formControlName="mobile"
         ></ion-input>
+        <span
+          style="color: red;"
+          *ngIf="
+          signinForm.get('mobile').hasError('required') &&
+          signinForm.get('mobile').touched
+        "
+          >Please enter your mobile number</span
+        >
         <ion-input
           class="input"
           type="password"
           placeholder="Password"
           formControlName="password"
         ></ion-input>
-        <ion-button type="submit" class="brder-btn shopping-button">
+        <span
+          style="color: red;"
+          *ngIf="
+          signinForm.get('password').hasError('required') &&
+          signinForm.get('password').touched
+        "
+          >Please enter your password</span
+        >
+        <ion-button
+          [disabled]="!signinForm.valid"
+          type="submit"
+          class="brder-btn shopping-button"
+        >
           Login</ion-button
         >
       </form>
     </section>
     <section class="form-inputs">
-      <!-- <p class="form-text" style="font-size: 12px; font-family: sans-serif;text-decoration: underline;">forgot password ?</p> -->
+      <p class="form-text" style="font-size: 12px; font-family: sans-serif;">
+        <a
+          [routerLink]="['/forgot-password']"
+          style="color: #ffff; text-decoration: underline;"
+        >
+          Forgot Password ?</a
+        >
+      </p>
     </section>
 
     <section class="form-inputs">
@@ -39,14 +66,6 @@
           [routerLink]="['/signup/form']"
           style="color: #ffff; text-decoration: underline;"
           >Signup</a
-        >
-      </p>
-      <p class="form-text" style="font-size: 12px; font-family: sans-serif;">
-        <a
-          [routerLink]="['/forgot-password']"
-          style="color: #ffff; text-decoration: underline;"
-        >
-          Forgot Password ?</a
         >
       </p>
     </section>

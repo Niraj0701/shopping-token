@@ -1,9 +1,16 @@
 <form [formGroup]="addressForm">
   <ion-input
+    slot="end"
     #search
     class="input"
     type="text"
     formControlName="search"
     placeholder="Search your business address"
+  >
+    <ion-icon
+      style="margin-left: 8px;"
+      slot="end"
+      name="search-outline"
+    ></ion-icon
   ></ion-input>
 </form>

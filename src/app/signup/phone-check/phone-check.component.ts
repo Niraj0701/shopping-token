@@ -27,7 +27,8 @@ export class PhoneCheckComponent implements OnInit {
     public modalController: ModalController,
     private loading: LoaderService,
     private router: Router,
-    private apiService: ApiService
+    private apiService: ApiService,
+    public alertController: AlertController
   ) {}
 
   ngOnInit() {
@@ -43,7 +44,7 @@ export class PhoneCheckComponent implements OnInit {
           localStorage.clear();
           this.storage.clear();
           this.router.navigate(["/login"]);
-          alert("Request after 5mins");
+          this.handleButtonClick();
         }
       }
     );
@@ -67,5 +68,13 @@ export class PhoneCheckComponent implements OnInit {
   }
   goBack() {
     this.router.navigate(["/login"]);
+  }
+  async handleButtonClick() {
+    const alert = await this.alertController.create({
+      header: "Request after 5mins",
+      buttons: ["Ok"],
+    });
+
+    await alert.present();
   }
 }

@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { LoaderService } from "src/app/services/api/loading.service";
 import { ApiService } from "src/app/services/api/api.service";
+import { AlertController } from "@ionic/angular";
 
 @Component({
   selector: "app-forgot-password",
@@ -12,10 +13,12 @@ import { ApiService } from "src/app/services/api/api.service";
 export class ForgotPasswordPage implements OnInit {
   ForgotPass: FormGroup;
   showOtpInput: boolean = false;
+  submitted: boolean = false;
   constructor(
     private loading: LoaderService,
     private route: Router,
-    private apiService: ApiService
+    private apiService: ApiService,
+    public alertController: AlertController
   ) {}
 
   ngOnInit() {
@@ -25,28 +28,44 @@ export class ForgotPasswordPage implements OnInit {
     });
   }
   sendOTP() {
-    this.showOtpInput = true;
+    this.submitted = true;
     const body = this.ForgotPass.value;
-    // this.verifyOtpForm.controls.otp.setValue(data["otp"]);
-    this.apiService.forgotPassword(body.mobile).subscribe(
-      (data) => {
-        this.ForgotPass.controls.otp.setValue(data["otp"]);
-      },
-      (err) => {
-        this.loading.hide();
-        if (err.status === 400) {
-          alert("User doesn't exist");
+    if (body.mobile != "") {
+      this.showOtpInput = true;
+      this.apiService.forgotPassword(body.mobile).subscribe(
+        (data) => {
+          this.ForgotPass.controls.otp.setValue(data["otp"]);
+        },
+        (err) => {
+          this.showOtpInput = false;
+          if (err.status === 400) {
+            this.handleButtonClick(err.error);
+          }
         }
-      }
-    );
+      );
+    }
   }
 
   onSubmit() {
+    this.loading.show();
     if (this.ForgotPass.valid) {
-      this.loading.show();
+      this.loading.hide();
       this.route.navigate(["/password-reset"], {
         state: { info: { ...this.ForgotPass.value } },
       });
+    } else {
+      this.loading.hide();
     }
+  }
+  goBack() {
+    this.route.navigate(["/login"]);
+  }
+  async handleButtonClick(message) {
+    const alert = await this.alertController.create({
+      header: message,
+      buttons: ["Ok"],
+    });
+
+    await alert.present();
   }
 }

@@ -13,7 +13,7 @@ import { ApiService } from "src/app/services/api/api.service";
 export class BusinessProfilePage implements OnInit {
   daysList: string[] = [];
   bookedSlots: any;
-  isDateActive: any;
+  isDateActive: any = undefined;
   viewDetailSlots: any;
   responseSlot: any;
   constructor(

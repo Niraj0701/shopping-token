@@ -82,12 +82,18 @@ const routes: Routes = [
       import("./menu/menu.module").then((m) => m.MenuPageModule),
   },
   {
-    path: 'password-reset',
-    loadChildren: () => import('./password-reset/password-reset.module').then( m => m.PasswordResetPageModule)
+    path: "password-reset",
+    loadChildren: () =>
+      import("./password-reset/password-reset.module").then(
+        (m) => m.PasswordResetPageModule
+      ),
   },
   {
-    path: 'forgot-password',
-    loadChildren: () => import('./forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
+    path: "forgot-password",
+    loadChildren: () =>
+      import("./forgot-password/forgot-password.module").then(
+        (m) => m.ForgotPasswordPageModule
+      ),
   },
   // {
   //   path: 'my-booked-slots',
@@ -97,7 +103,10 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
+    RouterModule.forRoot(routes, {
+      onSameUrlNavigation: "reload",
+      preloadingStrategy: PreloadAllModules,
+    }),
   ],
   exports: [RouterModule],
 })

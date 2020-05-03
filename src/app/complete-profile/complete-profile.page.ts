@@ -25,9 +25,17 @@ export class CompleteProfilePage implements OnInit {
     private apiService: ApiService,
     public alertController: AlertController,
     private geolocation: GeolocationService
-  ) {}
+  ) {
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    };
+  }
 
   ngOnInit() {
+    setTimeout(() => {
+      this.router.navigated = false;
+      this.router.navigate([this.router.url]);
+    }, 5000);
     console.log(this.router.getCurrentNavigation().extras.state);
     if (this.router.getCurrentNavigation().extras.state) {
       this.isTitle = this.router.getCurrentNavigation().extras.state.txt;

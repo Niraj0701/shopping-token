@@ -60,6 +60,7 @@
   </section>
   <section style="text-align: center; margin: 30px 10px;" class="dates">
     <ion-button
+      [disabled]="!slotString"
       (click)="bookNowSlot()"
       shape="round"
       class="shopping-button brder-btn"

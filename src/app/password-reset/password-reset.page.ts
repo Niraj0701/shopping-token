@@ -18,7 +18,6 @@ export class PasswordResetPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log("zdfad", this.route.getCurrentNavigation().extras.state.info);
     this.userInfo = this.route.getCurrentNavigation().extras.state.info;
     this.resetPass = new FormGroup({
       password: new FormControl("", [Validators.required]),
@@ -46,6 +45,6 @@ export class PasswordResetPage implements OnInit {
   }
 
   goBack() {
-    this.route.navigate(["/login"]);
+    this.route.navigate(["/forgot-password"]);
   }
 }

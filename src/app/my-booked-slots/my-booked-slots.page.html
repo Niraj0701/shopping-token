@@ -10,7 +10,7 @@
 <ion-content class="light-black">
   <ion-grid>
     <ion-row>
-      <ion-col *ngIf="listBookedSlots">
+      <ion-col *ngIf="listBookedSlots.length>0">
         <div class="card" *ngFor="let list of listBookedSlots;">
           <div class="container">
             <h5><b>{{list.business.name}}</b></h5>

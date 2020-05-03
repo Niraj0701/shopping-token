@@ -1,6 +1,7 @@
 import { Router } from "@angular/router";
 import { Component, OnInit } from "@angular/core";
 import { Storage } from "@ionic/storage";
+import { AlertController } from "@ionic/angular";
 import {
   FormGroup,
   FormBuilder,
@@ -20,7 +21,8 @@ export class SigninPage implements OnInit {
     private storage: Storage,
     private formBuilder: FormBuilder,
     private router: Router,
-    private apiService: ApiService
+    private apiService: ApiService,
+    public alertController: AlertController
   ) {}
 
   ngOnInit() {
@@ -29,15 +31,16 @@ export class SigninPage implements OnInit {
       password: new FormControl("", [Validators.required]),
     });
   }
-
   onSubmit() {
     const mobile = this.signinForm.controls["mobile"].value;
     const pass = this.signinForm.controls["password"].value;
-    localStorage.setItem("mobile", mobile);
-    this.storage.set("mobile", mobile);
-    this.apiService.signIn(mobile, pass).subscribe((data: any) => {
-      this.onSignupSuccess(data);
-    });
+    if (this.signinForm.valid) {
+      localStorage.setItem("mobile", mobile);
+      this.storage.set("mobile", mobile);
+      this.apiService.signIn(mobile, pass).subscribe((data: any) => {
+        this.onSignupSuccess(data);
+      });
+    }
   }
 
   private onSignupSuccess(data: any) {
@@ -68,5 +71,14 @@ export class SigninPage implements OnInit {
       }
       this.router.navigate(["/menu/user-services"]);
     });
+  }
+
+  async handleButtonClick() {
+    const alert = await this.alertController.create({
+      header: "Request after 5mins",
+      buttons: ["Ok"],
+    });
+
+    await alert.present();
   }
 }

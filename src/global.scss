@@ -126,3 +126,13 @@ ion-modal.confirmation-popup {
 .content-center {
   margin: 60px auto;
 }
+ion-modal {
+  .shopping-button {
+    --background: #3fd4a0;
+  }
+  .brder-btn {
+    border-radius: 5px;
+    margin: 10px 0;
+    border: 0px solid #3fd4a0;
+  }
+}

@@ -111,7 +111,11 @@
         "
         >Please select profile</span
       >
-      <ion-button type="submit" class="brder-btn shopping-button">
+      <ion-button
+        [disabled]="!signupForm.valid"
+        type="submit"
+        class="brder-btn shopping-button"
+      >
         Sign Up</ion-button
       >
     </form>

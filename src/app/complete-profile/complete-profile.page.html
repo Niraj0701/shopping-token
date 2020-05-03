@@ -43,13 +43,13 @@
       <ion-input
         class="input"
         type="text"
-        placeholder="shop start time"
+        placeholder="Shop Start Time"
         formControlName="start_time"
       ></ion-input>
       <ion-input
         class="input"
         type="text"
-        placeholder="shop end time"
+        placeholder="Shop End Time"
         formControlName="end_time"
       ></ion-input>
       <app-address-autocomplete
@@ -58,7 +58,7 @@
       <ion-input
         class="input"
         type="text"
-        placeholder="enter your business address"
+        placeholder="Enter your business address"
         formControlName="address"
       ></ion-input>
       <ion-select
@@ -73,7 +73,11 @@
         <ion-select-option value="GROCERY">Grocery</ion-select-option>
         <ion-select-option value="PHARMACY">Pharmacy</ion-select-option>
       </ion-select>
-      <ion-button type="submit" class="brder-btn shopping-button">
+      <ion-button
+        [disabled]="!completeProfile.valid"
+        type="submit"
+        class="brder-btn shopping-button"
+      >
         {{isTitle}} Profile</ion-button
       >
     </form>

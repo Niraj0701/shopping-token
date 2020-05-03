@@ -121,3 +121,25 @@ ion-icon {
     --border-color: #3880ff !important;
   }
 }
+.date-button {
+  --background-activated: #3fd4a0 !important;
+  --background-focused: #3fd4a0 !important;
+  --background: #fff;
+  color: #000;
+  --border-radius: 5px;
+  &:active {
+    --background-activated: #3fd4a0;
+    --color: white;
+  }
+  &:focus {
+    --background-focused: #3fd4a0;
+    --background: #3fd4a0;
+    color: #fff;
+    --border-radius: 5px;
+  }
+}
+.selected {
+  --background: #3fd4a0;
+  color: #fff;
+  --border-radius: 5px;
+}

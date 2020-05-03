@@ -61,18 +61,22 @@ export class TimeSlotsPage implements OnInit {
 
     tempObj["selectedDate"] = currentDate[0].fullDateFormat;
     tempObj["selectedTime"] = this.slotString;
-    this.apiService.bookNowSlot(tempObj).subscribe(
-      (data) => {
-        this.loading.hide();
-        this.route.navigate(["/menu/book-success"], {
-          state: { bookDetails: data },
-        });
-      },
-      (error) => {
-        console.log("ERROR: ", error);
-        this.loading.hide();
-      }
-    );
+    if (this.slotString) {
+      this.apiService.bookNowSlot(tempObj).subscribe(
+        (data) => {
+          this.loading.hide();
+          this.route.navigate(["/menu/book-success"], {
+            state: { bookDetails: data },
+          });
+        },
+        (error) => {
+          console.log("ERROR: ", error);
+          this.loading.hide();
+        }
+      );
+    } else {
+      this.loading.hide();
+    }
   }
   goBack() {
     this.route.navigate(["/menu/shops-list"]);
