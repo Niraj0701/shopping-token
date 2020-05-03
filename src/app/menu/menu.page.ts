@@ -36,14 +36,12 @@ export class MenuPage implements OnInit {
         this.userName = userName;
         this.userMobile = userMobile;
         this.user_type = userType;
-
-
         this.pages = [
           {
             title: "My Businesses",
             url: "/menu/view-businesses",
             icon: "briefcase",
-            iisConsumer: !(userType == "ServiceProvider"),
+            isConsumer: !(userType == "ServiceProvider"),
           },
           {
             title: "My Booked Slots",
