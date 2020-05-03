@@ -32,24 +32,25 @@ export class PhoneCheckComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.userMobile = localStorage.getItem("mobile");
-    this.data = this.router.getCurrentNavigation().extras.state.businesses;
-    this.apiService.getOtp().subscribe(
-      (data) => {
-        this.verifyOtpForm.controls.otp.setValue(data["otp"]);
-        this.otp = data["otp"];
-      },
-      (err) => {
-        if (err.status === 400) {
-          localStorage.clear();
-          this.storage.clear();
-          this.router.navigate(["/login"]);
-          this.handleButtonClick();
+    this.storage.get("mobile").then((mobile) => {
+      this.userMobile = mobile;
+      this.data = this.router.getCurrentNavigation().extras.state.businesses;
+      this.apiService.getOtp().subscribe(
+        (data) => {
+          this.verifyOtpForm.controls.otp.setValue(data["otp"]);
+          this.otp = data["otp"];
+        },
+        (err) => {
+          if (err.status === 400) {
+            this.storage.clear();
+            this.router.navigate(["/login"]);
+            this.handleButtonClick();
+          }
         }
-      }
-    );
-    this.verifyOtpForm = new FormGroup({
-      otp: new FormControl("", [Validators.required]),
+      );
+      this.verifyOtpForm = new FormGroup({
+        otp: new FormControl("", [Validators.required]),
+      });
     });
   }
 

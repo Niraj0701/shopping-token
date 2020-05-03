@@ -24,7 +24,6 @@ export class TimeSlotsPage implements OnInit {
 
   ngOnInit() {
     this.shop = this.route.getCurrentNavigation().extras.state.shop;
-
     [0, 1, 2].forEach((item) => {
       this.datesAndDays.push({
         date: this.getDate(item).getDate(),
@@ -79,6 +78,6 @@ export class TimeSlotsPage implements OnInit {
     }
   }
   goBack() {
-    this.route.navigate(["/menu/shops-list"]);
+    this.route.navigate(["/menu/detail"]);
   }
 }

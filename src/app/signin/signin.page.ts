@@ -27,15 +27,14 @@ export class SigninPage implements OnInit {
 
   ngOnInit() {
     this.signinForm = new FormGroup({
-      mobile: new FormControl("", [Validators.required]),
-      password: new FormControl("", [Validators.required]),
+      mobile: new FormControl("9766818825", [Validators.required]),
+      password: new FormControl("icecream39", [Validators.required]),
     });
   }
   onSubmit() {
     const mobile = this.signinForm.controls["mobile"].value;
     const pass = this.signinForm.controls["password"].value;
     if (this.signinForm.valid) {
-      localStorage.setItem("mobile", mobile);
       this.storage.set("mobile", mobile);
       this.apiService.signIn(mobile, pass).subscribe((data: any) => {
         this.onSignupSuccess(data);
@@ -44,22 +43,19 @@ export class SigninPage implements OnInit {
   }
 
   private onSignupSuccess(data: any) {
-    localStorage.setItem("refresh", data.refresh);
     this.storage.set("refresh", data.refresh);
-    localStorage.setItem("authorization", data.access);
     this.storage.set("authorization", data.access);
     this.apiService.me().subscribe((data) => {
-      localStorage.setItem("user_type", data["user"].profile);
       this.storage.set("user_type", data["user"].profile);
-      localStorage.setItem("user_name", data["user"].name);
       this.storage.set("user_name", data["user"].name);
+      const profile = data["user"].profile;
       this.apiService.userProfile.next(data["user"]);
       if (data["user"].verification_state == "UNVERIFIED") {
         this.router.navigate(["/signup/verify"], {
           state: { businesses: data },
         });
         return;
-      } else if (localStorage.getItem("user_type") == "ServiceProvider") {
+      } else if (profile == "ServiceProvider") {
         if (data["user"].businesses.length > 0) {
           this.router.navigate(["/menu/view-businesses"], {
             state: { businesses: data },

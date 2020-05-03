@@ -6,10 +6,6 @@ import { BusinessGuard } from "../services/guards/business.guard";
 import { LoggedInGuard } from "../services/guards/loggedIn.guard";
 
 const routes: Routes = [
-  /*  {
-     path: '',
-     redirectTo: 'menu/user-services'
-   }, */
   {
     path: "",
     component: MenuPage,
@@ -29,6 +25,7 @@ const routes: Routes = [
       },
       {
         path: "user-services",
+        canActivate: [LoggedInGuard],
         children: [
           {
             path: "",
@@ -44,6 +41,13 @@ const routes: Routes = [
         loadChildren: () =>
           import("../shops-list/shops-list.module").then(
             (m) => m.ShopsListPageModule
+          ),
+      },
+      {
+        path: 'detail',
+        loadChildren: () =>
+          import('../detail/detail.module').then(
+            m => m.DetailPageModule
           ),
       },
       {
@@ -89,4 +93,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class MenuPageRoutingModule {}
+export class MenuPageRoutingModule { }

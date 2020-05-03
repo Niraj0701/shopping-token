@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon
+      (click)="goBack()"
+      slot="start"
+      name="chevron-back-outline"
+    ></ion-icon>
+    <ion-title>Detail</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="light-black">
+  <form class="commentForm" (ngSubmit)="navigateToList()" [formGroup]="commentForm">
+    <ion-textarea formControlName="comment" placeholder="Put your comment, notes, information here...">
+    </ion-textarea>
+    <ion-button type="submit" expand="block" class="brder-btn button shopping-button">
+      Next 
+      <ion-icon slot="end" name="arrow-forward-outline"></ion-icon>
+    </ion-button>
+  </form>
+
+
+</ion-content>

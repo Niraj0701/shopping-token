@@ -9,46 +9,55 @@ import { Storage } from "@ionic/storage";
   styleUrls: ["./menu.page.scss"],
 })
 export class MenuPage implements OnInit {
+
   selectedPath: any;
   pages: any;
   userName: any;
   userMobile: any;
+  user_type: any;
 
-  tt: any;
   constructor(
     private storage: Storage,
     private router: Router,
     private menu: MenuController
-  ) {}
+  ) { }
 
   ngOnInit() {
-    this.userName = localStorage.getItem("user_name");
-    this.userMobile = localStorage.getItem("mobile");
-    this.pages = [
-      {
-        title: "My Businesses",
-        url: "/menu/view-businesses",
-        icon: "briefcase",
-        isConsumer: !this.isBusinessProvider(),
-      },
-      {
-        title: "My Booked Slots",
-        icon: "clipboard",
-        url: "/menu/my-booked-slots",
-        isConsumer: false,
-      },
-      {
-        title: "Book Slot",
-        icon: "calendar",
-        url: "/menu/user-services",
-        isConsumer: false,
-      },
-    ];
     this.initMenu();
   }
 
-  private isConsumer() {
-    return localStorage.getItem("user_type") == "Consumer";
+  ionViewWillEnter() {
+
+    Promise.all([
+      this.storage.get("user_name"),
+      this.storage.get("mobile"),
+      this.storage.get("user_type")])
+      .then(([userName, userMobile, userType]) => {
+        this.userName = userName;
+        this.userMobile = userMobile;
+        this.user_type = userType;
+
+
+        this.pages = [
+          {
+            title: "My Businesses",
+            url: "/menu/view-businesses",
+            icon: "briefcase",
+            iisConsumer: !(userType == "ServiceProvider"),
+          },
+          {
+            title: "My Booked Slots",
+            icon: "clipboard",
+            url: "/menu/my-booked-slots",
+            isConsumer: false,
+          },
+          {
+            title: "Book Slot",
+            icon: "calendar",
+            url: "/menu/user-services",
+            isConsumer: false,
+          }];
+      });
   }
 
   initMenu() {
@@ -59,14 +68,20 @@ export class MenuPage implements OnInit {
   }
 
   isBusinessProvider() {
-    return localStorage.getItem("user_type") == "ServiceProvider";
+    return this.user_type == "ServiceProvider";
   }
 
   logout() {
-    localStorage.clear();
-    this.storage.clear();
-    this.router.navigate(["/login"]);
-  }
+    Promise.all([this.storage.remove('mobile'),
+      this.storage.remove('authorization'),
+      this.storage.remove('user_type'),
+      this.storage.remove('user_name'),
+      this.storage.remove('refresh'),
+      this.storage.remove('refresh')
+     ]).then( () => {
+       this.router.navigate(["/login"]);
+     });
+  }  
 
   openEnd() {
     this.menu.close();

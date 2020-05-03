@@ -1,3 +1,4 @@
+import { Storage } from '@ionic/storage';
 import { Router } from "@angular/router";
 import { Component, OnInit } from "@angular/core";
 import { AlertController, ModalController } from "@ionic/angular";
@@ -25,22 +26,23 @@ import { AlertController, ModalController } from "@ionic/angular";
 })
 export class ModalPage {
   userdata;
-  constructor(public viewCtrl: ModalController, private router: Router) {}
+  constructor(public viewCtrl: ModalController, private router: Router, private storage: Storage) { }
 
   dismiss() {
     this.viewCtrl.dismiss().then((data) => {
-      let profile = localStorage.getItem("user_type");
-      if (profile === "ServiceProvider") {
-        if (this.userdata["user"].businesses.length > 0) {
-          this.router.navigate(["/menu/view-businesses"], {
-            state: { businesses: this.userdata },
-          });
+      this.storage.get("user_type").then(profile => {
+        if (profile === "ServiceProvider") {
+          if (this.userdata["user"].businesses.length > 0) {
+            this.router.navigate(["/menu/view-businesses"], {
+              state: { businesses: this.userdata },
+            });
+          } else {
+            this.router.navigate(["/menu/complete-profile"]);
+          }
         } else {
-          this.router.navigate(["/menu/complete-profile"]);
+          this.router.navigate(["/"]);
         }
-      } else {
-        this.router.navigate(["/"]);
-      }
+      });
     });
   }
 }

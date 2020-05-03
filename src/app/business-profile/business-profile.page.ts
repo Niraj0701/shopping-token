@@ -55,7 +55,7 @@ export class BusinessProfilePage implements OnInit {
     this.route.navigate(["/menu/view-businesses"]);
   }
 
-  selectDate(selectedDate, index) {
+  selectDate(selectedDate, index?: any) {
     this.isDateActive = index;
     this.apiService
       .getBookedSlots(

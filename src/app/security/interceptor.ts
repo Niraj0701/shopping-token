@@ -1,16 +1,19 @@
 import { Injectable } from '@angular/core';
-import { Observable, throwError, from, of } from 'rxjs';
+import { Observable, throwError, from } from 'rxjs';
 import { HttpRequest, HttpHandler, HttpInterceptor, HttpEvent, HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { catchError, map, switchMap } from 'rxjs/operators';
+import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-   constructor(private _router: Router, public http: HttpClient) { }
+   constructor(private _router: Router,
+      public http: HttpClient,
+      private storage: Storage) { }
 
    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-      return of(localStorage.getItem('authorization'))
+      return from(this.storage.get('authorization'))
          .pipe(
             switchMap(token => {
                if (token) {
