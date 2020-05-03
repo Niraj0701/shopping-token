@@ -11,11 +11,6 @@ const routes: Routes = [
     component: MenuPage,
     children: [
       {
-        path: "profile",
-        loadChildren: () =>
-          import("../profile/profile.module").then((m) => m.ProfilePageModule),
-      },
-      {
         path: "business-profile",
         canLoad: [BusinessGuard],
         loadChildren: () =>
@@ -44,11 +39,9 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'detail',
+        path: "detail",
         loadChildren: () =>
-          import('../detail/detail.module').then(
-            m => m.DetailPageModule
-          ),
+          import("../detail/detail.module").then((m) => m.DetailPageModule),
       },
       {
         path: "time-slots",
@@ -93,4 +86,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class MenuPageRoutingModule { }
+export class MenuPageRoutingModule {}

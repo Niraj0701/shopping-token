@@ -9,6 +9,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { ApiService } from "./../services/api/api.service";
+import { LoaderService } from "src/app/services/api/loading.service";
 
 @Component({
   selector: "app-signin",
@@ -22,7 +23,8 @@ export class SigninPage implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private apiService: ApiService,
-    public alertController: AlertController
+    public alertController: AlertController,
+    private loading: LoaderService
   ) {}
 
   ngOnInit() {
@@ -35,18 +37,21 @@ export class SigninPage implements OnInit {
     const mobile = this.signinForm.controls["mobile"].value;
     const pass = this.signinForm.controls["password"].value;
     if (this.signinForm.valid) {
+      this.loading.show();
       this.storage.set("mobile", mobile);
       this.apiService.signIn(mobile, pass).subscribe((data: any) => {
-        this.onSignupSuccess(data);
+        this.storage.set("refresh", data.refresh);
+        this.storage.set("authorization", data.access);
+        setTimeout(() => {
+          this.onSignupSuccess(data);
+        }, 3000);
       });
     }
   }
 
   private onSignupSuccess(data: any) {
-    this.storage.set("refresh", data.refresh);
-    this.storage.set("authorization", data.access);
-    console.log("sadasdasdad");
     this.apiService.me().subscribe((data) => {
+      this.loading.hide();
       this.storage.set("user_type", data["user"].profile);
       this.storage.set("user_name", data["user"].name);
       const profile = data["user"].profile;
