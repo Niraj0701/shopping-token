@@ -8,8 +8,7 @@ import {
 } from "@angular/forms";
 import { LoaderService } from "src/app/services/api/loading.service";
 import { ApiService } from "src/app/services/api/api.service";
-import { Storage } from '@ionic/storage';
-
+import { Storage } from "@ionic/storage";
 
 @Component({
   selector: "app-signup-form",
