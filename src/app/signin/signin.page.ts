@@ -45,6 +45,7 @@ export class SigninPage implements OnInit {
   private onSignupSuccess(data: any) {
     this.storage.set("refresh", data.refresh);
     this.storage.set("authorization", data.access);
+    console.log("sadasdasdad");
     this.apiService.me().subscribe((data) => {
       this.storage.set("user_type", data["user"].profile);
       this.storage.set("user_name", data["user"].name);

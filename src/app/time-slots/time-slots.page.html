@@ -1,11 +1,14 @@
 <ion-header>
   <ion-toolbar>
     <ion-icon
+      style="margin-left: 10px;"
       (click)="goBack()"
       slot="start"
       name="chevron-back-outline"
     ></ion-icon>
-    <ion-title>Time Slots</ion-title>
+    <ion-title style="font-size: 16px; text-align: center;"
+      >Time Slots</ion-title
+    >
   </ion-toolbar>
 </ion-header>
 
@@ -62,7 +65,6 @@
     <ion-button
       [disabled]="!slotString"
       (click)="bookNowSlot()"
-      shape="round"
       class="shopping-button brder-btn"
     >
       Book Now
