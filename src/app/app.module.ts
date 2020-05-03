@@ -21,7 +21,7 @@ import { SecurityModule } from "./security/security.module";
     IonicModule.forRoot(),
     IonicStorageModule.forRoot({
       name: '__mydb',
-      driverOrder: ['sqlite']
+      driverOrder: ['sqlite', 'indexeddb', 'websql', 'localstorage']
     }),
     AppRoutingModule,
     GuardsModule,
