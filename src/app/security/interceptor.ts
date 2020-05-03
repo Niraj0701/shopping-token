@@ -4,12 +4,15 @@ import { HttpRequest, HttpHandler, HttpInterceptor, HttpEvent, HttpClient, HttpE
 import { Router } from '@angular/router';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { Storage } from '@ionic/storage';
+import { AlertController } from '@ionic/angular';
+
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
    constructor(private _router: Router,
       public http: HttpClient,
+      public alertController: AlertController,
       private storage: Storage) { }
 
    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -29,8 +32,8 @@ export class AuthInterceptor implements HttpInterceptor {
                   }),
                   catchError((error: HttpErrorResponse) => {
                      const status = error.status;
-                     const reason = error && error.error.reason ? error.error.reason : '';
-
+                     const reason = error && error.error.detail ? error.error.detail : "Problem in connecting to backend";
+                     this.presentAlert(reason, status);
                      // this.presentAlert(status, reason);
                      return throwError(error);
                   })
@@ -38,4 +41,16 @@ export class AuthInterceptor implements HttpInterceptor {
             })
          );
    }
+
+
+   async presentAlert(reason: string, status: number) {
+      const alert = await this.alertController.create({
+        header: "Error",
+        subHeader: status.toString(),
+        message: reason,
+        buttons: ['OK']
+      });
+  
+      await alert.present();
+    }
 }
