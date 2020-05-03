@@ -29,7 +29,7 @@ export class DetailPage implements OnInit {
     this.router.navigate(["/menu/shops-list"]);
   }
 
-  navigateToList(business_type: string) {
+  navigateToList(business_type?: string) {
     const comment = this.commentForm.get('comment').value
     this.router.navigate(["/menu/time-slots"], {
       state: { shop: {...this.shop, comment: comment} },
