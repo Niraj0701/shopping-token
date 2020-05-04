@@ -29,7 +29,7 @@
             margin: 10px 8px;
             border-radius: 4px;
           "
-          (click)="viewBookedSlots(business)"
+          
           *ngFor="let business of businesses.user.businesses"
         >
           <ion-item
@@ -38,6 +38,7 @@
               color: #020202;
               --border-color: transparent;
             "
+            (click)="viewBookedSlots(business)"
           >
             <ion-label style="margin: 0;">{{business.name}}</ion-label>
             <div>{{business.address}}</div>

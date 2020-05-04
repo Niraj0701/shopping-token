@@ -3,10 +3,10 @@
 .commentForm {
   padding: 20px;
 
-  ion-textarea {
-    border: 1px solid;
-    margin: 10vh 0;
-    border-radius: 5px;
-    padding: 12px;
-  }
+   ion-textarea {
+      border: 1px solid;
+      min-height: 20vh;
+      margin: 5vh 0;
+      border-radius: 5px;
+   }
 }
