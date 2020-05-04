@@ -11,12 +11,14 @@
 </ion-header>
 
 <ion-content class="light-black">
+  <p style="margin-left: 12px;">Purpose/ Grocery List/ Other special demands</p>
   <form
     class="commentForm"
     (ngSubmit)="navigateToList()"
     [formGroup]="commentForm"
   >
-    <ion-textarea autoGrow="true"
+    <ion-textarea
+      autoGrow="true"
       formControlName="comment"
       placeholder="Add your grocery list or special demands with this slot"
     >

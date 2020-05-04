@@ -55,6 +55,7 @@ export class ApiService {
       date: bookDetails.selectedDate,
       slot: bookDetails.selectedTime,
       customer_name: bookDetails.name,
+      comments: bookDetails.comment,
     };
 
     return this.http.post(url, body);
