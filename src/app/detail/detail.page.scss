@@ -1,12 +1,12 @@
 @import "../signup/signup-form/signup-form.component.scss";
 
-.commentForm{
-   padding: 20px;
+.commentForm {
+  padding: 20px;
 
-   ion-textarea {
-      border: 1px solid;
-      height: 10vh;
-      margin: 10vh 0;
-      border-radius: 5px;
-   }
+  ion-textarea {
+    border: 1px solid;
+    margin: 10vh 0;
+    border-radius: 5px;
+    padding: 12px;
+  }
 }

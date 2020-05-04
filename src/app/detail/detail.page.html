@@ -16,9 +16,11 @@
     (ngSubmit)="navigateToList()"
     [formGroup]="commentForm"
   >
+    <p>Purpose/ Grocery List/ Other special demands</p>
     <ion-textarea
+      autoGrow="true"
       formControlName="comment"
-      placeholder="Put your comment, notes, information here..."
+      placeholder="Add your grocery list or special demands with this slot"
     >
     </ion-textarea>
     <ion-button

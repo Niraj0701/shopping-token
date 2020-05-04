@@ -21,7 +21,6 @@ export class ViewBusinessesPage implements OnInit {
     if (this.route.getCurrentNavigation().extras.state) {
       this.businesses = this.route.getCurrentNavigation().extras.state.businesses;
     } else {
-      console.log("in page2");
       this.apiService.me().subscribe((user) => {
         this.businesses = user;
       });

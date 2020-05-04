@@ -35,8 +35,8 @@ export class SigninPage implements OnInit {
     const mobile = this.signinForm.controls["mobile"].value;
     const pass = this.signinForm.controls["password"].value;
     if (this.signinForm.valid) {
-      this.storage.set("mobile", mobile);
       this.apiService.signIn(mobile, pass).subscribe((data: any) => {
+        this.storage.set("mobile", mobile);
         this.onSignupSuccess(data);
       });
     }
@@ -45,7 +45,6 @@ export class SigninPage implements OnInit {
   private onSignupSuccess(data: any) {
     this.storage.set("refresh", data.refresh);
     this.storage.set("authorization", data.access);
-    console.log("sadasdasdad");
     this.apiService.me().subscribe((data) => {
       this.storage.set("user_type", data["user"].profile);
       this.storage.set("user_name", data["user"].name);

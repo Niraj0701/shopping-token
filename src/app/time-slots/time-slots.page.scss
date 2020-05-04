@@ -39,7 +39,6 @@
       }
     }
     & .active-date {
-      border: 2px solid #40c496;
       background: #40c496;
 
       .name {
@@ -47,7 +46,7 @@
         font-weight: 900;
       }
       .service-icon {
-        color: #ffff;
+        color: #ffff !important;
         font-weight: 900;
       }
     }
@@ -63,14 +62,12 @@
       padding: 12px;
     }
     .time-slot-button {
-      font-size: 15px;
+      font-size: 13px;
       font-weight: 500;
       font-family: sans-serif;
       --color: grey;
-
       --border-color: grey;
       --background: #ffff;
-      font-weight: 500;
     }
 
     & .selected {

@@ -14,7 +14,7 @@
 
 <ion-content class="timeSlots light-black">
   <section class="shop-details">
-    <ion-item lines="none">
+    <ion-item style="margin: 10px 0; border-radius: 8px;" lines="none">
       <ion-label class="ion-text-wrap">
         <ion-text color="dark" class="shop-name">
           {{shop.name}}
@@ -34,8 +34,12 @@
     <p class="section-title">Available dates to book slot</p>
     <ion-row>
       <ion-col size="4" *ngFor="let item of datesAndDays">
-        <ion-card class="service" [ngClass]="item.present ? 'active-date': ''">
-          <p class="service-icon">{{item.date}}</p>
+        <ion-card
+          (click)="getSelectedDate(item)"
+          class="service"
+          [ngClass]="item.present ? 'active-date': ''"
+        >
+          <p style="color: #000;" class="service-icon">{{item.date}}</p>
           <ion-card-content class="name">
             <span>{{item.day}}</span>
           </ion-card-content>
@@ -46,9 +50,10 @@
   <section class="hours">
     <p class="section-title">Available time slots</p>
     <ion-grid class="timeBtns">
-      <ion-row>
+      <ion-row class="ion-justify-content-start">
         <ion-col size="4" *ngFor="let item of shop.slots; let i = index">
           <ion-button
+            [disabled]="isActiveTime(item)"
             [ngClass]="selectedSlot === i ? 'selected': '' "
             size="small"
             fill="outline"
@@ -67,7 +72,7 @@
       (click)="bookNowSlot()"
       class="shopping-button brder-btn"
     >
-      Next 
+      Next
       <ion-icon slot="end" name="arrow-forward-outline"></ion-icon>
     </ion-button>
   </section>
