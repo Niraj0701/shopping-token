@@ -43,13 +43,15 @@ export class SigninPage implements OnInit {
   }
 
   private onSignupSuccess(data: any) {
-    this.storage.set("refresh", data.refresh);
-    this.storage.set("authorization", data.access);
+    
+    Promise.all([this.storage.set("refresh", data.refresh),
+    this.storage.set("authorization", data.access)]).then(([ok1, ok2])=> {
+      console.log('SET : ', ok1, ok2);
+    });
     this.apiService.me().subscribe((data) => {
       this.storage.set("user_type", data["user"].profile);
       this.storage.set("user_name", data["user"].name);
       const profile = data["user"].profile;
-      this.apiService.userProfile.next(data["user"]);
       if (data["user"].verification_state == "UNVERIFIED") {
         this.router.navigate(["/signup/verify"], {
           state: { businesses: data },

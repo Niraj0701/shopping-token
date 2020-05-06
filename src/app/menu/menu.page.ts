@@ -74,7 +74,6 @@ export class MenuPage implements OnInit {
       this.storage.remove('authorization'),
       this.storage.remove('user_type'),
       this.storage.remove('user_name'),
-      this.storage.remove('refresh'),
       this.storage.remove('refresh')
      ]).then( () => {
        this.router.navigate(["/login"]);

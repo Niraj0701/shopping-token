@@ -18,10 +18,11 @@ import { ApiService } from "src/app/services/api/api.service";
   styleUrls: ["./phone-check.component.scss"],
 })
 export class PhoneCheckComponent implements OnInit {
-  private data: any;
+  public data: any;
   private otp: any;
   verifyOtpForm: FormGroup;
   userMobile: any;
+  modal: any;
   constructor(
     private storage: Storage,
     public modalController: ModalController,
@@ -32,47 +33,66 @@ export class PhoneCheckComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.verifyOtpForm = new FormGroup({
+      otp: new FormControl("", [Validators.required]),
+    });
+    this.data = this.router.getCurrentNavigation().extras.state.businesses;
     this.storage.get("mobile").then((mobile) => {
       this.userMobile = mobile;
-      this.data = this.router.getCurrentNavigation().extras.state.businesses;
       this.apiService.getOtp().subscribe(
         (data) => {
           // this.verifyOtpForm.controls.otp.setValue(data["otp"]);
-          this.otp = data["otp"];
+          // this.otp = data["otp"];
         },
         (err) => {
           if (err.status === 400) {
-            this.storage.clear();
-            this.router.navigate(["/login"]);
-            this.handleButtonClick();
+            Promise.all([this.storage.remove('mobile'),
+            this.storage.remove('authorization'),
+            this.storage.remove('user_type'),
+            this.storage.remove('user_name'),
+            this.storage.remove('refresh')
+           ]).then( () => {
+             this.router.navigate(["/login"]);
+             this.handleButtonClick(err.error);
+           });
           }
         }
       );
-      this.verifyOtpForm = new FormGroup({
-        otp: new FormControl("", [Validators.required]),
-      });
     });
   }
 
+  async presentModal() {
+    this.modal = await this.modalController.create({
+      component: ModalPage,
+      componentProps: {
+        userdata: this.data,
+      },
+      cssClass: "confirmation-popup",
+    });
+    return await this.modal.present();
+  }
+
   async onVerifyClick() {
+
     if (this.verifyOtpForm.valid) {
-      this.apiService.verifyOtp(this.otp, this.data.id).subscribe();
-      const modal = await this.modalController.create({
-        component: ModalPage,
-        componentProps: {
-          userdata: this.data,
-        },
-        cssClass: "confirmation-popup",
+      const otp = this.verifyOtpForm.get('otp').value;
+      this.presentModal();
+      this.apiService.verifyOtp(otp, this.data.id).subscribe( data => {
+        console.log('++++++ : ', data)
+        this.modal ? this.modal.dismiss(): '';
+      }, error => {
+        console.log('Error : ', error);
+
       });
-      return await modal.present();
+      
     }
   }
   goBack() {
     this.router.navigate(["/login"]);
   }
-  async handleButtonClick() {
+  async handleButtonClick(error: string) {
     const alert = await this.alertController.create({
-      header: "Request after 5mins",
+      header: error,
       buttons: ["Ok"],
     });
 
