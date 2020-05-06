@@ -1,7 +1,13 @@
 <ion-header>
   <ion-toolbar>
-    <ion-icon style="margin-left: 10px;" (click)="goBack()" slot="start" name="chevron-back-outline"></ion-icon>
-    <ion-title style="font-size: 16px; text-align: center;">Phone Verification
+    <ion-icon
+      style="margin-left: 10px;"
+      (click)="goBack()"
+      slot="start"
+      name="chevron-back-outline"
+    ></ion-icon>
+    <ion-title style="font-size: 16px; text-align: center;"
+      >Phone Verification
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,27 +15,48 @@
 <ion-content class="light-black">
   <div *ngIf="data">
     <section class="form-logo">
-      <img src="../../../assets/icons/queued-logo.svg" width="300" height="175" />
+      <img
+        src="../../../assets/icons/queued-logo.svg"
+        width="300"
+        height="175"
+      />
     </section>
     <section class="code-verification">
       <p class="form-text">We sent you a code to verify your phone number</p>
       <span>Sent to ({{ userMobile }})</span>
     </section>
 
-    <form [formGroup]="verifyOtpForm" class="verifyOtpForm" (ngSubmit)="onVerifyClick()">
+    <form
+      [formGroup]="verifyOtpForm"
+      class="verifyOtpForm"
+      (ngSubmit)="onVerifyClick()"
+    >
       <ion-grid class="code-section">
         <ion-row>
           <ion-col class="code-col">
-            <ion-input class="input" type="tel" placeHolder="Enter OTP" formControlName="otp"></ion-input>
-            <span style="color: red;" 
-            *ngIf="verifyOtpForm.get('otp').hasError('required') && verifyOtpForm.get('otp').touched">
-            Enter the OTP received</span>
+            <ion-input
+              class="input"
+              type="number"
+              placeHolder="Enter OTP"
+              formControlName="otp"
+            ></ion-input>
+            <span
+              style="color: red;"
+              *ngIf="
+                verifyOtpForm.get('otp').hasError('required') &&
+                verifyOtpForm.get('otp').touched
+              "
+            >
+              Enter the OTP received</span
+            >
           </ion-col>
         </ion-row>
       </ion-grid>
       <ion-row class="ion-justify-content-center">
         <ion-col size="8" class="verification-number">
-          <ion-button type="submit" class="shopping-button brder-btn">Verify Phone Number</ion-button>
+          <ion-button type="submit" class="shopping-button brder-btn"
+            >Verify Phone Number</ion-button
+          >
         </ion-col>
       </ion-row>
     </form>

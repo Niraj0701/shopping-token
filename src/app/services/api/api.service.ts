@@ -45,8 +45,7 @@ export class ApiService {
       profile: person.profile,
       password: person.password,
       country: person.country,
-      country_code: person.country_code
-
+      country_code: person.country_code,
     };
 
     return this.http.post(url, body);
@@ -104,7 +103,7 @@ export class ApiService {
     return this.http.get(url, params);
   }
 
-  verifyOtp(otp, id) {
+  verifyOtp(otp: number, id) {
     const url = `https://api.healthybank.in/api/user/${id}/verify`;
     const body = {
       otp: otp,

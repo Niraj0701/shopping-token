@@ -46,15 +46,16 @@ export class PhoneCheckComponent implements OnInit {
         },
         (err) => {
           if (err.status === 400) {
-            Promise.all([this.storage.remove('mobile'),
-            this.storage.remove('authorization'),
-            this.storage.remove('user_type'),
-            this.storage.remove('user_name'),
-            this.storage.remove('refresh')
-           ]).then( () => {
-             this.router.navigate(["/login"]);
-             this.handleButtonClick(err.error);
-           });
+            Promise.all([
+              this.storage.remove("mobile"),
+              this.storage.remove("authorization"),
+              this.storage.remove("user_type"),
+              this.storage.remove("user_name"),
+              this.storage.remove("refresh"),
+            ]).then(() => {
+              this.router.navigate(["/login"]);
+              this.handleButtonClick(err.error);
+            });
           }
         }
       );
@@ -73,24 +74,27 @@ export class PhoneCheckComponent implements OnInit {
   }
 
   async onVerifyClick() {
-
     if (this.verifyOtpForm.valid) {
-      const otp = this.verifyOtpForm.get('otp').value;
-      this.presentModal();
-      this.apiService.verifyOtp(otp, this.data.id).subscribe( data => {
-        console.log('++++++ : ', data)
-        this.modal ? this.modal.dismiss(): '';
-      }, error => {
-        console.log('Error : ', error);
-
-      });
-      
+      const otp = this.verifyOtpForm.get("otp").value;
+      this.apiService.verifyOtp(otp, this.data.user.id).subscribe(
+        (data) => {
+          if (data === "INVALID_OTP") {
+            this.handleButtonClick(data);
+          } else {
+            this.presentModal();
+            this.modal ? this.modal.dismiss() : "";
+          }
+        },
+        (error) => {
+          console.log("Error : ", error);
+        }
+      );
     }
   }
   goBack() {
     this.router.navigate(["/login"]);
   }
-  async handleButtonClick(error: string) {
+  async handleButtonClick(error: any) {
     const alert = await this.alertController.create({
       header: error,
       buttons: ["Ok"],
