@@ -8,7 +8,7 @@ import { TimeSlotsPageRoutingModule } from "./time-slots-routing.module";
 
 import { TimeSlotsPage } from "./time-slots.page";
 import { ApiServiceModule } from "../services/api/apiService.module";
-
+import { DisablePipe } from "./time.pipe";
 @NgModule({
   imports: [
     CommonModule,
@@ -17,6 +17,6 @@ import { ApiServiceModule } from "../services/api/apiService.module";
     TimeSlotsPageRoutingModule,
     ApiServiceModule,
   ],
-  declarations: [TimeSlotsPage],
+  declarations: [TimeSlotsPage, DisablePipe],
 })
 export class TimeSlotsPageModule {}

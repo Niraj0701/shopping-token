@@ -4,11 +4,12 @@ import * as moment from "moment";
 import { IShop } from "../models/shop.interface";
 import { ApiService } from "./../services/api/api.service";
 import { LoaderService } from "../services/api/loading.service";
-
+import { DisablePipe } from "./time.pipe";
 @Component({
   selector: "app-time-slots",
   templateUrl: "./time-slots.page.html",
   styleUrls: ["./time-slots.page.scss"],
+  providers: [DisablePipe],
 })
 export class TimeSlotsPage implements OnInit {
   datesAndDays = [];
@@ -17,10 +18,12 @@ export class TimeSlotsPage implements OnInit {
   weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   public shop: IShop;
   isTimedisabled: any = "";
+  timeSlots = [];
   constructor(
     private route: Router,
     private apiService: ApiService,
-    private loading: LoaderService
+    private loading: LoaderService,
+    private datePipe: DisablePipe
   ) {}
   //  new Date().getDate() === this.getDate(item).getDate()
   ngOnInit() {
@@ -37,6 +40,7 @@ export class TimeSlotsPage implements OnInit {
     });
   }
   getSelectedDate(dateObj) {
+    this.timeSlots = [];
     this.selectedSlot = null;
     this.slotString = "";
     this.datesAndDays.map((obj) => {
@@ -53,17 +57,12 @@ export class TimeSlotsPage implements OnInit {
     } else {
       this.isTimedisabled = null;
     }
-  }
-
-  isActiveTime(time) {
-    var endTime = moment(new Date(), ["hh:mm A"]);
-    var beginningTime = moment(time, ["hh:mm A"]);
-    if (this.isTimedisabled !== null) {
-      this.selectedSlot = null;
-      this.slotString = "";
-      return beginningTime.isBefore(endTime);
-    }
-    return false;
+    this.shop.slots.map((time) => {
+      this.timeSlots.push({
+        slot: time,
+        isSlotActive: this.datePipe.transform(time, this.isTimedisabled),
+      });
+    });
   }
 
   getTime(time) {

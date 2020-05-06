@@ -11,7 +11,6 @@ export interface IShop {
   slot_size_min?: number;
   distance?: string;
   comment?: string;
-  timeSlots: string[];
 }
 
 export interface ICoords {
