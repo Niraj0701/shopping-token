@@ -44,6 +44,9 @@ export class ApiService {
       mobile: person.mobile,
       profile: person.profile,
       password: person.password,
+      country: person.country,
+      country_code: person.country_code
+
     };
 
     return this.http.post(url, body);
