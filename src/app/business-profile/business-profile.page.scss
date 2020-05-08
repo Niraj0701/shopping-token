@@ -115,13 +115,6 @@ ion-icon {
 }
 
 .date-button {
-  & .selected {
-    --color: #3880ff;
-
-    --border-color: #3880ff !important;
-  }
-}
-.date-button {
   --background-activated: #3fd4a0 !important;
   --background-focused: #3fd4a0 !important;
   --background: #fff;

@@ -51,7 +51,7 @@ export class UserServicesPage implements OnInit {
           role: "cancel",
           cssClass: "danger",
           handler: (blah) => {
-            console.log("Confirm Cancel: blah");
+            console.log("Confirm Cancel");
           },
         },
         {
@@ -85,8 +85,8 @@ export class UserServicesPage implements OnInit {
   }
 
   async alreadyHaveCoords() {
-    const lat = await this.storage.get('lat');
-    const long = await this.storage.get('long');
+    const lat = await this.storage.get("lat");
+    const long = await this.storage.get("long");
 
     const _coords: ICoords = {
       latitude: parseInt(lat),
@@ -131,7 +131,7 @@ export class UserServicesPage implements OnInit {
           role: "cancel",
           cssClass: "secondary",
           handler: (blah) => {
-            console.log("Confirm Cancel: blah");
+            console.log("Confirm Cancel");
           },
         },
         {

@@ -38,6 +38,10 @@ const routes: Routes = [
         (m) => m.ForgotPasswordPageModule
       ),
   },
+  {
+    path: 'contact-us',
+    loadChildren: () => import('./contact-us/contact-us.module').then( m => m.ContactUsPageModule)
+  },
   // {
   //   path: 'my-booked-slots',
   //   loadChildren: () => import('./my-booked-slots/my-booked-slots.module').then( m => m.MyBookedSlotsPageModule)

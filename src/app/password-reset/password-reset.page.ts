@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { LoaderService } from "src/app/services/api/loading.service";
 import { ApiService } from "src/app/services/api/api.service";
+import { AlertController } from "@ionic/angular";
 @Component({
   selector: "app-password-reset",
   templateUrl: "./password-reset.page.html",
@@ -14,7 +15,8 @@ export class PasswordResetPage implements OnInit {
   constructor(
     private loading: LoaderService,
     private route: Router,
-    private apiService: ApiService
+    private apiService: ApiService,
+    public alertController: AlertController
   ) {}
 
   ngOnInit() {
@@ -32,7 +34,7 @@ export class PasswordResetPage implements OnInit {
       this.apiService.resetPassword({ ...body, ...this.userInfo }).subscribe(
         (data) => {
           this.loading.hide();
-          this.route.navigate(["/login"]);
+          this.handleButtonClick();
         },
         (err) => {
           this.loading.hide();
@@ -46,5 +48,21 @@ export class PasswordResetPage implements OnInit {
 
   goBack() {
     this.route.navigate(["/forgot-password"]);
+  }
+
+  async handleButtonClick() {
+    const alert = await this.alertController.create({
+      header: "Password has been reset successfully",
+      buttons: [
+        {
+          text: "Ok",
+          handler: () => {
+            this.route.navigate(["/login"]);
+          },
+        },
+      ],
+    });
+
+    await alert.present();
   }
 }

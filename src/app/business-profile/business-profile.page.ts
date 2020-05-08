@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { MenuController } from "@ionic/angular";
+import { MenuController, AlertController } from "@ionic/angular";
 import * as moment from "moment";
 import { LoaderService } from "src/app/services/api/loading.service";
 import { ApiService } from "src/app/services/api/api.service";
@@ -20,7 +20,8 @@ export class BusinessProfilePage implements OnInit {
     private loading: LoaderService,
     private apiService: ApiService,
     private menu: MenuController,
-    private route: Router
+    private route: Router,
+    public alertController: AlertController
   ) {
     this.responseSlot = [];
     this.bookedSlots = this.route.getCurrentNavigation().extras.state.business;
@@ -70,13 +71,47 @@ export class BusinessProfilePage implements OnInit {
           if (!obj.hasOwnProperty(this.responseSlot[i].slot)) {
             obj[this.responseSlot[i].slot] = [];
           }
-          obj[this.responseSlot[i].slot].push(this.responseSlot[i].user);
+          obj[this.responseSlot[i].slot].push({
+            ...this.responseSlot[i].user,
+            comments: this.lineBreak(this.responseSlot[i].comments),
+          });
         }
         this.viewDetailSlots = obj;
       });
   }
 
+  lineBreak(names) {
+    if (names !== "") {
+      const re = /\s*(?:\n|$)\s*/;
+      const nameList = names.split(re);
+
+      return nameList;
+    }
+    return [];
+  }
+
+  openComments(obj) {
+    this.displayMessageOnClick(obj);
+  }
+
   keys(): Array<string> {
     return Object.keys(this.viewDetailSlots);
+  }
+
+  async displayMessageOnClick(obj) {
+    let itemsList = ``;
+
+    obj.comments.map((item) => {
+      itemsList += `<li>${item}</li>`;
+    });
+
+    let message = `<ul style="list-style: none;">${itemsList}</ul>`;
+    const alert = await this.alertController.create({
+      header: `${obj.name} Comment's`,
+      message: message,
+      buttons: ["Ok"],
+    });
+
+    await alert.present();
   }
 }

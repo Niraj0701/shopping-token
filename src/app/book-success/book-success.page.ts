@@ -11,7 +11,6 @@ export class BookSuccessPage implements OnInit {
 
   ngOnInit() {
     this.bookDetails = this.route.getCurrentNavigation().extras.state.bookDetails;
-    console.log(this.bookDetails)
   }
   home() {
     this.route.navigate(["/menu/user-services"]);

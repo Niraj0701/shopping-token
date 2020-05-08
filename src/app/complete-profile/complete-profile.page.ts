@@ -38,7 +38,6 @@ export class CompleteProfilePage implements OnInit {
       this.router.navigated = false;
       this.router.navigate([this.router.url]);
     }, 5000);
-    console.log(this.router.getCurrentNavigation().extras.state);
     if (this.router.getCurrentNavigation().extras.state) {
       this.isTitle = this.router.getCurrentNavigation().extras.state.txt;
     } else {

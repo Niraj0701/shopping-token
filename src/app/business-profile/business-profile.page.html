@@ -19,7 +19,7 @@
     Welcome, {{bookedSlots.name}}
   </p>
   <div style="font-size: 16px; font-weight: 600; margin-bottom: 16px;">
-    Check out today’s booked slots
+    Check out booked slots
   </div>
   <ion-grid>
     <ion-row>
@@ -64,7 +64,16 @@
           <ion-card class="card">
             <ion-card-title class="header">{{bookedslot.name}}</ion-card-title>
             <ion-card-content class="card-content">
-              <p><span>20 Items</span> | <span>Rs 1840.00</span></p>
+              <p *ngIf="bookedslot.comments.length > 0">
+                <span>{{bookedslot.comments.length}} Items</span> |
+                <span
+                  (click)="openComments(bookedslot)"
+                  style="text-decoration: underline;"
+                >
+                  View Comments</span
+                >
+              </p>
+              <p *ngIf="bookedslot.comments.length === 0">No Comments</p>
             </ion-card-content>
           </ion-card>
         </div>

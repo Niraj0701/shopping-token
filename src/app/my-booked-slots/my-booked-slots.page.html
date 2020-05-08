@@ -10,6 +10,20 @@
 </ion-header>
 
 <ion-content class="light-black">
+  <p>Select date below to view your booked slots</p>
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor="let element of daysList; let i = index;">
+        <ion-button
+          class="date-button"
+          (click)="selectDate(element, i)"
+          [ngClass]="isDateActive === i ? 'selected': '' "
+          >{{element | date: 'dd' }} <br />
+          {{element | date: 'EEE' }}</ion-button
+        >
+      </ion-col>
+    </ion-row>
+  </ion-grid>
   <ion-grid>
     <ion-row>
       <ion-col *ngIf="listBookedSlots.length>0">
