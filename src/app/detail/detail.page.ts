@@ -1,26 +1,27 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { FormGroup, FormControl } from '@angular/forms';
-import { ApiService } from '../services/api/api.service';
-import { LoaderService } from '../services/api/loading.service';
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { FormGroup, FormControl } from "@angular/forms";
+import { ApiService } from "../services/api/api.service";
+import { LoaderService } from "../services/api/loading.service";
 
 @Component({
-  selector: 'app-detail',
-  templateUrl: './detail.page.html',
-  styleUrls: ['./detail.page.scss'],
+  selector: "app-detail",
+  templateUrl: "./detail.page.html",
+  styleUrls: ["./detail.page.scss"],
 })
 export class DetailPage implements OnInit {
-
   coords: any = {};
   business_type: string;
   shopsList: any;
   comment: string;
   commentForm: FormGroup;
   shop: any;
-  
-  constructor(private router: Router,  
+
+  constructor(
+    private router: Router,
     private loading: LoaderService,
-    private apiService: ApiService) { }
+    private apiService: ApiService
+  ) {}
 
   ngOnInit() {
     this.shop = this.router.getCurrentNavigation().extras.state.bookdetails;
@@ -34,8 +35,8 @@ export class DetailPage implements OnInit {
   }
 
   navigateToList(business_type?: string) {
-    const comment = this.commentForm.get('comment').value;
-    this.shop = {...this.shop, comment: comment};
+    const comment = this.commentForm.get("comment").value;
+    this.shop = { ...this.shop, comment: comment };
     this.loading.show();
     this.apiService.bookNowSlot(this.shop).subscribe(
       (data) => {
@@ -43,7 +44,7 @@ export class DetailPage implements OnInit {
         this.router.navigate(["/menu/book-success"], {
           state: { bookDetails: data },
         });
-       /*  this.router.navigate(["/menu/book-success"], {
+        /*  this.router.navigate(["/menu/book-success"], {
           state: { bookDetails: {...this.shop, comment: comment} },
         }); */
       },
@@ -53,7 +54,4 @@ export class DetailPage implements OnInit {
       }
     );
   }
-
-
-
 }

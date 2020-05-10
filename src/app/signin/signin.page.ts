@@ -30,6 +30,7 @@ export class SigninPage implements OnInit {
       mobile: new FormControl("", [Validators.required]),
       password: new FormControl("", [Validators.required]),
     });
+    this.signinForm.reset();
   }
   onSubmit() {
     const mobile = this.signinForm.controls["mobile"].value;
@@ -60,10 +61,12 @@ export class SigninPage implements OnInit {
         return;
       } else if (profile == "ServiceProvider") {
         if (data["user"].businesses.length > 0) {
+          this.storage.set("isCompletedProfile", true);
           this.router.navigate(["/menu/view-businesses"], {
             state: { businesses: data },
           });
         } else {
+          this.storage.set("isCompletedProfile", false);
           this.router.navigate(["/menu/complete-profile"]);
         }
         return;

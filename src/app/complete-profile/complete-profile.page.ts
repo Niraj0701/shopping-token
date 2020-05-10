@@ -20,6 +20,7 @@ import { Storage } from "@ionic/storage";
 export class CompleteProfilePage implements OnInit {
   completeProfile: FormGroup;
   public isTitle: any;
+  businessTypeLists: any = [];
   constructor(
     private loading: LoaderService,
     private storage: Storage,
@@ -34,15 +35,25 @@ export class CompleteProfilePage implements OnInit {
   }
 
   ngOnInit() {
+    this.storage.get("isCompletedProfile").then((val) => {
+      if (val) {
+        this.isTitle = "Add";
+      } else {
+        this.isTitle = "Complete";
+      }
+    });
+    this.apiService.getBusinessesList().subscribe((lists) => {
+      this.businessTypeLists = lists;
+    });
     setTimeout(() => {
       this.router.navigated = false;
       this.router.navigate([this.router.url]);
     }, 5000);
-    if (this.router.getCurrentNavigation().extras.state) {
-      this.isTitle = this.router.getCurrentNavigation().extras.state.txt;
-    } else {
-      this.isTitle = "Complete";
-    }
+    // if (this.router.getCurrentNavigation().extras.state) {
+    //   this.isTitle = this.router.getCurrentNavigation().extras.state.txt;
+    // } else {
+    //   this.isTitle = "Complete";
+    // }
     this.completeProfile = new FormGroup({
       name: new FormControl("", [Validators.required]),
       business_type: new FormControl("", [Validators.required]),

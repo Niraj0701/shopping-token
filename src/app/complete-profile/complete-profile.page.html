@@ -42,7 +42,7 @@
       <ion-input
         class="input"
         type="text"
-        placeholder="Slot minimum size"
+        placeholder="Slot size in minutes"
         formControlName="slot_size_min"
       ></ion-input>
       <ion-input
@@ -73,10 +73,11 @@
         cancelText="Cancel"
         formControlName="business_type"
       >
-        <ion-select-option value="UNKNOWN">UNKNOWN</ion-select-option>
-        <ion-select-option value="BANK">Bank</ion-select-option>
-        <ion-select-option value="GROCERY">Grocery</ion-select-option>
-        <ion-select-option value="PHARMACY">Pharmacy</ion-select-option>
+        <ion-select-option
+          *ngFor="let list of businessTypeLists;"
+          value="{{list.key}}"
+          >{{list.name}}</ion-select-option
+        >
       </ion-select>
       <ion-button
         [disabled]="!completeProfile.valid"

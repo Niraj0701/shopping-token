@@ -141,4 +141,15 @@ export class ApiService {
     };
     return this.http.post(url, body);
   }
+
+  // TODO to remove params on api prod release
+  getBusinessesList() {
+    const url = "https://api.healthybank.in/api/business/list";
+    let params: any = {
+      params: {
+        v1: "v1",
+      },
+    };
+    return this.http.get(url, params);
+  }
 }

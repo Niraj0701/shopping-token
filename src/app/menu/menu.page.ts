@@ -9,7 +9,6 @@ import { Storage } from "@ionic/storage";
   styleUrls: ["./menu.page.scss"],
 })
 export class MenuPage implements OnInit {
-
   selectedPath: any;
   pages: any;
   userName: any;
@@ -20,42 +19,42 @@ export class MenuPage implements OnInit {
     private storage: Storage,
     private router: Router,
     private menu: MenuController
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.initMenu();
   }
 
   ionViewWillEnter() {
-
     Promise.all([
       this.storage.get("user_name"),
       this.storage.get("mobile"),
-      this.storage.get("user_type")])
-      .then(([userName, userMobile, userType]) => {
-        this.userName = userName;
-        this.userMobile = userMobile;
-        this.user_type = userType;
-        this.pages = [
-          {
-            title: "My Businesses",
-            url: "/menu/view-businesses",
-            icon: "briefcase",
-            isConsumer: !(userType == "ServiceProvider"),
-          },
-          {
-            title: "My Booked Slots",
-            icon: "clipboard",
-            url: "/menu/my-booked-slots",
-            isConsumer: false,
-          },
-          {
-            title: "Book Slot",
-            icon: "calendar",
-            url: "/menu/user-services",
-            isConsumer: false,
-          }];
-      });
+      this.storage.get("user_type"),
+    ]).then(([userName, userMobile, userType]) => {
+      this.userName = userName;
+      this.userMobile = userMobile;
+      this.user_type = userType;
+      this.pages = [
+        {
+          title: "My Businesses",
+          url: "/menu/view-businesses",
+          icon: "briefcase",
+          isConsumer: !(userType == "ServiceProvider"),
+        },
+        {
+          title: "My Booked Slots",
+          icon: "clipboard",
+          url: "/menu/my-booked-slots",
+          isConsumer: false,
+        },
+        {
+          title: "Book Slot",
+          icon: "calendar",
+          url: "/menu/user-services",
+          isConsumer: false,
+        },
+      ];
+    });
   }
 
   initMenu() {
@@ -70,15 +69,17 @@ export class MenuPage implements OnInit {
   }
 
   logout() {
-    Promise.all([this.storage.remove('mobile'),
-      this.storage.remove('authorization'),
-      this.storage.remove('user_type'),
-      this.storage.remove('user_name'),
-      this.storage.remove('refresh')
-     ]).then( () => {
-       this.router.navigate(["/login"]);
-     });
-  }  
+    Promise.all([
+      this.storage.remove("mobile"),
+      this.storage.remove("authorization"),
+      this.storage.remove("user_type"),
+      this.storage.remove("user_name"),
+      this.storage.remove("refresh"),
+      this.storage.remove("isCompletedProfile"),
+    ]).then(() => {
+      this.router.navigate(["/login"]);
+    });
+  }
 
   openEnd() {
     this.menu.close();

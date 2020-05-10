@@ -52,6 +52,7 @@ export class PhoneCheckComponent implements OnInit {
               this.storage.remove("user_type"),
               this.storage.remove("user_name"),
               this.storage.remove("refresh"),
+              this.storage.remove("isCompletedProfile"),
             ]).then(() => {
               this.router.navigate(["/login"]);
               this.handleButtonClick(err.error);
